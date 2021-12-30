@@ -1,0 +1,58 @@
+{
+  "contact": [
+    {
+      "name": "Email",
+      "text": "me@austinpoor.com",
+      "link": "mailto:me@austinpoor.com"
+    },
+    {
+      "name": "LinkedIn",
+      "text": "/in/austinpoor",
+      "link": "https://linkedin.com/in/austinpoor"
+    },
+    {
+      "name": "GitHub",
+      "text": "a-poor",
+      "link": "https://github.com/a-poor"
+    },
+    {
+      "name": "Medium",
+      "text": "@apoor",
+      "link": "https://medium.com/@apoor"
+    },
+    {
+      "name": "Twitter",
+      "text": "@austin_poor",
+      "link": "https://twitter.com/austin_poor"
+    }
+  ],
+  "skills": {
+    "languages": [
+      "Python",
+      "Go",
+      "SQL (MySQL)",
+      "SQL (Postgres)",
+      "JavaScript",
+      "NoSQL (MongoDB)",
+      "NoSQL (DynamoDB)",
+      "Bash"
+    ],
+    "tools": [
+      "Docker",
+      "AWS",
+      "Git",
+      "Scipy Stack",
+      "TensorFlow",
+      "XGBoost",
+      "FastAPI",
+      "REST",
+      "gRPC",
+      "Excel"
+    ]
+  },
+  "experience": [],
+  "education": [],
+  "certifications": [],
+  "projects": [],
+  "blogPosts": []
+}

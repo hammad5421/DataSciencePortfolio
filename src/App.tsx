@@ -135,28 +135,23 @@ function SkillsComponent({  }) {
           <LinkIcon />
         </IconButton>
       </Typography>
-      <List 
-        style={{ 
-          // maxWidth: "500px",
-        }}
-      >
-        <ListItem>
-          <ListItemText primary="Languages:"/>
-          <Stack direction="row" spacing={1}>
-            {
-              skills.languages.map((lang, i) => (<Chip key={ i } label={ lang } color="info"/>))
-            }
-          </Stack>
-        </ListItem>
-        <ListItem>
-          <ListItemText primary="Tools:"/>
-          <Stack direction="row" spacing={1}>
-            {
-              skills.tools.map((tool, i) => (<Chip key={ i } label={ tool } color="secondary"/>))
-            }
-          </Stack>
-        </ListItem>
-      </List>
+      <Typography variant="h5" gutterBottom>
+        Languages:
+      </Typography>
+      <Stack direction="row" spacing={1}>
+        {
+          skills.languages.map((lang, i) => (<Chip key={ i } label={ lang } color="info"/>))
+        }
+      </Stack>
+      <div style={{ marginTop: "15px", }}/>
+      <Typography variant="h5" gutterBottom>
+        Tools:
+      </Typography>
+      <Stack direction="row" spacing={1}>
+        {
+          skills.tools.map((tool, i) => (<Chip key={ i } label={ tool } color="secondary"/>))
+        }
+      </Stack>
     </Box>
   );
 }
