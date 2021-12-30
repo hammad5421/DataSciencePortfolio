@@ -16,6 +16,8 @@ import Link from '@mui/material/Link';
 import IconButton from '@mui/material/IconButton';
 import Fab from '@mui/material/Fab';
 import Fade from '@mui/material/Fade';
+import Chip from '@mui/material/Chip';
+import Stack from '@mui/material/Stack';
 
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -101,6 +103,30 @@ function ContactComponent({  }) {
 }
 
 function SkillsComponent({  }) {
+  const skills = {
+    languages: [
+      "Python",
+      "Go",
+      "SQL (MySQL)",
+      "SQL (Postgres)",
+      "JavaScript",
+      "NoSQL (MongoDB)",
+      "NoSQL (DynamoDB)",
+      "Bash",
+    ],
+    tools: [
+      "Docker",
+      "AWS",
+      "Git",
+      "Scipy Stack",
+      "TensorFlow",
+      "XGBoost",
+      "FastAPI",
+      "REST",
+      "gRPC",
+      "Excel",
+    ],
+  }
   return (
     <Box className="resume-section" id="skills">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -109,9 +135,28 @@ function SkillsComponent({  }) {
           <LinkIcon />
         </IconButton>
       </Typography>
-      <Typography variant="body1" component="p" gutterBottom>
-        { someText }
-      </Typography>
+      <List 
+        style={{ 
+          // maxWidth: "500px",
+        }}
+      >
+        <ListItem>
+          <ListItemText primary="Languages:"/>
+          <Stack direction="row" spacing={1}>
+            {
+              skills.languages.map((lang, i) => (<Chip key={ i } label={ lang } color="info"/>))
+            }
+          </Stack>
+        </ListItem>
+        <ListItem>
+          <ListItemText primary="Tools:"/>
+          <Stack direction="row" spacing={1}>
+            {
+              skills.tools.map((tool, i) => (<Chip key={ i } label={ tool } color="secondary"/>))
+            }
+          </Stack>
+        </ListItem>
+      </List>
     </Box>
   );
 }
@@ -212,10 +257,25 @@ function BackToTopComponent({}) {
   );
 }
 
+function PageFooter({}) {
+  return (
+    <Container
+      style={{
+        marginTop: "25px",
+        marginBottom: "25px",
+      }}
+    >
+      <Typography variant="body1" component="p" gutterBottom align="center">
+        © 2021 Austin Poor
+      </Typography>
+    </Container>
+  );
+}
+
 function App() {
   return (
     <div className="App">
-      <div style={{ height: '50px' }} />
+      <div style={{ height: '25px' }} />
       <Container>
         <IntroComponent />
         <Divider variant="middle" style={{ margin: "20px", }}/>
@@ -240,6 +300,8 @@ function App() {
 
         <BlogPostsComponent />
         <Divider variant="middle" style={{ margin: "20px", }}/>
+
+        <PageFooter />
 
         <BackToTopComponent />
       </Container>
