@@ -18,12 +18,19 @@ import Fab from '@mui/material/Fab';
 import Fade from '@mui/material/Fade';
 import Chip from '@mui/material/Chip';
 import Stack from '@mui/material/Stack';
-
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
+
+import type {} from '@mui/lab/themeAugmentation';
+import Timeline from '@mui/lab/Timeline';
+import TimelineItem from '@mui/lab/TimelineItem';
+import TimelineSeparator from '@mui/lab/TimelineSeparator';
+import TimelineConnector from '@mui/lab/TimelineConnector';
+import TimelineContent from '@mui/lab/TimelineContent';
+import TimelineDot from '@mui/lab/TimelineDot';
 
 import LinkIcon from '@mui/icons-material/Link';
 import MailIcon from '@mui/icons-material/Mail';
@@ -32,6 +39,12 @@ import GitHubIcon from '@mui/icons-material/GitHub';
 import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+
+import { resumeData } from "./data";
+import { 
+  ResumeData,
+  ExperienceData,
+} from "./types";
 
 const someText = `I'm a data scientist and full-stack developer with experience in Python, Go, SQL, and JavaScript. I have 4+ years of experience in outcome-oriented, collaborative team environments. I have a degree in computer science and certificates in data science and cloud computing. I'm a self-starter, analytic-thinker, and problem solver. I'm a data scientist and full-stack developer with experience in Python, Go, SQL, and JavaScript. I have 4+ years of experience in outcome-oriented, collaborative team environments. I have a degree in computer science and certificates in data science and cloud computing. I'm a self-starter, analytic-thinker, and problem solver.`;
 
@@ -102,31 +115,7 @@ function ContactComponent({  }) {
   );  
 }
 
-function SkillsComponent({  }) {
-  const skills = {
-    languages: [
-      "Python",
-      "Go",
-      "SQL (MySQL)",
-      "SQL (Postgres)",
-      "JavaScript",
-      "NoSQL (MongoDB)",
-      "NoSQL (DynamoDB)",
-      "Bash",
-    ],
-    tools: [
-      "Docker",
-      "AWS",
-      "Git",
-      "Scipy Stack",
-      "TensorFlow",
-      "XGBoost",
-      "FastAPI",
-      "REST",
-      "gRPC",
-      "Excel",
-    ],
-  }
+function SkillsComponent({ languages, tools }: {languages: string[], tools: string[]}) {
   return (
     <Box className="resume-section" id="skills">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -140,7 +129,7 @@ function SkillsComponent({  }) {
       </Typography>
       <Stack direction="row" spacing={1}>
         {
-          skills.languages.map((lang, i) => (<Chip key={ i } label={ lang } color="info"/>))
+          languages.map((lang, i) => (<span key={i} className="skill">{ lang }</span>))
         }
       </Stack>
       <div style={{ marginTop: "15px", }}/>
@@ -149,14 +138,14 @@ function SkillsComponent({  }) {
       </Typography>
       <Stack direction="row" spacing={1}>
         {
-          skills.tools.map((tool, i) => (<Chip key={ i } label={ tool } color="secondary"/>))
+          tools.map((tool, i) => (<span key={i} className="skill">{ tool }</span>))
         }
       </Stack>
     </Box>
   );
 }
 
-function ExperienceComponent({  }) {
+function ExperienceComponent({ experience = [] }: {experience: ExperienceData[]}) {
   return (
     <Box className="resume-section" id="experience">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -165,9 +154,31 @@ function ExperienceComponent({  }) {
           <LinkIcon />
         </IconButton>
       </Typography>
-      <Typography variant="body1" component="p" gutterBottom>
-        { someText }
-      </Typography>
+      
+      <style>{ ".experience-item::before { flex: none;}" }</style>
+      
+      <Timeline>
+        {
+          experience.map((exp, i) => (
+            <TimelineItem 
+              key={i}
+              className="experience-item"
+            >
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>
+                <Box>
+                  <Typography variant="h5" gutterBottom>
+                    { exp.title } @ { exp.company }
+                  </Typography>
+                </Box>
+              </TimelineContent>
+            </TimelineItem>
+          ))
+        }
+      </Timeline>
     </Box>
   );
 }
@@ -278,10 +289,10 @@ function App() {
         <ContactComponent />
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
-        <SkillsComponent />
+        <SkillsComponent { ...resumeData.skills }/>
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
-        <ExperienceComponent />
+        <ExperienceComponent experience={resumeData.experience}/>
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
         <EducationComponent />
