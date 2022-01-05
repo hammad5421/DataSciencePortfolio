@@ -1,6 +1,6 @@
 # AustinPoor.com
 
-[![Build and Deploy](https://github.com/a-poor/austinpoor-dot-com/actions/workflows/build.yml/badge.svg)](https://github.com/a-poor/austinpoor-dot-com/actions/workflows/build.yml)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/9d2d00af-2dd1-4923-9fb5-fff8a875c043/deploy-status)](https://app.netlify.com/sites/austinpoor-dot-com/deploys)
 
 _created by Austin Poor_
 
