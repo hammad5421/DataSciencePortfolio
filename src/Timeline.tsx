@@ -13,7 +13,7 @@ import TimelineDot from '@mui/lab/TimelineDot';
 
 export function TimelineContainer({ children, ...props }: { children: React.ReactElement[] }) {
   return (
-    <div className="timeline">
+    <div className="timeline" {...props}>
       <style>{".experience-item::before { flex: none;}"}</style>
 
       <Timeline
