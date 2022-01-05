@@ -8,7 +8,8 @@ import Typography from '@mui/material/Typography';
 // import Menu from '@mui/material/Menu';
 import Container from '@mui/material/Container';
 // import Avatar from '@mui/material/Avatar';
-// import Button from '@mui/material/Button';
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
 // import Tooltip from '@mui/material/Tooltip';
 // import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
@@ -42,7 +43,7 @@ import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
 import { resumeData } from "./data";
 import { 
-  // ResumeData,
+  ProjectData,
   ExperienceData,
 } from "./types";
 
@@ -53,13 +54,13 @@ function IntroComponent() {
   return (
     <Box className="resume-section">
       <Typography variant="h3" component="div" gutterBottom>
-        Hi, I&aposm Austin!
+        {"Hi, I'm Austin!"}
       </Typography>
       <Typography variant="subtitle1" component="div" gutterBottom>
-        My name is Austin Poor and I&aposm a full-stack developer living in Seattle, WA.
+        {"My name is Austin Poor and I'm a full-stack developer living in Seattle, WA."}
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        I&aposm a data scientist and full-stack developer with experience in Python, Go, SQL, and JavaScript. I have 4+ years of experience in outcome-oriented, collaborative team environments. I have a degree in computer science and certificates in data science and cloud computing. I&aposm a self-starter, analytic-thinker, and problem solver.
+        {"I'm a data scientist and full-stack developer with experience in Python, Go, SQL, and JavaScript. I have 4+ years of experience in outcome-oriented, collaborative team environments. I have a degree in computer science and certificates in data science and cloud computing. I'm a self-starter, analytic-thinker, and problem solver."}
       </Typography>
     </Box>
   );
@@ -127,20 +128,26 @@ function SkillsComponent({ languages, tools }: {languages: string[], tools: stri
       <Typography variant="h5" gutterBottom>
         Languages:
       </Typography>
-      <Stack direction="row" spacing={1}>
+      <div>
         {
-          languages.map((lang, i) => (<span key={i} className="skill">{ lang }</span>))
+          languages.map((lang, i) => [
+            i > 0 && <span style={{marginRight: "5px"}}>, </span>,
+            <code key={i}>{lang}</code>
+          ])
         }
-      </Stack>
+      </div>
       <div style={{ marginTop: "15px", }}/>
       <Typography variant="h5" gutterBottom>
         Tools:
       </Typography>
-      <Stack direction="row" spacing={1}>
+      <div>
         {
-          tools.map((tool, i) => (<span key={i} className="skill">{ tool }</span>))
+          tools.map((tool, i) => [
+            i > 0 && <span style={{marginRight: "5px"}}>, </span>,
+            <code key={i}>{tool}</code>
+          ])
         }
-      </Stack>
+      </div>
     </Box>
   );
 }
@@ -157,7 +164,11 @@ function ExperienceComponent({ experience = [] }: {experience: ExperienceData[]}
       
       <style>{ ".experience-item::before { flex: none;}" }</style>
       
-      <Timeline>
+      <Timeline
+        style={{
+          marginLeft: "-35px",
+        }}
+      >
         {
           experience.map((exp, i) => (
             <TimelineItem 
@@ -169,10 +180,37 @@ function ExperienceComponent({ experience = [] }: {experience: ExperienceData[]}
                 <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent>
-                <Box>
-                  <Typography variant="h5" gutterBottom>
+                <Box
+                >
+                  <Typography variant="h6">
                     { exp.title } @ { exp.company }
                   </Typography>
+                  <Typography variant="subtitle2" gutterBottom>
+                    {exp.startDate} - {exp.endDate}; {exp.location}
+                  </Typography>
+                  {
+                    exp.description && (
+                        <Typography variant="subtitle2" gutterBottom>
+                          { exp.description }
+                        </Typography>
+                    )
+                  }
+                  <ul className="experience-bullets">
+                    {
+                      exp.bullets.map((bullet, j) => (
+                        <li 
+                          key={j}
+                          style={{
+                            maxWidth: "750px",
+                          }}
+                        >
+                          <Typography variant="body2" gutterBottom>
+                            { bullet }
+                          </Typography>
+                        </li>
+                      ))
+                    }
+                  </ul>
                 </Box>
               </TimelineContent>
             </TimelineItem>
@@ -183,7 +221,7 @@ function ExperienceComponent({ experience = [] }: {experience: ExperienceData[]}
   );
 }
 
-function ProjectsComponent() {
+function ProjectsComponent({projects} : {projects: ProjectData[]}) {
   return (
     <Box className="resume-section" id="projects">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -192,9 +230,52 @@ function ProjectsComponent() {
           <LinkIcon />
         </IconButton>
       </Typography>
-      <Typography variant="body1" component="p" gutterBottom>
-        { someText }
-      </Typography>
+
+      <style>{ ".experience-item::before { flex: none;}" }</style>
+      
+      <Timeline
+        style={{
+          marginLeft: "-35px",
+        }}
+      >
+        {
+          projects.map((proj, i) => (
+            <TimelineItem 
+              key={i}
+              className="experience-item"
+            >
+              <TimelineSeparator>
+                <TimelineDot />
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent>
+                <Box
+                >
+                  <Typography variant="h6" gutterBottom>
+                    { proj.title }
+                  </Typography>
+                  {
+                    proj.description.map((d, j) => (
+                      <Typography key={j} variant="body2" gutterBottom>
+                        { d }
+                      </Typography>
+                    ))
+                  }
+                  <ButtonGroup variant="outlined" size="small">
+                    {
+                      proj.links.map((link, j) => (
+                        <Button key={j} href={link.link}>
+                          { link.name }
+                        </Button>
+                      ))
+                    }
+                  </ButtonGroup>
+                </Box>
+              </TimelineContent>
+            </TimelineItem>
+          ))
+        }
+      </Timeline>
     </Box>
   );
 }
@@ -301,7 +382,7 @@ function App() {
         {/* <CertificationsComponent />
         <Divider variant="middle" style={{ margin: "20px", }}/> */}
 
-        <ProjectsComponent />
+        <ProjectsComponent projects={resumeData.projects}/>
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
         <BlogPostsComponent />
