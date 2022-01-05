@@ -24,7 +24,7 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-import type {} from '@mui/lab/themeAugmentation';
+// import type {} from '@mui/lab/themeAugmentation';
 import Timeline from '@mui/lab/Timeline';
 import TimelineItem from '@mui/lab/TimelineItem';
 import TimelineSeparator from '@mui/lab/TimelineSeparator';
@@ -46,26 +46,26 @@ import {
   ExperienceData,
 } from "./types";
 
-const someText = `I'm a data scientist and full-stack developer with experience in Python, Go, SQL, and JavaScript. I have 4+ years of experience in outcome-oriented, collaborative team environments. I have a degree in computer science and certificates in data science and cloud computing. I'm a self-starter, analytic-thinker, and problem solver. I'm a data scientist and full-stack developer with experience in Python, Go, SQL, and JavaScript. I have 4+ years of experience in outcome-oriented, collaborative team environments. I have a degree in computer science and certificates in data science and cloud computing. I'm a self-starter, analytic-thinker, and problem solver.`;
+const someText = "Some text, some text, some text.";
 
 
-function IntroComponent({  }) {
+function IntroComponent() {
   return (
     <Box className="resume-section">
       <Typography variant="h3" component="div" gutterBottom>
-        Hi, I'm Austin!
+        Hi, I&aposm Austin!
       </Typography>
       <Typography variant="subtitle1" component="div" gutterBottom>
-        My name is Austin Poor and I'm a full-stack developer living in Seattle, WA.
+        My name is Austin Poor and I&aposm a full-stack developer living in Seattle, WA.
       </Typography>
       <Typography variant="body1" component="div" gutterBottom>
-        I'm a data scientist and full-stack developer with experience in Python, Go, SQL, and JavaScript. I have 4+ years of experience in outcome-oriented, collaborative team environments. I have a degree in computer science and certificates in data science and cloud computing. I'm a self-starter, analytic-thinker, and problem solver.
+        I&aposm a data scientist and full-stack developer with experience in Python, Go, SQL, and JavaScript. I have 4+ years of experience in outcome-oriented, collaborative team environments. I have a degree in computer science and certificates in data science and cloud computing. I&aposm a self-starter, analytic-thinker, and problem solver.
       </Typography>
     </Box>
   );
 }
 
-function ContactComponent({  }) {
+function ContactComponent() {
   return (
     <Box className="resume-section" id="contact-me">
       <Typography variant="h4" component="div" gutterBottom>
@@ -183,7 +183,7 @@ function ExperienceComponent({ experience = [] }: {experience: ExperienceData[]}
   );
 }
 
-function ProjectsComponent({  }) {
+function ProjectsComponent() {
   return (
     <Box className="resume-section" id="projects">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -199,7 +199,7 @@ function ProjectsComponent({  }) {
   );
 }
 
-function BlogPostsComponent({  }) {
+function BlogPostsComponent() {
   return (
     <Box className="resume-section" id="blog-posts">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -215,7 +215,7 @@ function BlogPostsComponent({  }) {
   );
 }
 
-function EducationComponent({  }) {
+function EducationComponent() {
   return (
     <Box className="resume-section" id="education">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -231,12 +231,12 @@ function EducationComponent({  }) {
   );
 }
 
-function BackToTopComponent({}) {
+function BackToTopComponent() {
   const [scrollTop, setScrollTop] = useState(true);
 
   useEffect(() => {
     function onScroll() {
-      let currentPosition = window.pageYOffset;
+      const currentPosition = window.pageYOffset;
       setScrollTop(currentPosition <= 0);
     }
 
@@ -263,7 +263,7 @@ function BackToTopComponent({}) {
   );
 }
 
-function PageFooter({}) {
+function PageFooter() {
   return (
     <Container
       style={{
