@@ -41,10 +41,19 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+import TagList from './TagList';
+import { TimelineContainer } from './Timeline';
 import { resumeData } from "./data";
 import { 
-  ProjectData,
+  ContactData,
+  SkillData,
   ExperienceData,
+  EducationData,
+  CertificationData,
+  ProjectLinkData,
+  ProjectData,
+  BlogPostData,
+  ResumeData,
 } from "./types";
 
 const someText = "Some text, some text, some text.";
@@ -116,7 +125,7 @@ function ContactComponent() {
   );  
 }
 
-function SkillsComponent({ languages, tools }: {languages: string[], tools: string[]}) {
+function SkillsComponent({ skills }: {skills: {languages: string[], tools: string[]}}) {
   return (
     <Box className="resume-section" id="skills">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -128,26 +137,12 @@ function SkillsComponent({ languages, tools }: {languages: string[], tools: stri
       <Typography variant="h5" gutterBottom>
         Languages:
       </Typography>
-      <div>
-        {
-          languages.map((lang, i) => [
-            i > 0 && <span style={{marginRight: "5px"}}>, </span>,
-            <code key={i}>{lang}</code>
-          ])
-        }
-      </div>
+      <TagList tags={skills.languages} />
       <div style={{ marginTop: "15px", }}/>
       <Typography variant="h5" gutterBottom>
         Tools:
       </Typography>
-      <div>
-        {
-          tools.map((tool, i) => [
-            i > 0 && <span style={{marginRight: "5px"}}>, </span>,
-            <code key={i}>{tool}</code>
-          ])
-        }
-      </div>
+      <TagList tags={skills.tools} />
     </Box>
   );
 }
@@ -280,7 +275,7 @@ function ProjectsComponent({projects} : {projects: ProjectData[]}) {
   );
 }
 
-function BlogPostsComponent() {
+function BlogPostsComponent({blogPosts} : {blogPosts: BlogPostData[]}) {
   return (
     <Box className="resume-section" id="blog-posts">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -289,14 +284,37 @@ function BlogPostsComponent() {
           <LinkIcon />
         </IconButton>
       </Typography>
-      <Typography variant="body1" component="p" gutterBottom>
-        { someText }
-      </Typography>
+      <TimelineContainer>
+        {
+          blogPosts.map((blog, i) => (
+            <Box key={i}>
+              <Typography variant="h6">
+                { blog.title }
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom>
+                { blog.subtitle }
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                { blog.description }
+              </Typography>
+              <Typography variant="subtitle2">
+                Tags:
+              </Typography>
+              <TagList tags={blog.tags} />
+              <div style={{marginTop: "10px", marginBottom: "15px"}}>
+                <Button size="small" href={blog.link} variant="outlined">
+                  Read More...
+                </Button>
+              </div>
+            </Box>
+          ))
+        }
+      </TimelineContainer>
     </Box>
   );
 }
 
-function EducationComponent() {
+function EducationComponent({education} : {education: EducationData[]}) {
   return (
     <Box className="resume-section" id="education">
       <Typography variant="h4" component="h1" gutterBottom>
@@ -305,9 +323,61 @@ function EducationComponent() {
           <LinkIcon />
         </IconButton>
       </Typography>
-      <Typography variant="body1" component="p" gutterBottom>
-        { someText }
+      <TimelineContainer>
+        {
+          education.map((edu, i) => (
+            <Box key={i}>
+              <Typography variant="h6">
+                { edu.title } @ { edu.school }
+              </Typography>
+              <Typography variant="subtitle1" gutterBottom>
+                {edu.graduationDate ? [edu.graduationDate, "; "] : undefined} {edu.location}
+              </Typography>
+              {
+                edu.courses.length && (
+                  <>
+                    <Typography variant="subtitle2" gutterBottom>
+                      Select Courses:
+                    </Typography>
+                    <TagList tags={edu.courses} />
+                  </>
+                )
+              }
+            </Box>
+          ))
+        }
+      </TimelineContainer>
+    </Box>
+  );
+}
+
+function CertificationsComponent({ certifications }: {certifications: CertificationData[]}) {
+  return (
+    <Box className="resume-section" id="education">
+      <Typography variant="h4" component="h1" gutterBottom>
+        Certifications
+        <IconButton style={{ marginLeft: "5px", }} href="#education">
+          <LinkIcon />
+        </IconButton>
       </Typography>
+      <TimelineContainer>
+        {
+          certifications.map((cert, i) => (
+            <Box key={i}>
+              <Typography variant="h6" gutterBottom>
+                { cert.title } ({ cert.date })
+              </Typography>
+              {
+                cert.link && (
+                  <Button size="small" href={cert.link} variant="outlined">
+                    Certificate Link
+                  </Button>
+                )
+              }
+            </Box>
+          ))
+        }
+      </TimelineContainer>
     </Box>
   );
 }
@@ -367,25 +437,26 @@ function App() {
         <IntroComponent />
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
+        {/* <ContactComponent contact={resumeData.contact}/> */}
         <ContactComponent />
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
-        <SkillsComponent { ...resumeData.skills }/>
+        <SkillsComponent skills={resumeData.skills}/>
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
         <ExperienceComponent experience={resumeData.experience}/>
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
-        <EducationComponent />
+        <EducationComponent education={resumeData.education}/>
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
-        {/* <CertificationsComponent />
-        <Divider variant="middle" style={{ margin: "20px", }}/> */}
+        <CertificationsComponent certifications={resumeData.certifications}/>
+        <Divider variant="middle" style={{ margin: "20px", }}/>
 
         <ProjectsComponent projects={resumeData.projects}/>
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
-        <BlogPostsComponent />
+        <BlogPostsComponent blogPosts={resumeData.blogPosts}/>
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
         <PageFooter />
