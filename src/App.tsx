@@ -32,6 +32,8 @@ import LibraryBooksIcon from '@mui/icons-material/LibraryBooks';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
+import mixpanel from 'mixpanel-browser';
+
 import TagList from './TagList';
 import { TimelineContainer } from './Timeline';
 import { resumeData } from "./data";
@@ -44,6 +46,9 @@ import {
   ProjectData,
   BlogPostData,
 } from "./types";
+
+
+mixpanel.init("b1cb2ce986faf348db292faad7a98acb");
 
 
 function IntroComponent() {
@@ -63,11 +68,12 @@ function IntroComponent() {
 }
 
 function ContactComponent() {
+  const onClickLink = (type: string) => () => mixpanel.track("Clicked Contact Link", {type})
   return (
     <Box className="resume-section" id="contact-me">
       <Typography variant="h4" component="div" gutterBottom>
         Contact Me 
-        <IconButton style={{ marginLeft: "5px", }} href="#contact-me">
+        <IconButton style={{ marginLeft: "5px", }} href="#contact-me" onClick={() => mixpanel.track("Clicked Section Header", {type: "Contact Me"})}>
           <LinkIcon />
         </IconButton>
       </Typography>
@@ -76,35 +82,70 @@ function ContactComponent() {
           <ListItemIcon>
             <MailIcon />
           </ListItemIcon>
-          <ListItemText primary={<span>Email: <Link href="mailto:me@austinpoor.com">me@austinpoor.com</Link></span>}/>
+          <ListItemText primary={
+            <span>
+              Email: 
+              <Link href="mailto:me@austinpoor.com" onClick={onClickLink("Email")}>
+                me@austinpoor.com
+              </Link>
+            </span>
+          }/>
         </ListItem>
 
         <ListItem>
           <ListItemIcon>
             <LinkedInIcon />
           </ListItemIcon>
-          <ListItemText primary={<span>LinkedIn: <Link href="https://linkedin.com/in/austinpoor">/in/austinpoor</Link></span>}/>
+          <ListItemText primary={
+            <span>
+              LinkedIn: 
+              <Link href="https://linkedin.com/in/austinpoor" onClick={onClickLink("LinkedIn")}>
+                /in/austinpoor
+              </Link>
+            </span>
+          }/>
         </ListItem>
 
         <ListItem>
           <ListItemIcon>
             <GitHubIcon />
           </ListItemIcon>
-          <ListItemText primary={<span>GitHub: <Link href="https://github.com/a-poor">a-poor</Link></span>}/>
+          <ListItemText primary={
+            <span>
+              GitHub: 
+              <Link href="https://github.com/a-poor" onClick={onClickLink("GitHub")}>
+                a-poor
+              </Link>
+            </span>
+          }/>
         </ListItem>
 
         <ListItem>
           <ListItemIcon>
             <LibraryBooksIcon />
           </ListItemIcon>
-          <ListItemText primary={<span>Medium: <Link href="https://medium.com/@apoor">@apoor</Link></span>}/>
+          <ListItemText primary={
+            <span>
+              Medium: 
+              <Link href="https://medium.com/@apoor" onClick={onClickLink("Medium")}>
+                @apoor
+              </Link>
+            </span>
+          }/>
         </ListItem>
 
         <ListItem>
           <ListItemIcon>
             <TwitterIcon />
           </ListItemIcon>
-          <ListItemText primary={<span>Twitter: <Link href="https://twitter.com/austin_poor">@austin_poor</Link></span>}/>
+          <ListItemText primary={
+            <span>
+              Twitter: 
+              <Link href="https://twitter.com/austin_poor" onClick={onClickLink("Twitter")}>
+                @austin_poor
+              </Link>
+            </span>
+          }/>
         </ListItem>
 
       </List>
@@ -117,7 +158,7 @@ function SkillsComponent({ skills }: {skills: SkillData}) {
     <Box className="resume-section" id="skills">
       <Typography variant="h4" component="h1" gutterBottom>
         Skills
-        <IconButton style={{ marginLeft: "5px", }} href="#skills">
+        <IconButton style={{ marginLeft: "5px", }} href="#skills" onClick={() => mixpanel.track("Clicked Section Header", {type: "Skills"})}>
           <LinkIcon />
         </IconButton>
       </Typography>
@@ -139,7 +180,7 @@ function ExperienceComponent({ experience = [] }: {experience: ExperienceData[]}
     <Box className="resume-section" id="experience">
       <Typography variant="h4" component="h1" gutterBottom>
         Experience
-        <IconButton style={{ marginLeft: "5px", }} href="#experience">
+        <IconButton style={{ marginLeft: "5px", }} href="#experience" onClick={() => mixpanel.track("Clicked Section Header", {type: "Experience"})}>
           <LinkIcon />
         </IconButton>
       </Typography>
@@ -204,11 +245,12 @@ function ExperienceComponent({ experience = [] }: {experience: ExperienceData[]}
 }
 
 function ProjectsComponent({projects} : {projects: ProjectData[]}) {
+  const onClickProjectLink = (data = {}) => () => mixpanel.track("Clicked Project Link", data)
   return (
     <Box className="resume-section" id="projects">
       <Typography variant="h4" component="h1" gutterBottom>
         Projects
-        <IconButton style={{ marginLeft: "5px", }} href="#projects">
+        <IconButton style={{ marginLeft: "5px", }} href="#projects" onClick={() => mixpanel.track("Clicked Section Header", {type: "Projects"})}>
           <LinkIcon />
         </IconButton>
       </Typography>
@@ -246,7 +288,17 @@ function ProjectsComponent({projects} : {projects: ProjectData[]}) {
                   <ButtonGroup variant="outlined" size="small">
                     {
                       proj.links.map((link, j) => (
-                        <Button key={j} href={link.link}>
+                        <Button 
+                          key={j} 
+                          href={link.link} 
+                          onClick={onClickProjectLink({ 
+                            projectIndex: i, 
+                            projectTitle: proj.title,
+                            linkIndex: j, 
+                            linkName: link.name, 
+                            linkURL: link.link 
+                          })}
+                        >
                           { link.name }
                         </Button>
                       ))
@@ -263,11 +315,12 @@ function ProjectsComponent({projects} : {projects: ProjectData[]}) {
 }
 
 function BlogPostsComponent({blogPosts} : {blogPosts: BlogPostData[]}) {
+  const onClickBlogPostLink = (data = {}) => () => mixpanel.track("Clicked Blog Post Link", data)
   return (
     <Box className="resume-section" id="blog-posts">
       <Typography variant="h4" component="h1" gutterBottom>
         Blog Posts
-        <IconButton style={{ marginLeft: "5px", }} href="#blog-posts">
+        <IconButton style={{ marginLeft: "5px", }} href="#blog-posts" onClick={() => mixpanel.track("Clicked Section Header", {type: "Blog Posts"})}>
           <LinkIcon />
         </IconButton>
       </Typography>
@@ -289,8 +342,17 @@ function BlogPostsComponent({blogPosts} : {blogPosts: BlogPostData[]}) {
               </Typography>
               <TagList tags={blog.tags} />
               <div style={{marginTop: "10px", marginBottom: "15px"}}>
-                <Button size="small" href={blog.link} variant="outlined">
-                  Read More...
+                <Button 
+                  size="small" 
+                  href={blog.link} 
+                  variant="outlined"
+                  onClick={onClickBlogPostLink({
+                    blogIndex: i,
+                    blogTitle: blog.title,
+                    blogLink: blog.link,
+                  })}
+                >
+                  Read More…
                 </Button>
               </div>
             </Box>
@@ -306,7 +368,7 @@ function EducationComponent({education} : {education: EducationData[]}) {
     <Box className="resume-section" id="education">
       <Typography variant="h4" component="h1" gutterBottom>
         Education
-        <IconButton style={{ marginLeft: "5px", }} href="#education">
+        <IconButton style={{ marginLeft: "5px", }} href="#education" onClick={() => mixpanel.track("Clicked Section Header", {type: "Education"})}>
           <LinkIcon />
         </IconButton>
       </Typography>
@@ -340,10 +402,10 @@ function EducationComponent({education} : {education: EducationData[]}) {
 
 function CertificationsComponent({ certifications }: {certifications: CertificationData[]}) {
   return (
-    <Box className="resume-section" id="education">
+    <Box className="resume-section" id="certifications">
       <Typography variant="h4" component="h1" gutterBottom>
         Certifications
-        <IconButton style={{ marginLeft: "5px", }} href="#education">
+        <IconButton style={{ marginLeft: "5px", }} href="#certifications" onClick={() => mixpanel.track("Clicked Section Header", {type: "Certifications"})}>
           <LinkIcon />
         </IconButton>
       </Typography>
@@ -356,7 +418,16 @@ function CertificationsComponent({ certifications }: {certifications: Certificat
               </Typography>
               {
                 cert.link && (
-                  <Button size="small" href={cert.link} variant="outlined">
+                  <Button 
+                    size="small" 
+                    href={cert.link} 
+                    variant="outlined"
+                    onClick={() => mixpanel.track("Clicked Certification Link", {
+                      certIndex: i,
+                      certTitle: cert.title,
+                      certLink: cert.link,
+                    })}
+                  >
                     Certificate Link
                   </Button>
                 )
@@ -393,7 +464,7 @@ function BackToTopComponent() {
       }}
     >
       <Fade in={ !scrollTop }>
-        <Fab href="#">
+        <Fab href="#" onClick={() => mixpanel.track("Clicked Button", {type: "Back to Top"})}>
           <KeyboardArrowUpIcon />
         </Fab>
       </Fade>
@@ -424,7 +495,6 @@ function App() {
         <IntroComponent />
         <Divider variant="middle" style={{ margin: "20px", }}/>
 
-        {/* <ContactComponent contact={resumeData.contact}/> */}
         <ContactComponent />
         <Divider variant="middle" style={{ margin: "20px", }}/>
 

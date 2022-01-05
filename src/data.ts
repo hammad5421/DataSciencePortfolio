@@ -1,40 +1,40 @@
 import { ResumeData } from "./types";
 
 export const resumeData: ResumeData = {
-  "contact": [
+  contact: [
     {
-      "name": "Email",
-      "text": "me@austinpoor.com",
-      "link": "mailto:me@austinpoor.com",
-      "icon": ""
+      name: "Email",
+      text: "me@austinpoor.com",
+      link: "mailto:me@austinpoor.com",
+      icon: ""
     },
     {
-      "name": "LinkedIn",
-      "text": "/in/austinpoor",
-      "link": "https://linkedin.com/in/austinpoor",
-      "icon": ""
+      name: "LinkedIn",
+      text: "/in/austinpoor",
+      link: "https://linkedin.com/in/austinpoor",
+      icon: ""
     },
     {
-      "name": "GitHub",
-      "text": "a-poor",
-      "link": "https://github.com/a-poor",
-      "icon": ""
+      name: "GitHub",
+      text: "a-poor",
+      link: "https://github.com/a-poor",
+      icon: ""
     },
     {
-      "name": "Medium",
-      "text": "@apoor",
-      "link": "https://medium.com/@apoor",
-      "icon": ""
+      name: "Medium",
+      text: "@apoor",
+      link: "https://medium.com/@apoor",
+      icon: ""
     },
     {
-      "name": "Twitter",
-      "text": "@austin_poor",
-      "link": "https://twitter.com/austin_poor",
-      "icon": ""
+      name: "Twitter",
+      text: "@austin_poor",
+      link: "https://twitter.com/austin_poor",
+      icon: ""
     }
   ],
-  "skills": {
-    "languages": [
+  skills: {
+    languages: [
       "Python",
       "Go",
       "SQL (MySQL)",
@@ -44,7 +44,7 @@ export const resumeData: ResumeData = {
       "NoSQL (DynamoDB)",
       "Bash"
     ],
-    "tools": [
+    tools: [
       "Docker",
       "AWS",
       "Git",
@@ -57,145 +57,145 @@ export const resumeData: ResumeData = {
       "Excel"
     ]
   },
-  "experience": [
+  experience: [
     {
-      "title": "Full Stack Developer",
-      "company": "Command Credit Corp.",
-      "location": "Remote",
-      "startDate": "April 2021",
-      "endDate": "Present",
-      "bullets": [
+      title: "Full Stack Developer",
+      company: "Command Credit Corp.",
+      location: "Remote",
+      startDate: "April 2021",
+      endDate: "Present",
+      bullets: [
         "Inherited full-stack support and development responsibilities for two web commerce systems with API interfaces to major credit bureaus in my third month of tenure.",
         "Designed and implemented an internal API to standardize and simplify software architecture across two systems built by multiple teams.",
         "Proposed and designed an AWS-based standard architecture replatforming strategy to save the firm money and reduce operational risks."
       ],
-      "tags": []
+      tags: []
     },
     {
-      "title": "Data Analyst",
-      "company": "Freelance",
-      "location": "Remote",
-      "startDate": "March 2020",
-      "endDate": "April 2021",
-      "bullets": [
+      title: "Data Analyst",
+      company: "Freelance",
+      location: "Remote",
+      startDate: "March 2020",
+      endDate: "April 2021",
+      bullets: [
         "Identified, collected, merged, normalized, and presented longitudinal US census and population health data on murders, suicides, and overdose deaths to inform City University of New York’s professor’s research on population health trends in coastal South Carolina.",
         "Developed a web scraper to gather, consolidate, normalize, and present City of Canton, OH housing code violations and low-interest loan application site data into Excel reports to inform City’s Low-Interest Loan Community Redevelopment investment targeting.",
         "Healthcare provider profiles and market share data acquisition, consolidation, and analysis model for NTT Data Systems healthcare industry vertical."
       ],
-      "tags": []
+      tags: []
     },
     {
-      "title": "Data Science Fellow",
-      "company": "Metis Data Science Bootcamp",
-      "location": "New York, NY",
-      "startDate": "Jan 2020",
-      "endDate": "March 2020",
-      "bullets": [
+      title: "Data Science Fellow",
+      company: "Metis Data Science Bootcamp",
+      location: "New York, NY",
+      startDate: "Jan 2020",
+      endDate: "March 2020",
+      bullets: [
         "Highly selective, accredited 12-week immersive data science bootcamp focused on Python, statistical modeling, machine learning, visualization, and communication of results.",
         "Based on 5 self-directed projects covering EDA, linear regression & web scraping, classification & visualization, NLP & NoSQL, and Deep Learning."
       ],
-      "tags": []
+      tags: []
     },
     {
-      "title": "Production Assistant",
-      "company": "Various Productions",
-      "location": "New York, NY",
-      "startDate": "July 2017",
-      "endDate": "Dec 2019",
-      "bullets": [
+      title: "Production Assistant",
+      company: "Various Productions",
+      location: "New York, NY",
+      startDate: "July 2017",
+      endDate: "Dec 2019",
+      bullets: [
         "Worked part-time as a video production assistant while attending college full-time to complete a BA in Computer Science."
       ],
-      "tags": []
+      tags: []
     },
     {
-      "title": "Assistant to the Executive Creative Director",
-      "company": "CHRLX",
-      "location": "New York, NY",
-      "startDate": "October 2014",
-      "endDate": "",
-      "bullets": [
+      title: "Assistant to the Executive Creative Director",
+      company: "CHRLX",
+      location: "New York, NY",
+      startDate: "October 2014",
+      endDate: "",
+      bullets: [
         "Managed the Exec. Creative Director’s schedule, tasks, and priorities with internal team members, freelancers, and clients.",
         "Coordinated across multiple teams of staff, contractors, and clients in a fast-paced, deadline- oriented creative environment.",
         "Served as an on-site project coordinator to coordinate with producers and technical staff regarding client project deliveries and issue resolution."
       ],
-      "tags": []
+      tags: []
     }
   ],
-  "education": [
+  education: [
     {
-      "title": "BA in Computer Science",
-      "school": "Sarah Lawrence College",
-      "location": "New York, NY",
-      "graduationDate": "Dec 2019",
-      "courses": [
+      title: "BA in Computer Science",
+      school: "Sarah Lawrence College",
+      location: "New York, NY",
+      graduationDate: "Dec 2019",
+      courses: [
         "Bio-Inspired Artificial Intelligence", 
         "Databases", 
         "Computer Architecture", 
         "Quantum Computing"
       ],
-      "tags": []
+      tags: []
     }
   ],
-  "certifications": [
+  certifications: [
     {
-      "title": "AWS Certified Cloud Practitioner",
-      "date": "Jan 2021",
-      "link": "https://www.credly.com/badges/7b719925-2f06-47f3-9ef6-0aab7b03d645/public_url",
-      "tags": []
+      title: "AWS Certified Cloud Practitioner",
+      date: "Jan 2021",
+      link: "https://www.credly.com/badges/7b719925-2f06-47f3-9ef6-0aab7b03d645/public_url",
+      tags: []
     }
   ],
-  "projects": [
+  projects: [
     {
-      "title": "Algorithmic Color Palettes",
-      "description": [
+      title: "Algorithmic Color Palettes",
+      description: [
         "Experimenting with using ML clustering algorithms to generate color palettes from images.",
         "Using K-Means Clustering and Agglomerative Clustering on movie stills.",
         "Check out the GitHub repo, the blog post on Towards Data Science, or the Jupyter Notebook using Binder."
       ],
-      "tags": [
+      tags: [
         "Python",
         "Pillow",
         "Scikit-Learn",
         "K-Means",
         "Agglomerative Clustering"
       ],
-      "links": [
+      links: [
         {
-          "name": "GitHub",
-          "link": "https://github.com/a-poor/algorithmic-color-palettes"
+          name: "GitHub",
+          link: "https://github.com/a-poor/algorithmic-color-palettes"
         },
         {
-          "name": "Blog Post",
-          "link": "https://towardsdatascience.com/algorithmic-color-palettes-a110d6448b5d"
+          name: "Blog Post",
+          link: "https://towardsdatascience.com/algorithmic-color-palettes-a110d6448b5d"
         },
         {
-          "name": "Binder",
-          "link": "https://mybinder.org/v2/gh/a-poor/color-palettes/main?filepath=color-palettes.ipynb"
+          name: "Binder",
+          link: "https://mybinder.org/v2/gh/a-poor/color-palettes/main?filepath=color-palettes.ipynb"
         }
       ]
     },
     {
-      "title": "Spotify Track Skip Prediction",
-      "description": [
+      title: "Spotify Track Skip Prediction",
+      description: [
         "Experimenting with using ML clustering algorithms to generate color palettes from images.",
         "Using K-Means Clustering and Agglomerative Clustering on movie stills.",
         "Check out the GitHub repo, the blog post on Towards Data Science, or the Jupyter Notebook using Binder."
       ],
-      "tags": [
+      tags: [
         "Python",
         "Pillow",
         "Scikit-Learn",
         "K-Means",
         "Agglomerative Clustering"
       ],
-      "links": [
+      links: [
         {
-          "name": "GitHub",
-          "link": "https://github.com/a-poor/spotify-skip-prediction"
+          name: "GitHub",
+          link: "https://github.com/a-poor/spotify-skip-prediction"
         },
         {
-          "name": "Blog Post",
-          "link": "https://towardsdatascience.com/predicting-spotify-track-skips-49cf4a48b2a5"
+          name: "Blog Post",
+          link: "https://towardsdatascience.com/predicting-spotify-track-skips-49cf4a48b2a5"
         }
       ]
     },
@@ -253,7 +253,7 @@ export const resumeData: ResumeData = {
       ]
     }
   ],
-  "blogPosts": [
+  blogPosts: [
     {
       "publication": "Towards Data Science",
       "title": "Serving ML Models with gRPC",
