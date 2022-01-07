@@ -162,7 +162,7 @@ export const resumeData: ResumeData = {
       links: [
         {
           name: "GitHub",
-          link: "https://github.com/a-poor/algorithmic-color-palettes"
+          link: "https://github.com/a-poor/color-palettes"
         },
         {
           name: "Blog Post",
