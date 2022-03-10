@@ -112,7 +112,7 @@ export const resumeData: ResumeData = {
       company: "CHRLX",
       location: "New York, NY",
       startDate: "October 2014",
-      endDate: "",
+      endDate: "July 2017",
       bullets: [
         "Managed the Exec. Creative Director’s schedule, tasks, and priorities with internal team members, freelancers, and clients.",
         "Coordinated across multiple teams of staff, contractors, and clients in a fast-paced, deadline- oriented creative environment.",
