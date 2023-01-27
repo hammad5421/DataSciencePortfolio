@@ -33,8 +33,9 @@
   <BlogImage
     src="/csv-to-postgres.webp"
     alt="A flowchart from a CSV file icon to the Pandas library icon to a Postgres database icon"
-    desc="Use Pandas to quickly load your CSV data into a Postgres database"
-  />
+  >
+    Use Pandas to quickly load your CSV data into a Postgres database
+  </BlogImage>
 
   <p>
     Sometimes it can be kind of a pain to deal with copying CSV data into a Postgres database — 

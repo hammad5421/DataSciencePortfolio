@@ -1,14 +1,9 @@
 <script lang="ts">
   import BlogBody from '$lib/BlogBody.svelte';
   import BlogHeader from '$lib/BlogHeader.svelte';
-  import BlogTitle from '$lib/BlogTitle.svelte';
-  import BlogSubtitle from '$lib/BlogSubtitle.svelte';
-  import BlogImage from '$lib/BlogImage.svelte';
   import BlogUnsplashImage from '$lib/BlogUnsplashImage.svelte';
   import BlogCodeBlock from '$lib/BlogCodeBlock.svelte';
   import BlogHeading1 from '$lib/BlogHeading1.svelte';
-  import BlogHeading2 from '$lib/BlogHeading2.svelte';
-  import BlogBlockQuote from '$lib/BlogBlockQuote.svelte';
 </script>
 
 <svelte:head>

@@ -424,8 +424,9 @@ display_svg(
   <BlogImage 
     src="/jinja-sample-plot.svg"
     alt="Sample plot rendered with jinja (as an SVG)"
-    desc="Sample plot rendered with jinja (as an SVG)"
-  />
+  >
+    Sample plot rendered with jinja (as an SVG)
+  </BlogImage>
 
   <p>
     And here's what it would look like as a raster image:
@@ -434,8 +435,9 @@ display_svg(
   <BlogImage 
     src="/jinja-sample-plot.webp"
     alt="Sample plot rendered with jinja (as a raster of the SVG)"
-    desc="Sample plot rendered with jinja (as a raster of the SVG)"
-  />
+  >
+    Sample plot rendered with jinja (as a raster of the SVG)
+  </BlogImage>
 
   <p>
     For the complete code, check out the gist <a class="underline" href="https://gist.github.com/a-poor/173f0d190634065bfd7ad73eb882e637">here</a>.

@@ -34,8 +34,9 @@
   <BlogImage 
     src="/spotify-skip-cover.webp"
     alt="Screenshots from the Spotify desktop app"
-    desc="(Screenshots from the Spotify desktop app)"
-  />
+  >
+    (Screenshots from the Spotify desktop app)
+  </BlogImage>
 
   <BlogHeading1>Introduction</BlogHeading1>
 
@@ -127,8 +128,9 @@
   <BlogImage 
     src="/spotify-skip-data-schema.webp"
     alt="Schema for the spotify skip dataset."
-    desc="Schema for Spotify Skip Data"
-  />
+  >
+    Schema for Spotify Skip Data
+  </BlogImage>
 
   <p>
     To get a sense of what a single session might look like, the following image shows a plot of a single 
@@ -140,8 +142,9 @@
   <BlogImage 
     src="/spotify-single-session-skips-vs-loudness.webp"
     alt="Graph of a Single Session's Track-Skips vs Track-Loudness"
-    desc="Single Session's Track-Skips vs Track-Loudness"
-  />
+  >
+    Single Session's Track-Skips vs Track-Loudness
+  </BlogImage>
   
   <p>
     While not meaningful by itself, this illustrates how each session an be plotted against the song attributes. 
@@ -174,8 +177,9 @@
   <BlogImage 
     src="/spotify-track-features-applied-to-example-songs.webp"
     alt="Plot of a distribution of a subset of track features with 3 songs plotted for reference"
-    desc="Distribution of a Subset of Track Features with 3 Songs Plotted for Reference"
-  />
+  >
+    Distribution of a Subset of Track Features with 3 Songs Plotted for Reference
+  </BlogImage>
 
   <BlogHeading2>Feature Engineering</BlogHeading2>
 
@@ -210,8 +214,9 @@
   <BlogImage 
     src="/spotify-roc-logistic-regression-vs-lightgbm.webp"
     alt="ROC Curve Comparing Model Performance for Logistic Regression and LightGBM Models"
-    desc="ROC Curve Comparing Model Performance for Logistic Regression and LightGBM Models"
-  />
+  >
+    ROC Curve Comparing Model Performance for Logistic Regression and LightGBM Models
+  </BlogImage>
 
   <p>
     My best model's final test accuracy was <span class="font-semibold">0.73</span>, using LightGBM's 
@@ -228,8 +233,9 @@
   <BlogImage 
     src="/spotify-lightgbm-feature-importance-graph.webp"
     alt="Final LightGBM Model's Relative Feature Importance Ranking"
-    desc="Final LightGBM Model's Relative Feature Importance Ranking"
-  />
+  >
+    Final LightGBM Model's Relative Feature Importance Ranking
+  </BlogImage>
 
   <p>
     This figure shows the final model's ranking of the top 10 features by relative importance. The model ranked 

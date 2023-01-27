@@ -2,11 +2,7 @@
   import BlogBody from '$lib/BlogBody.svelte';
   import BlogHeader from '$lib/BlogHeader.svelte';
   import BlogImage from '$lib/BlogImage.svelte';
-  import BlogUnsplashImage from '$lib/BlogUnsplashImage.svelte';
-  import BlogCodeBlock from '$lib/BlogCodeBlock.svelte';
   import BlogHeading1 from '$lib/BlogHeading1.svelte';
-  import BlogHeading2 from '$lib/BlogHeading2.svelte';
-  import BlogBlockQuote from '$lib/BlogBlockQuote.svelte';
 </script>
 
 <svelte:head>
@@ -36,8 +32,10 @@
   <BlogImage 
     src="/color-palette-example.webp"
     alt="A photo of mountains with a color palette generated from the image"
-    desc="Photo by Trey Ratcliff (Source: https://flickr.com/photos/stuckincustoms/8837173497) with my generated color palette"
-  />
+  >
+    Photo by Trey Ratcliff (<a class="underline" href="https://flickr.com/photos/stuckincustoms/8837173497">Source</a>) 
+    with my generated color palette.
+  </BlogImage>
 
   <p>
     I was recently working on a project in which I wanted to be able to compare the look and feel of images which
@@ -52,8 +50,9 @@
   <BlogImage 
     src="/rbg-color-space.webp"
     alt="A 3-dimensional representation of RGB color space where each axis represents a color channel (red, green, blue)"
-    desc="Source Wikipedia (https://en.wikipedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_b.png)"
-  />
+  >
+    (<a class="underline" href="https://en.wikipedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_b.png">Source Wikipedia</a>)
+  </BlogImage>
 
   <p>
     Instead of viewing our image as a grid of pixels — each with a red, green, and blue value — we can think of it as an array 
@@ -81,8 +80,9 @@
   <BlogImage 
     src="/palette-only-god-forgives-k-means-1.webp"
     alt="A color palette generated from the film Only God Forgives using K-Means clustering"
-    desc="Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette."
-  />
+  >
+    Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette.
+  </BlogImage>
 
   <p>
     Above is an example film still and the color palette generated using K-Means. As you can see, the algorithm does a fairly good job of making a 
@@ -104,8 +104,9 @@
   <BlogImage 
     src="/palette-only-god-forgives-k-means-2.webp"
     alt="A color palette generated from the film Only God Forgives using K-Means clustering"
-    desc="Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette."
-  />
+  >
+    Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette.
+  </BlogImage>
 
   <p>
     The K-Means palette gets a good approximation of a majority of the colors, but looking at the image, you might expect it to include some 
@@ -125,8 +126,9 @@
   <BlogImage 
     src="/palette-only-god-forgives-k-means-vs-agglomerative.webp"
     alt="Color palettes generated from the film Only God Forgives using K-Means clustering and Agglomerative clustering"
-    desc="Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means and agglomerative generated palettes."
-  />
+  >
+    Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means and agglomerative generated palettes.
+  </BlogImage>
 
   <p>
     The above image shows palettes generated using both K-Means and Agglomerative clustering. Agglomerative clustering chose to include a blue in 
@@ -136,8 +138,9 @@
   <BlogImage 
     src="/palette-only-god-forgives-k-means-rgb-vs-hsv.webp"
     alt="Color palettes generated from the film Only God Forgives using K-Means clustering comparing RGB vs HSV image colors"
-    desc="Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palettes using RGB and HSV colors."
-  />
+  >
+    Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palettes using RGB and HSV colors.
+  </BlogImage>
 
   <p>
     Another approach is to convert the image's colors from <code>RGB</code> to <code>HSV</code>. <code>RGB</code> represents a color as a combination of 
@@ -171,8 +174,9 @@
   <BlogImage 
     src="/palettes-only-god-forgives-no-palette.webp"
     alt="Still from Only God Forgives (2013)"
-    desc="Still from Only God Forgives (2013), courtesy of FILMGRAB."
-  />
+  >
+    God Forgives (2013), courtesy of FILMGRAB.
+  </BlogImage>
 
   <p>
     ...the API would produce the following link: <a class="underline" href="https://coolors.co/3c030b-050002-3967cd-152f63-760102-7e504c-110c33-b4d1df">
@@ -186,8 +190,9 @@
   <BlogImage 
     src="/palettes-only-god-forgives-with-generated-palette.webp"
     alt="Still from Only God Forgives (2013) with generated palette"
-    desc="Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette courtesy of Coolors."
-  />
+  >
+    Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette courtesy of Coolors.
+  </BlogImage>
 
   <p>
     You can check out the Flask app in my GitHub repo, <a class="underline" href="https://github.com/a-poor/color-palettes">here</a>.

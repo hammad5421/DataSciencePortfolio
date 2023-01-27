@@ -52,24 +52,21 @@
     </p>
   </div>
 
-
-  <table class="table-auto mt-10 mx-auto text-lg font-mono">
+  <div class="mt-10 mx-auto text-base sm:text-lg">
     {#each linkData as link}
-      <tr class="mb-2">
-        <td class="pr-2 text-right text-gray-300">
+      <div class="flex flex-wrap">
+        <p class="pr-2 text-right text-gray-300">
           { link.name }:
-        </td>
-        <td class="">
-          <a
-            class="underline text-gray-50" 
-            href={ link.href }
-          >
-            { link.value }
-          </a>
-        </td>
-      </tr>
+        </p>
+        <a
+          class="font-semibold text-gray-50" 
+          href={ link.href }
+        >
+          { link.value }
+        </a>
+      </div>
     {/each}
-  </table>
+  </div>
   
 
 </div>

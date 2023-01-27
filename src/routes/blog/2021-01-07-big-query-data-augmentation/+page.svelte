@@ -5,8 +5,6 @@
   import BlogUnsplashImage from '$lib/BlogUnsplashImage.svelte';
   import BlogCodeBlock from '$lib/BlogCodeBlock.svelte';
   import BlogHeading1 from '$lib/BlogHeading1.svelte';
-  import BlogHeading2 from '$lib/BlogHeading2.svelte';
-  import BlogBlockQuote from '$lib/BlogBlockQuote.svelte';
 </script>
 
 <svelte:head>
@@ -120,8 +118,9 @@ WHERE
   <BlogImage 
     src="/bq-screenshot-1.webp"
     alt="A screenshot of the query in the BigQuery UI"
-    desc="Screenshot of the BigQuery UI"
-  />
+  >
+    Screenshot of the BigQuery UI
+  </BlogImage>
 
   <p>
     And get the following results...
@@ -130,8 +129,9 @@ WHERE
   <BlogImage 
     src="/bq-screenshot-2.webp"
     alt="A screenshot of the query's results in the BigQuery UI"
-    desc="Viewing query results in the BigQuery UI"
-  />
+  >
+    Viewing query results in the BigQuery UI
+  </BlogImage>
 
   <p>
     Great! I got my answer in 0.4 seconds and now I can go back and expand my query to get this data for multiple years. 
@@ -141,8 +141,9 @@ WHERE
   <BlogImage 
     src="/bq-screenshot-3.webp"
     alt="A screenshot query results export options in the BigQuery UI"
-    desc="Screenshot showing export options for BigQuery results"
-  />
+  >
+    Screenshot showing export options for BigQuery results
+  </BlogImage>
 
   <p>
     Finally, as a bonus, you can connect to BigQuery through Python with the package 
