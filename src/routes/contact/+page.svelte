@@ -52,9 +52,9 @@
     </p>
   </div>
 
-  <div class="mt-10 mx-auto text-base sm:text-lg">
+  <div class="mt-10 text-base sm:text-lg">
     {#each linkData as link}
-      <div class="flex flex-wrap">
+      <div class="flex flex-wrap max-w-sm mx-auto">
         <p class="pr-2 text-right text-gray-300">
           { link.name }:
         </p>
