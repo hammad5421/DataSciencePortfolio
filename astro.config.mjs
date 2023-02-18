@@ -16,9 +16,6 @@ import prefetch from "@astrojs/prefetch";
 import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
-import partytown from "@astrojs/partytown";
-
-// https://astro.build/config
 export default defineConfig({
   site: "https://austinpoor.com/",
   integrations: [
@@ -29,12 +26,7 @@ export default defineConfig({
     prefetch({
       selector: "a[href^='/blog']"
     }), 
-    sitemap(), 
-    partytown({
-      config: {
-        forward: ["dataLayer.push"],
-      },
-    })
+    sitemap(),
   ],
   output: "static",
   adapter: vercel()
