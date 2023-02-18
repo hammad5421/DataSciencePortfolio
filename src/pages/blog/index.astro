@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/BaseLayout.astro';
+import SiteMeta from '../../components/SiteMeta.astro';
 
 const blogPosts = await getCollection('blog')
     .then(ps => (ps
@@ -19,10 +20,21 @@ function formatDate(d: Date): string {
   const day = String(d.getDate()).padStart(2,'0');
   return `${year}-${month}-${day}`;
 }
----
-<Layout activeTab="blog">
-    <title slot="head">Blog | Austin Poor</title>
 
+const pageTitle = "Blog | Austin Poor";
+const pageDescription = "Check out some blog posts I've written about various topics. I don't post very often, but I try to make each post count.";
+
+---
+<Layout activeTab="blog" pageTitle={pageTitle} pageDescription={pageDescription}>
+    <!-- Metadata -->
+    <SiteMeta 
+        slot="head"
+        title={pageTitle}
+        description={pageDescription}
+        url="https://austinpoor.com/blog"
+    />
+
+    <!-- Content -->
     <div class="max-w-2xl mx-auto mb-12 text-gray-900 dark:text-gray-100">
         <h1 class="text-4xl sm:text-6xl font-bold text-center mb-4">
             Blog

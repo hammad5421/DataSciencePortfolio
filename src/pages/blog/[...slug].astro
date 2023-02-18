@@ -1,6 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../../layouts/BaseLayout.astro';
+import BlogMeta from '../../components/BlogMeta.astro';
 import '../../styles/blog.css';
 
 // 1. Generate a new path for every collection entry
@@ -28,12 +29,24 @@ function formatDate(d: Date): string {
   return `${year}-${month}-${day}`;
 }
 
----
-<Layout activeTab="blog">
-  <title slot="head">
-    { entry.data.pageTitie || entry.data.title } | Austin's Blog
-  </title>
+const pageTitle = `${ entry.data.pageTitie || entry.data.title } | Austin's Blog`;
+const pageDescription = entry.data.description;
 
+---
+<Layout activeTab="blog" pageTitle={pageTitle} pageDescription={pageDescription}>
+  <!-- Page metadata -->
+  <BlogMeta 
+    slot="head"
+    title={entry.data.pageTitle}
+    pageUrl={`https://austinpoor.com/blog/${entry.slug}`}
+    imageUrl={`https://austinpoor.com/${entry.data.image.src}`}
+    description={entry.data.description}
+    publishDate={entry.data.publishDate}
+    modifiedDate={entry.data.updateDate}
+    tags={entry.data.tags}
+  />
+
+  <!-- Content -->
   <div 
     class="
       max-w-lg

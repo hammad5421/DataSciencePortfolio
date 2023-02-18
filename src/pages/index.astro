@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from '../layouts/BaseLayout.astro';
-
+import SiteMeta from '../components/SiteMeta.astro';
 
 const blogPosts = await getCollection('blog')
 	.then(bps => (bps
@@ -29,8 +29,20 @@ function formatDate(d: Date): string {
   return `${year}-${month}-${day}`;
 }
 
+const pageTitle = "";
+const pageDescription = "Austin Poor's personal website. Hi, my name is Austin and I'm a full-stack developer living in Los Angeles, CA. Check out my blog, some projects, learn more about me, and find out how to reach me!";
+
 ---
-<Layout activeTab="home">
+<Layout activeTab="home" pageTitle={pageTitle} pageDescription={pageDescription}>
+	<!-- Head Tags -->
+	<SiteMeta 
+		slot="head"
+		title={pageTitle} 
+		url="https://austinpoor.com/"
+		description={pageDescription}
+	/>
+
+	<!-- Body Tags -->
 	<section 
 		class="
 			mx-auto

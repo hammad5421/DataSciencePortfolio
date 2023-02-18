@@ -2,12 +2,15 @@
 import Nav, { Tab } from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
+import PageMeta from '../components/PageMeta.astro';
 
 interface Props {
-    activeTab: Tab,
+    activeTab: Tab;
+    pageTitle?: string;
+    pageDescription?: string;
 }
 
-const { activeTab }: Props = Astro.props;
+const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
 
 ---
 <!DOCTYPE html>
@@ -19,13 +22,12 @@ const { activeTab }: Props = Astro.props;
     "
 >
 	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <PageMeta 
+            title={pageTitle}
+            description={pageDescription}
+        />
         
-        <slot name="head">
-            <title>Austin Poor</title>
-        </slot>
+        <slot name="head" />
 	</head>
 	<body>
         <Nav activeTab={activeTab}/>
