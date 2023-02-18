@@ -44,17 +44,6 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
 
         <Footer>
             <slot name="footer" />
-
-            
-            <!-- Google tag (gtag.js) -->
-            <script async src="https://www.googletagmanager.com/gtag/js?id=G-DT251G2L5B" type="text/partytown"></script>
-            <script type="text/partytown">
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'G-DT251G2L5B');
-            </script>
         </Footer>
 	</body>
 </html>
