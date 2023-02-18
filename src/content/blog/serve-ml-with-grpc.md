@@ -4,7 +4,7 @@ title: Serving ML Models with gRPC
 subtitle: Skip REST and give gRPC a try
 description: gRPC APIs are fast, efficient, and type-safe. Next time you need to create an ML prediction service, ditch REST and give gRPC a shot!
 image:
-    src: https://austinpoor.com/grpc-ml-unsplash-cover.jpg
+    src: /images/grpc-ml-unsplash-cover.jpg
     alt: An image of a computer screen displaying CSV data.
     caption: Photo by Mika Baumeister on Unsplash
     captionLink: https://unsplash.com/@mbaumi

@@ -4,7 +4,7 @@ title: Handling ML Predictions in a Flask App
 subtitle: Don't let long-running code slow down your Flask app
 description: Two suggested design patterns for making machine learning predictions (or handling other long-running tasks) in Flask apps by adding API routes and Celery.
 image:
-    src: https://austinpoor.com/grpc-ml-unsplash-cover.jpg
+    src: /images/grpc-ml-unsplash-cover.jpg
     alt: A drawing of a web-app's UI.
     caption: Photo by HalGatewood.com on Unsplash
     captionLink: https://unsplash.com/@halacious

@@ -4,7 +4,7 @@ title: Take Full Control of Your Python Plots with Jinja
 subtitle: Create fully custom plots in Python with SVG and Jinja
 description: Next time you want to make a fully customized plot in Python ditch matplotlib and try Jinja. Here's a short tutorial to help you get started.
 image:
-    src: https://austinpoor.com/jinja-unsplash-draw-plot.jpg
+    src: /images/jinja-unsplash-draw-plot.jpg
     alt: A drawing of a plot on dot-grid paper.
     caption: Photo by Isaac Smith on Unsplash
     captionLink: https://unsplash.com/@isaacmsmith
@@ -333,7 +333,7 @@ display_svg(
 
 Here's what the rendered plot would look like as an SVG:
 
-![svg](https://austinpoor.com/jinja-sample-plot.svg)
+![svg](/images/jinja-sample-plot.svg)
 *Sample plot rendered with jinja (as an SVG)*
 
 And here's what it would look like as a raster image:

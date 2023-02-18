@@ -4,7 +4,7 @@ title: Painless Data Augmentation with BigQuery
 subtitle: Quickly Augmenting Your Datasets with BigQuery Public Data
 description: Google Cloud's BigQuery is a great tool for data scientists to easily augment their datasets with external data – using BigQuery's public datasets.
 image:
-    src: https://austinpoor.com/bq-unsplash-dashboard.jpg
+    src: /images/bq-unsplash-dashboard.jpg
     alt: An image of a laptop with a data dashboard.
     caption: Photo by Lukas Blazek on Unsplash
     captionLink: https://unsplash.com/@goumbik
@@ -52,15 +52,15 @@ WHERE
 
 And I can run it in the BigQuery UI...
 
-![Screenshot of the BigQuery UI](https://austinpoor.com/bq-screenshot-1.webp)
+![Screenshot of the BigQuery UI](/images/bq-screenshot-1.webp)
 
 And get the following results...
 
-![Viewing query results in the BigQuery UI](https://austinpoor.com/bq-screenshot-2.webp)
+![Viewing query results in the BigQuery UI](/images/bq-screenshot-2.webp)
 
 Great! I got my answer in 0.4 seconds and now I can go back and expand my query to get this data for multiple years. Or, I can export the results to a CSV or JSON file to join it up with my data.
 
-![Screenshot showing export options for BigQuery results](https://austinpoor.com/bq-screenshot-3.webp)
+![Screenshot showing export options for BigQuery results](/images/bq-screenshot-3.webp)
 
 Finally, as a bonus, you can connect to BigQuery through Python with the package [google-cloud-bigquery](https://googleapis.dev/python/bigquery/latest/index.html).
 
