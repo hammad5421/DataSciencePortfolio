@@ -31,5 +31,7 @@ export default defineConfig({
     sitemap(),
   ],
   output: "static",
-  adapter: vercel()
+  adapter: vercel({
+    analytics: true,
+  })
 });
