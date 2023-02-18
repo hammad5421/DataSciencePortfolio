@@ -1,0 +1,47 @@
+---
+import Nav, { Tab } from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import BackToTop from '../components/BackToTop.astro';
+
+interface Props {
+    activeTab: Tab,
+}
+
+const { activeTab }: Props = Astro.props;
+
+---
+<!DOCTYPE html>
+<html 
+    lang="en" 
+    class="
+        bg-gray-100 
+        dark:bg-gray-900
+    "
+>
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        
+        <slot name="head">
+            <title>Austin Poor</title>
+        </slot>
+	</head>
+	<body>
+        <Nav activeTab={activeTab}/>
+
+        <header>
+            <slot name="header" />
+        </header>
+
+        <main>
+            <slot />
+        </main>
+
+        <BackToTop />
+
+        <Footer>
+            <slot name="footer" />
+        </Footer>
+	</body>
+</html>
