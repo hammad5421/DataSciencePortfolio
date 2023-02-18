@@ -13,10 +13,15 @@ import svelte from "@astrojs/svelte";
 import preact from "@astrojs/preact";
 
 // https://astro.build/config
+import vercel from "@astrojs/vercel/edge";
+
+// https://astro.build/config
 export default defineConfig({
   integrations: [tailwind(), mdx({
     // syntaxHighlight: 'shiki',
     // shikiConfig: { theme: 'dracula' },
     drafts: true
-  }), svelte(), preact()]
+  }), svelte(), preact()],
+  output: "server",
+  adapter: vercel()
 });
