@@ -35,7 +35,7 @@ const pageDescription = "Check out some blog posts I've written about various to
     />
 
     <!-- Content -->
-    <div class="max-w-2xl mx-auto mb-12 text-gray-900 dark:text-gray-100">
+    <div class="max-w-2xl mx-auto mb-12 text-neutral-900 dark:text-neutral-100">
         <h1 class="text-4xl sm:text-6xl font-bold text-center mb-4">
             Blog
         </h1>
@@ -58,8 +58,8 @@ const pageDescription = "Check out some blog posts I've written about various to
             lg:grid-cols-3
             grid-rows-auto 
             mb-48
-            text-gray-900 
-            dark:text-gray-100
+            text-neutral-900 
+            dark:text-neutral-100
         "
     >
         {blogPosts.map(b => (
@@ -75,8 +75,8 @@ const pageDescription = "Check out some blog posts I've written about various to
                         outline-1
                         outline-slate-300
                         rounded-md
-                        hover:bg-gray-200
-                        dark:hover:bg-gray-800
+                        hover:bg-neutral-200
+                        dark:hover:bg-neutral-800
                     "
                 >
                     <time class="text-sm" datetime={ b.data.publishDate.toISOString() }>

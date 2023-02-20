@@ -6,7 +6,7 @@
 
 article {
     @apply container mx-auto;
-    @apply text-gray-900 dark:text-gray-100;
+    @apply text-neutral-900 dark:text-neutral-100;
 }
 
 article > * {

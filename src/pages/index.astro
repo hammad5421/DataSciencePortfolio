@@ -29,7 +29,7 @@ function formatDate(d: Date): string {
   return `${year}-${month}-${day}`;
 }
 
-const pageTitle = "";
+const pageTitle = "Austin Poor's Personal Website";
 const pageDescription = "Austin Poor's personal website. Hi, my name is Austin and I'm a full-stack developer living in Los Angeles, CA. Check out my blog, some projects, learn more about me, and find out how to reach me!";
 
 ---
@@ -74,21 +74,21 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 				lg:justify-items-end
 			"
 		>
-			<h1 class="text-4xl sm:text-7xl font-extrabold font-sans mb-4 tracking-tight lg:tracking-normal text-gray-900 dark:text-gray-100">
+			<h1 class="text-4xl sm:text-7xl font-extrabold font-sans mb-4 tracking-tight lg:tracking-normal text-neutral-900 dark:text-neutral-100">
 				Hello, my name is 
 				<span class="bg-clip-text text-transparent bg-gradient-to-r from-pink-500 to-violet-500">Austin Poor</span>!
 			</h1>
-			<p class="text-base sm:text-xl  tracking-tight lg:justify-self-end text-gray-900 dark:text-gray-100">
+			<p class="text-base sm:text-xl  tracking-tight lg:justify-self-end text-neutral-900 dark:text-neutral-100">
 				I'm a fullstack developer living in Los Angeles.
 			</p>
-			<ul class="list-none flex flex-wrap justify-center lg:justify-end mt-4 space-x-1 lg:space-x-2 font-semibold text-white">
+			<ul class="list-none flex flex-wrap justify-center lg:justify-end mt-4 space-x-1 lg:space-x-2 font-semibold text-neutral-50">
 				<li class="my-1">
 					<a href="https://github.com/a-poor" class="bg-purple-600 rounded-full px-3 py-1 flex space-x-2">
 						<svg 
 							role="img" 
 							viewBox="0 0 24 24"
 							xmlns="http://www.w3.org/2000/svg"
-							class="w-4 fill-white"
+							class="w-4 fill-neutral-50"
 						>
 							<title>GitHub</title>
 							<path
@@ -104,7 +104,7 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 							role="img" 
 							viewBox="0 0 24 24"
 							xmlns="http://www.w3.org/2000/svg"
-							class="w-4 fill-white"
+							class="w-4 fill-neutral-50"
 						>
 							<title>LinkedIn</title>
 							<path
@@ -120,7 +120,7 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 							role="img" 
 							viewBox="0 0 24 24"
 							xmlns="http://www.w3.org/2000/svg"
-							class="w-4 fill-white"
+							class="w-4 fill-neutral-50"
 						>
 							<title>Mastodon</title>
 							<path
@@ -153,9 +153,9 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 		/>
 	</section>
 
-	<hr class="my-8 border-dotted border-gray-900/50 dark:border-gray-50/50" />
+	<hr class="my-8 border-dotted border-neutral-900/50 dark:border-neutral-50/50" />
 
-	<section class="max-w-4xl mx-auto px-4 tracking-tight mb-12 flex flex-col md:flex-row text-zinc-800 dark:text-gray-200">
+	<section class="max-w-4xl mx-auto px-4 tracking-tight mb-12 flex flex-col md:flex-row text-zinc-800 dark:text-neutral-200">
 		<div class="flex-grow text-center md:text-left">
 			<h2 class="text-4xl font-bold">
 				About Me
@@ -185,7 +185,7 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 					from-indigo-500 
 					via-purple-500 
 					to-pink-500
-					text-white
+					text-neutral-50
 					shadow-md
 					shadow-purple-500/50
 					hover:shadow-lg
@@ -203,9 +203,9 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 		</div>
 	</section>
 
-	<hr class="my-8 border-dotted border-gray-900/50 dark:border-gray-50/50" />
+	<hr class="my-8 border-dotted border-neutral-900/50 dark:border-neutral-50/50" />
 	
-	<section class="max-w-4xl mx-auto px-4 tracking-tight mb-12 flex flex-col md:flex-row text-zinc-800 dark:text-gray-200">
+	<section class="max-w-4xl mx-auto px-4 tracking-tight mb-12 flex flex-col md:flex-row text-zinc-800 dark:text-neutral-200">
 		<div class="flex-grow text-center md:text-left">
 			<h2 class="text-4xl font-bold">
 				Blog Posts
@@ -218,7 +218,7 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 			</p>
 			<ul class="list-none list-inside mb-8">
 				{blogPosts.map(b => (
-					<li class="my-4 md:border-l-4 border-gray-200 dark:border-gray-800 md:pl-2 hover:bg-gray-200 dark:hover:bg-gray-800">
+					<li class="my-4 md:border-l-4 border-neutral-200 dark:border-neutral-800 md:pl-2 hover:bg-neutral-200 dark:hover:bg-neutral-800">
 						<a class="" href={`/blog/${b.slug}`}>
 							<h3 class="text-lg font-semibold underline decoration-dotted">
 								{ b.data.title }
@@ -250,7 +250,7 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 					from-indigo-500 
 					via-purple-500 
 					to-pink-500
-					text-white
+					text-neutral-50
 					shadow-md
 					shadow-purple-500/50
 					hover:shadow-lg
@@ -268,9 +268,9 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 		</div>
 	</section>
 
-	<hr class="my-8 border-dotted border-gray-900/50 dark:border-gray-50/50" />
+	<hr class="my-8 border-dotted border-neutral-900/50 dark:border-neutral-50/50" />
 
-	<section class="max-w-4xl mx-auto px-4 tracking-tight mb-12 flex flex-col md:flex-row text-zinc-800 dark:text-gray-200">
+	<section class="max-w-4xl mx-auto px-4 tracking-tight mb-12 flex flex-col md:flex-row text-zinc-800 dark:text-neutral-200">
 		<div class="flex-grow text-center md:text-left">
 			<h2 class="text-4xl font-bold tracking-wide">
 				Projects
@@ -283,7 +283,7 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 			</p>
 			<ul class="list-none list-inside mb-8">
 				{projects.map(p => (
-					<li class="my-4 md:border-l-4 border-gray-200 dark:border-gray-800 md:pl-2 hover:bg-gray-200 dark:hover:bg-gray-800">
+					<li class="my-4 md:border-l-4 border-neutral-200 dark:border-neutral-800 md:pl-2 hover:bg-neutral-200 dark:hover:bg-neutral-800">
 						<a class="" href={p.data.href}>
 							<h3 class="text-lg font-semibold underline decoration-dotted">
 								{ p.data.title }
@@ -312,7 +312,7 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 					from-indigo-500 
 					via-purple-500 
 					to-pink-500
-					text-white
+					text-neutral-50
 					shadow-md
 					shadow-purple-500/50
 					hover:shadow-lg
@@ -330,9 +330,9 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 		</div>
 	</section>
 
-	<hr class="my-8 border-dotted border-gray-900/50 dark:border-gray-50/50" />
+	<hr class="my-8 border-dotted border-neutral-900/50 dark:border-neutral-50/50" />
 	
-	<section class="max-w-4xl mx-auto px-4 mb-12 flex flex-col space-y-8 justify-center justify-items-center py-8 text-zinc-800 dark:text-gray-200">
+	<section class="max-w-4xl mx-auto px-4 mb-12 flex flex-col space-y-8 justify-center justify-items-center py-8 text-zinc-800 dark:text-neutral-200">
 		<h2 class="text-3xl font-bold text-center">
 			Want to Chat?
 		</h2>
@@ -352,7 +352,7 @@ const pageDescription = "Austin Poor's personal website. Hi, my name is Austin a
 					from-indigo-500 
 					via-purple-500 
 					to-pink-500
-					text-white
+					text-neutral-50
 					shadow-md
 					shadow-purple-500/25
 					hover:shadow-lg
