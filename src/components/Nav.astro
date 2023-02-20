@@ -2,7 +2,7 @@
 export type Tab = "home" | "blog" | "projects" | "about";
 
 interface Props {
-  activeTab: Tab;
+  activeTab?: Tab;
 }
 
 const { activeTab }: Props = Astro.props;
