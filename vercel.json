@@ -6,7 +6,8 @@
         {
           "key": "Access-Control-Allow-Origin",
           "value": "https://www.googletagmanager.com/"
-        }
+        },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,OPTIONS,PATCH,DELETE,POST,PUT" }
       ]
     }
   ]

@@ -31,8 +31,8 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
 
 
         <!-- Google tag (gtag.js) -->
-        <script type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-DT251G2L5B"></script>
-        <script type="text/partytown">
+        <script is:inline type="text/partytown" async src="https://www.googletagmanager.com/gtag/js?id=G-DT251G2L5B"></script>
+        <script is:inline type="text/partytown">
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
