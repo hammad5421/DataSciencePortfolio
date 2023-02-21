@@ -26,17 +26,7 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
             title={pageTitle}
             description={pageDescription}
         />
-        
         <slot name="head" />
-
-        <!-- Google tag (gtag.js) -->
-        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-DT251G2L5B"></script>
-        <script is:inline>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-DT251G2L5B');
-        </script>
 	</head>
 	<body>
         <Nav activeTab={activeTab}/>
@@ -54,5 +44,14 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
         <Footer>
             <slot name="footer" />
         </Footer>
+
+        <!-- Google tag (gtag.js) -->
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-DT251G2L5B"></script>
+        <script is:inline>
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-DT251G2L5B');
+        </script>
 	</body>
 </html>
