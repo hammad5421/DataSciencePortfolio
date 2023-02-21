@@ -45,6 +45,7 @@ const pageDescription = entry.data.description;
     modifiedDate={entry.data.updateDate}
     tags={entry.data.tags}
   />
+  <link rel="canonical" href={`https://austinpoor.com/blog/${entry.slug}`} slot="head"/>
 
   <!-- Content -->
   <div 
