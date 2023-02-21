@@ -25,8 +25,8 @@ export default defineConfig({
     }), 
     prefetch({
       selector: "a[href^='/blog']"
-    }), 
-    sitemap(),
+    }),
+    sitemap(), 
   ],
   output: "static",
   adapter: vercel()
