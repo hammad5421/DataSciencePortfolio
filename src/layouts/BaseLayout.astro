@@ -28,9 +28,10 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
         />
         <slot name="head" />
 
-        <script 
+        <script
             is:inline 
             defer 
+            id="plausible-script"
             data-domain="austinpoor.com"
             src="/stats/js/script.js"
             data-api="/stats/api/event"

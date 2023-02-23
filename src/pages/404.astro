@@ -10,9 +10,6 @@ const pageTitle = "404 | Austin Poor";
 		slot="head"
 		title={pageTitle}
 	/>
-    <script is:inline slot="head">
-        plausible("404",{ props: { path: document.location.pathname } });
-    </script>
 
 	<!-- Body Tags -->
     <div class="max-w-2xl mx-auto mb-12 text-neutral-900 dark:text-neutral-100 space-y-4">
@@ -68,3 +65,9 @@ const pageTitle = "404 | Austin Poor";
         @apply underline decoration-dotted;
     }
 </style>
+
+<script is:inline slot="head">
+    document.querySelector("#plausible-script").addEventListener("load", function() {
+        plausible("404",{ props: { path: document.location.pathname } });
+    });
+</script>
