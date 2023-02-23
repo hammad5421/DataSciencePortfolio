@@ -54,6 +54,13 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
             <slot name="footer" />
         </Footer>
 
-        <script is:inline defer data-domain="austinpoor.com" src="https://plausible.io/js/script.js"></script>
+        <script 
+            is:inline 
+            defer 
+            data-domain="austinpoor.com"
+            src="/stats/js/script.js"
+            data-api="/stats/api/event"
+        >
+        </script>
 	</body>
 </html>
