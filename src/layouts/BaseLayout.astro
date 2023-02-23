@@ -28,13 +28,13 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
         />
         <slot name="head" />
 
-        <!-- Google tag (gtag.js) -->
-        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-DT251G2L5B"></script>
-        <script is:inline>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'G-DT251G2L5B');
+        <script 
+            is:inline 
+            defer 
+            data-domain="austinpoor.com"
+            src="/stats/js/script.js"
+            data-api="/stats/api/event"
+        >
         </script>
 	</head>
 	<body>
@@ -53,14 +53,5 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
         <Footer>
             <slot name="footer" />
         </Footer>
-
-        <script 
-            is:inline 
-            defer 
-            data-domain="austinpoor.com"
-            src="/stats/js/script.js"
-            data-api="/stats/api/event"
-        >
-        </script>
 	</body>
 </html>
