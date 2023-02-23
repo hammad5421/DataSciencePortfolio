@@ -36,6 +36,7 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
             data-api="/stats/api/event"
         >
         </script>
+        <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
 	</head>
 	<body>
         <Nav activeTab={activeTab}/>
