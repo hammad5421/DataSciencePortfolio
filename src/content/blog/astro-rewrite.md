@@ -24,6 +24,9 @@ I’ll walk you through my experience working with Astro to build a simple site.
 
 ## Why Did I Rewrite My Site?
 
+![A screenshot of the home page of my personal site, rewritten in Astro.](/images/apdc-site-screenshot.webp)
+_A screenshot of the home page of my personal site, rewritten in Astro._
+
 First and foremost, I wanted an excuse to try out Astro and I wasn't particularly happy with my current site. 
 
 My site started out as a single page, written in React — not just an SPA but actually just a single page — basically an HTML resume. And it stayed like that for a while.
@@ -63,6 +66,9 @@ Astro provides a simple Netlify integration which, combined with Netlify’s Git
 
 
 ## Analytics, SEO, and Site Performance
+
+![A screenshot of the Google Page Speed Insights for my site.](/images/apdc-page-speed-screenshot.webp)
+_A screenshot of the [Google Page Speed Insights for my site](https://pagespeed.web.dev/report?url=https%3A%2F%2Faustinpoor.com)._
 
 SEO was something I neglected to add to previous iterations of my site but which was pretty simple using Astro. I created a couple of Astro components with meta tags to place in the `<head>` using data from the page (e.g. frontmatter data on blog post pages). 
 
@@ -105,6 +111,7 @@ So the moral of the story here is, double check that you’re 100% sure what you
 
 
 ## References
+
 - [My personal site](https://austinpoor.com)
 - [Personal Site Source Code](https://github.com/a-poor/austinpoor-dot-com)
 - [Source Code for Old React Site](https://github.com/a-poor/austinpoor-dot-com/releases/tag/old%2Freact)
