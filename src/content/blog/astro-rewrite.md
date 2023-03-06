@@ -17,14 +17,14 @@ tags:
 recommended: []
 ---
 
-As a full-stack developer, I try to stay up-to-date on frontend trends and tools, but I wouldn't say I'm an expert in the frontend or design. Nonetheless, I jumped on the hype train and rewrote my personal website in Astro, a new web framework for writing fast websites that ship minimal JavaScript (and uses something called an [Island Architecture](https://docs.astro.build/en/concepts/islands/)) while still allowing you to selectively use familiar UI tools like React, and with first class support for Markdown.
+Astro has been generating a lot of buzz recently, as a web framework that let's you writing fast websites that ship minimal JavaScript (and uses something called an [Island Architecture](https://docs.astro.build/en/concepts/islands/)) while still allowing you to selectively use familiar UI tools like React, and with first class support for Markdown. 
 
-I’ll walk you through my experience working with Astro to build a simple site.
+I decided to see what all the fuss was about by re-writing my personal website using Astro. I'll walk you through how it went.
 
 
 ## Why Did I Rewrite My Site?
 
-First and foremost, I wanted an excuse to try out Astro and I wasn't particularly happy with my current site. 
+First and foremost, I wanted an excuse to try out Astro but I also wasn't particularly happy with my current site. 
 
 My site started out as a single page, written in React — not just an SPA but actually just a single page — basically an HTML resume. And it stayed like that for a while.
 
