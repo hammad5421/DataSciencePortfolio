@@ -1,5 +1,5 @@
 ---
-isDraft: true
+isDraft: false
 title: Re-Re-Rewriting My Site in Astro
 subtitle: Using the Astro Framework to Make a Simpler, Faster Site
 description: Recapping the process of rewriting my personal site and blog using the new Astro framework.
