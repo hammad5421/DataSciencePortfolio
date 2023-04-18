@@ -80,6 +80,8 @@ Deploying the app to Fly.io was a breeze. Even though Fly doesn't provide langua
 
 ## Load Testing and Performance
 
+![A GIF showing the terminal output from running k6](/images/apoor-dot-dev-load-test-demo.gif)
+
 
 
 ## Next Steps
