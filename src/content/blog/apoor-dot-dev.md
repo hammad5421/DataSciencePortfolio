@@ -75,12 +75,16 @@ In a future iteration, I do plan to add a cache to monitor request volume but in
 
 ## Deploying to Fly.io
 
-Deploying the app to Fly.io was a breeze. Even though Fly doesn't provide language support for Rust per se, it's easy enough to deploy an app using a `Dockerfile`.
+Deploying the app to Fly.io was a breeze. Even though Fly doesn't provide language support for Rust specifically, it's easy enough to deploy an app using a `Dockerfile`. I'm using multi-stage builds to keep my containers small.
 
 
 ## Load Testing and Performance
 
 ![A GIF showing the terminal output from running k6](/images/apoor-dot-dev-load-test-demo.gif)
+
+
+
+## Oops! I DDoSed Myself
 
 
 
