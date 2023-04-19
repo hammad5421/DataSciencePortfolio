@@ -1,5 +1,5 @@
 ---
-isDraft: true
+isDraft: false
 title: Making apoor.dev
 subtitle: Building a URL Shortener with Rust, Tokio, and Axum.
 description: I recently built a URL shortener using Rust, Tokio, and Axum, and in this blog post, I'm sharing my experience. From selecting the right tech stack to load testing the application, I cover everything that went into building this service.
@@ -137,7 +137,7 @@ _A GIF showing the terminal output running the k6 load-test of my URL shortener.
 I ran a basic test (see above) against a locally running version of the app, that would randomly request an endpoint from a set of both valid and invalid paths. The result was a median response time of about `25ms` and a P90 response time of about `50ms`. While I was hoping for single-digit response times, that's still plenty fast to get the job done.
 
 
-## Oops! I Think I DDoSed Myself...
+## Oops! I DDoSed Myself...
 
 While I was getting my load test up and running, experimenting with the `k6` configuration, and running it against my local version of the URL shortener, I noticed some unexplained errors being returned. I ran the load test again a few times, tweaking the settings, just to be sure but I was still getting the errors.
 
