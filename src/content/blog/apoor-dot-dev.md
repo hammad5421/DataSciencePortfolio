@@ -141,13 +141,15 @@ I ran a basic test (see above) against a locally running version of the app, tha
 
 While I was getting my load test up and running, experimenting with the `k6` configuration, and running it against my local version of the URL shortener, I noticed some unexplained errors being returned. I ran the load test again a few times, tweaking the settings, just to be sure but I was still getting the errors.
 
-I came to realize that the errors were happening because the URL shortener was doing exactly what it was supposed to do...redirecting the user...and k6 was doing exactly what _it_ was supposed to do...follow redirects. So in the process of load testing my local version of the URL shortener, k6 was innocently and inadvertently following those redirects to...my GitHub, my LinkedIn, and...my personal site, which I recently [rewrote in astro](/blog/astro-rewrite) and hosted on Vercel. Vercel noticed the suspicious traffic and blocked the potentially malicious IP address...my IP address...blocking me from accessing my own site. Oops!
-
-Fortunately, Vercel support was very understanding and restored my access.
+I came to realize that the errors were happening because the URL shortener was doing exactly what it was supposed to do...redirecting the user...and k6 was doing exactly what _it_ was supposed to do...follow redirects. So in the process of load testing my local version of the URL shortener, k6 was innocently and inadvertently following those redirects to...my GitHub, my LinkedIn, and...my personal site, which I recently [rewrote in astro](/blog/astro-rewrite) and hosted on Vercel. Vercel noticed the suspicious traffic and blocked the potentially malicious IP address...my IP address...blocking me from accessing my own site. Oops! Fortunately, Vercel support was very understanding and restored my access.
 
 The moral of the story is...load test with caution and watch out for redirects!
 
-In case you're curious, you can prevent redirects in k6 like this: `http.get("...", { redirects: 0});`.
+In case you're curious, you can prevent redirects in k6 with the following: 
+
+```
+http.get("...", { redirects: 0});
+```
 
 
 ## Next Steps
