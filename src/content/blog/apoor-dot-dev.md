@@ -68,7 +68,7 @@ Likewise, the Axum middleware package, [Tower](https://github.com/tower-rs/tower
 
 My original intention was to store URL entries -- the mapping from short keys to their respective redirect URLs (eg "blog", as in "apoor.dev/blog" would link to "austinpoor.com/blog") -- in a cache like Redis. Fly.io has an simple [Redis integration via Upstash](https://fly.io/docs/reference/redis/), which would be a perfect option. But as I was building the app, I decided it would be simpler and faster to store the data as a `HashMap` in the application itself.
 
-Since I don't often make changes to the URLs and, when I do, a GitHub action is able to re-deploy the site in less than 5 minutes, there's no need to over-engineer and complicate things an external dependancy.
+Since I don't often make changes to the URLs and, when I do, a GitHub action is able to re-deploy the site in less than 5 minutes, there's no need to over-engineer and complicate things by adding an external dependancy.
 
 In a future iteration, I do plan to add a cache to monitor request volume but in the meantime, a `HashMap` gets the job done quickly and easily.
 
