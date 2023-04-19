@@ -2,12 +2,12 @@
 isDraft: true
 title: Making apoor.dev
 subtitle: Building a URL Shortener with Rust, Tokio, and Axum.
-description: ... 
+description: I recently built a URL shortener using Rust, Tokio, and Axum, and in this blog post, I'm sharing my experience. From selecting the right tech stack to load testing the application, I cover everything that went into building this service.
 image:
     src: /images/dalle-crab-in-a-hot-baloon.png
     alt: DALL-E 2's take on Ferris the crab (Rust's mascot) in a hot air baloon (Fly.io's logo)
     caption: DALL-E 2's take on Ferris the crab (Rust's mascot) in a hot air baloon (Fly.io's logo)
-publishDate: "2023-03-17"
+publishDate: "2023-04-18"
 tags:
 - rust
 - async
@@ -121,7 +121,7 @@ I _did_ run into one hiccup with the Rust/Alpine image. My build was failing wit
 
 After doing some digging and with the help of [this](https://github.com/rust-lang/rust/issues/25289) GH issue, I was able to get it running by adding the following line to my `Dockerfile`:
 
-```Dockerfile
+```
 RUN apk add --update alpine-sdk
 ```
 
@@ -132,6 +132,7 @@ Once I had the API up and running, my next step was to do some load testing.
 [k6](https://k6.io/) is a tool by Grafana Labs, written in Go, for load testing web applications. It allows you to define a set of rules, in JavaScript, for _virtual users_ to access your web service and reports statistics like latency, failure rates, etc.
 
 ![A GIF showing the terminal output from running k6](/images/apoor-dot-dev-load-test-demo.gif)
+_A GIF showing the terminal output running the k6 load-test of my URL shortener._
 
 I ran a basic test (see above) against a locally running version of the app, that would randomly request an endpoint from a set of both valid and invalid paths. The result was a median response time of about `25ms` and a P90 response time of about `50ms`. While I was hoping for single-digit response times, that's still plenty fast to get the job done.
 
@@ -151,13 +152,19 @@ In case you're curious, you can prevent redirects in k6 like this: `http.get("..
 
 ## Next Steps
 
-I'm pretty happy with the current version of the app but if I'm looking to do some more tinkering in the future, I'd like to add some metrics to better track usage. Also, I might like to take a crack at improving the performance or shrinking the binary size.
+I'm pretty happy with the current version of the app but if I'm looking to do some more tinkering in the future, I'd like to add some metrics to better track usage. I might also like to take a crack at improving the performance or shrinking the binary size.
 
 
 ## Conclusion
 
+I had a lot of fun with this experiment. Axum was easy to use and will definitely be my first choice next time I'm creating a web service with Rust. 
 
 
 ## Reference
 
+- [apoor-dot-dev GitHub Repo](https://github.com/a-poor/apoor-dot-dev/)
+- [axum](https://github.com/tokio-rs/axum)
+- [Tokio](https://tokio.rs/)
+- [k6](https://k6.io/)
+- [cargo-bloat](https://crates.io/crates/cargo-bloat)
 
