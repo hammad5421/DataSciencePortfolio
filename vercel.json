@@ -7,6 +7,18 @@
     {
       "source": "/stats/api/event",
       "destination": "https://plausible.io/api/event"
+    },
+    {
+      "source": "/twitter",
+      "destination": "https://twitter.com/austin_poor"
+    },
+    {
+      "source": "/mastodon",
+      "destination": "https://mastodon.social/@austinpoor"
+    },
+    {
+      "source": "/linkedin",
+      "destination": "https://www.linkedin.com/in/austinpoor"
     }
   ],
   "headers": []
