@@ -7,18 +7,23 @@
     {
       "source": "/stats/api/event",
       "destination": "https://plausible.io/api/event"
-    },
+    }
+  ],
+  "redirects": [
     {
       "source": "/twitter",
-      "destination": "https://twitter.com/austin_poor"
+      "destination": "https://twitter.com/austin_poor",
+      "permanent": true
     },
     {
       "source": "/mastodon",
-      "destination": "https://mastodon.social/@austinpoor"
+      "destination": "https://mastodon.social/@austinpoor",
+      "permanent": true
     },
     {
       "source": "/linkedin",
-      "destination": "https://www.linkedin.com/in/austinpoor"
+      "destination": "https://www.linkedin.com/in/austinpoor",
+      "permanent": true
     }
   ],
   "headers": []
