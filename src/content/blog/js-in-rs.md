@@ -14,7 +14,9 @@ tags:
 - deno
 - cli
 - grep
-recommended: []
+recommended:
+- apoor-dot-dev
+- serve-ml-with-grpc
 ---
 
 When I saw that Deno has open source Rust crates for running JavaScript code in a Rust application I wanted to give it a try for myself, so I created a basic, proof-of-concept project called `js-in-rs` to get a feel for using Deno's crates in a Rust program -- specifically the `deno_core` crate.

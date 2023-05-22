@@ -16,7 +16,9 @@ tags:
 - clustering
 - color-theory
 - image-processing
-recommended: []
+recommended:
+- predict-spotify-skips
+- big-query-data-augmentation
 ---
 
 I was recently working on a project in which I wanted to be able to compare the look and feel of images which led me to look for a way to create color palettes using machine learning.

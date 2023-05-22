@@ -15,7 +15,10 @@ tags:
 - rest
 - machine-learning
 - python
-recommended: []
+recommended:
+- flask-ml-predictions
+- data-science-profilers
+- js-in-rs
 ---
 
 Most people who are looking to put their newly trained ML model into production turn to REST¹ APIs. Here's why I think you should consider using gRPC instead.

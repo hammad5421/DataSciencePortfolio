@@ -15,7 +15,10 @@ tags:
 - python
 - machine-learning
 - bootcamp
-recommended: []
+recommended:
+- algorithmic-color-palettes
+- big-query-data-augmentation
+- serve-ml-with-grpc
 ---
 
 ## Introduction

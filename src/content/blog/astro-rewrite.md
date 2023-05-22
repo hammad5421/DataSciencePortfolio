@@ -14,7 +14,9 @@ tags:
 - astro
 - framework
 - frontend
-recommended: []
+recommended:
+- apoor-dot-dev
+- js-in-rs
 ---
 
 Astro has been generating a lot of buzz recently, as a web framework that let's you writing fast websites that ship minimal JavaScript (and uses something called an [Island Architecture](https://docs.astro.build/en/concepts/islands/)) while still allowing you to selectively use familiar UI tools like React, and with first class support for Markdown. 

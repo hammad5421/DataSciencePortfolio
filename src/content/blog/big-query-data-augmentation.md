@@ -15,7 +15,10 @@ tags:
 - big-query
 - sql
 - data
-recommended: []
+recommended:
+- csv-to-postgres-with-pandas
+- flask-ml-predictions
+- plots-with-jinja
 ---
 
 Google Cloud's BigQuery is a great tool for data scientists to quickly and easily augment their datasets with external data. Specifically, BigQuery has a [listing of public datasets](https://cloud.google.com/bigquery/public-data) from a variety of different sources. All you need is a Google Cloud account and some basic SQL knowledge.

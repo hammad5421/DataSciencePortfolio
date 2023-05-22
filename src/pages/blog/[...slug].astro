@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content';
+import { getCollection, getEntryBySlug } from 'astro:content';
 import Layout from '../../layouts/BaseLayout.astro';
 import BlogMeta from '../../components/BlogMeta.astro';
 import '../../styles/blog.css';
@@ -31,6 +31,27 @@ function formatDate(d: Date): string {
 
 const pageTitle = `${ entry.data.pageTitie || entry.data.title } | Austin's Blog`;
 const pageDescription = entry.data.description;
+
+// Format the recommended posts...
+interface IRec {
+  slug: string;
+  title: string;
+  subtitle: string;
+  image: {
+    src: string;
+    alt: string;
+  };
+}
+
+const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: string) => {
+  const rec = await getEntryBySlug('blog', r);
+  return {
+    slug: rec?.slug,
+    title: rec?.data.title,
+    subtitle: rec?.data.subtitle,
+    image: rec?.data.image,
+  }
+}));
 
 ---
 <Layout activeTab="blog" pageTitle={pageTitle} pageDescription={pageDescription}>
@@ -125,6 +146,39 @@ const pageDescription = entry.data.description;
     </div>
 
     <Content />
+
+    <hr />
+
+    <p>
+      Thank you so much for reading! If you have any thoughts, questions, or comments, I'd love to hear them.
+      You can find me on <a href="https://twitter.com/austin_poor">Twitter</a>, <a href="https://mastodon.social/@austinpoor">Mastodon</a>,
+      or <a href="https://www.linkedin.com/in/austinpoor">LinkedIn</a>.
+    </p>
+
+    {recs.length > 0 && (
+      <>
+        <p>
+          If you liked this post, you might also like:
+        </p>
+        <ul class="list-none -mt-8">
+            {recs.map((r) => (
+              <li class="mb-2">
+                <a href={`/blog/${r.slug}`} class="flex flex-row items-start">
+                  <img 
+                    src={r.image.src}
+                    alt={r.image.alt}
+                    class="h-14 w-14 mr-4 rounded-lg object-cover"
+                  />
+                  <div>
+                    <h3>{ r.title }</h3>
+                    <h4>{ r.subtitle }</h4>
+                  </div>
+                </a>
+              </li>
+            ))}
+        </ul>
+      </>
+    )}
 
   </article>
 

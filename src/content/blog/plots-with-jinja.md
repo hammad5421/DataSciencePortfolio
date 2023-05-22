@@ -15,7 +15,10 @@ tags:
 - data-visualization
 - data-science
 - svg
-recommended: []
+recommended:
+- data-science-profilers
+- flask-ml-predictions
+- algorithmic-color-palettes
 ---
 
 Have you ever spent way too long digging through documentation, trying to get your plots to look the way you want? Next time it happens, consider ditching matplotlib or seaborn and using [Jinja](https://jinja.palletsprojects.com) to create a custom plot.

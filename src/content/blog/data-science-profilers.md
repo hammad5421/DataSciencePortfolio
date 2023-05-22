@@ -15,7 +15,10 @@ tags:
 - profiling
 - algorithms
 - optimization
-recommended: []
+recommended:
+- plots-with-jinja
+- flask-ml-predictions
+- serve-ml-with-grpc
 ---
 
 Data scientists often need to write a lot of complex, slow, CPU- and I/O-heavy code — whether you're working with large matrices, millions of rows of data, reading in data files, or web-scraping.

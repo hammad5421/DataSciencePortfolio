@@ -15,7 +15,9 @@ tags:
 - postgres
 - pandas
 - data-science
-recommended: []
+recommended:
+- big-query-data-augmentation
+- predict-spotify-skips
 ---
 
 Sometimes it can be kind of a pain to deal with copying CSV data into a Postgres database — especially if you don't want to write out a long schema. Why not let Pandas do all that legwork for you? I'll walk you through a quick example using the Iris dataset (here's a [link](https://archive.ics.uci.edu/ml/datasets/Iris) to the data).

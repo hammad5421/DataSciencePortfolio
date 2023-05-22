@@ -15,7 +15,9 @@ tags:
 - axum
 - tokio
 - fly-io
-recommended: []
+recommended:
+- astro-rewrite
+- js-in-rs
 ---
 
 Rust is an exciting language with a lot of promise -- fast, safe programs with a small footprint. I've written a few things here and there in Rust but to get more practice, I decided to create a URL shortener using Rust, Tokio, and Axum.

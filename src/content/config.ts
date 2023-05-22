@@ -18,14 +18,6 @@ const blogCollection = defineCollection({
         publishDate: z.string().transform(str => new Date(str)),
         updateDate: z.string().transform(str => new Date(str)).optional(),
         recommended: z.array(z.string()).optional(),
-        
-
-        // sortOrder: z.number(),
-        // author: z.string().default('Anonymous'),
-        // // An optional frontmatter property. Very common!
-        // footnote: z.string().optional(),
-        // // Advanced: Validate that the string is also a URL
-        // canonicalURL: z.string().url(),
     }),
 });
 

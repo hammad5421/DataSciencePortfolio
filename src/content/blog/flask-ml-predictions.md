@@ -15,7 +15,10 @@ tags:
 - flask
 - machine-learning
 - celery
-recommended: []
+recommended:
+- serve-ml-with-grpc
+- data-science-profilers
+- js-in-rs
 ---
 
 One of the projects I worked on for the Metis data science bootcamp involved creating an MVP of a Flask app to display movie recommendations to a user (think Netflix home screen).
