@@ -22,7 +22,7 @@ function formatDate(d: Date): string {
 }
 
 const pageTitle = "Blog | Austin Poor";
-const pageDescription = "Check out some blog posts I've written about various topics. I don't post very often, but I try to make each post count.";
+const pageDescription = "Check out my recent blog posts and let me know what you think!";
 
 ---
 <Layout activeTab="blog" pageTitle={pageTitle} pageDescription={pageDescription}>
@@ -83,9 +83,9 @@ const pageDescription = "Check out some blog posts I've written about various to
                     <time class="text-sm" datetime={ b.data.publishDate.toISOString() }>
                         { formatDate(b.data.publishDate) }
                     </time>
-                    <h1 class="text-2xl font-semibold tracking-tight">
+                    <h2 class="text-2xl font-semibold tracking-tight">
                         { b.data.title }
-                    </h1>
+                    </h2>
                     <p class="text-base">
                         { b.data.description }
                     </p>
