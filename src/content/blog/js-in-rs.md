@@ -15,6 +15,7 @@ tags:
 - cli
 - grep
 recommended:
+- zero-trust-programming
 - apoor-dot-dev
 - serve-ml-with-grpc
 ---
