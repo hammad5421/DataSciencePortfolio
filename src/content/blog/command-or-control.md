@@ -14,9 +14,10 @@ tags:
 - user-agent
 - javascript-framework
 - browser-detection
-recommended: []
-# - predict-spotify-skips
-# - big-query-data-augmentation
+recommended:
+- js-in-rs
+- astro-rewrite
+- apoor-dot-dev
 ---
 
 You've just built a cool new site and now you want to add search. Maybe GPT-powered vector search, maybe just Algoila. You put in a search button and you want the user to be able to open it with the hotkey `Cmd + K`. But should the hotkey be `Cmd + K` or `Ctrl + K`?
