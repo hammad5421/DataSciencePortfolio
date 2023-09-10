@@ -27,7 +27,7 @@ If your user is on a Mac, it should be `Cmd` (aka "command" aka `⌘` ). Otherwi
 
 One option is [`navigator.platform`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/platform) which is a string identifying the platform on which the browser is running (e.g. `"MacIntel"`, `"Win32"`, etc.).
 
-!["navigator.platform" MDN support grid](/images/navigator.platform-support-grid.png)  
+!["navigator.platform" MDN support grid](/images/navigator.platform-support-grid.png)
 _"navigator.platform" MDN support grid_
 
 While this has been supported for quite a while, unfortunately it is now marked as deprecated.
@@ -54,7 +54,7 @@ Well MDN points you to [`navigator.userAgentData.platform`](https://developer.mo
 
 As a brief aside, those properties are considered "low entropy" and the `NavigatorUAData` object also contains a method for obtaining "high entropy" values from the user-agent – where low entropy values are unlikely to identify the user and high entropy values are more likely to identify the user.
 
-!["navigator.userAgentData.platform" MDN support grid](/images/navigator.userAgentData.platform-support.png)  
+!["navigator.userAgentData.platform" MDN support grid](/images/navigator.userAgentData.platform-support.png)
 _"navigator.userAgentData.platform" MDN support grid_
 
 Unfortunately, `navigator.userAgentData.platform` is considered experimental and currently is only supported by Chromium-based browsers.
@@ -65,7 +65,7 @@ The good news is that `User-Agent` data is available and well-supported in both 
 
 ![](https://firebasestorage.googleapis.com/v0/b/reflect-prod.appspot.com/o/users%2FvmrYh4LgUkUEf7TbSktt3rvxqFC3%2F781c889d62fb4e4ca2fafe5d76fe41e5?alt=media\&token=05b2bd69-eee1-4f28-9bae-b54a9468e058)
 
-!["navigator.userAgent" MDN support grid](/images/navigator.userAgent-support.png)  
+!["navigator.userAgent" MDN support grid](/images/navigator.userAgent-support.png)
 _"navigator.userAgent" MDN support grid_
 
 The bad news is `User-Agent` data can messy and unreliable. According to MDN:
@@ -78,7 +78,7 @@ MDN has another great article on using `User-Agent` data to detect the OS, which
 
 Currently there isn't one consistent way to detect the user's OS. Hopefully the `navigator.userAgentData` API gets support but until then we may be stuck using a combination of approaches to polyfill. Fortunately, between the three approaches outlined above, we should be able to get a mostly-reliable answer and if our guess is wrong it isn't the end of the world.
 
-![Screenshot from the Astro Docs showing the search hotkey is "/"](/images/astro-search.png)  
+![Screenshot from the Astro Docs showing the search hotkey is "/"](/images/astro-search.png)
 _Screenshot from the Astro Docs_
 
 If you _really_ care that much about making sure you don't show your user the wrong modifier key you can always skip `Ctrl+K`/`Cmd+K` and use `/` instead, like Astro does!
