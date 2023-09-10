@@ -70,8 +70,6 @@ That said, while this may not be the most reliable method of _browser_ identific
 
 MDN has a great article with advice on gleaning information from `User-Agent`, which you can find [here](https://developer.mozilla.org/en-US/docs/Web/HTTP/Browser_detection_using_the_user_agent#os).
 
-Currently there isn't one consistent way to detect the user's OS. Hopefully the `navigator.userAgentData` API gets support but until then we may be stuck using a combination of approaches to polyfill. Fortunately, between the three approaches outlined above, we should be able to get a mostly-reliable answer and if our guess is wrong it isn't the end of the world.
-
 Currently there isn't one consistent way to detect the user's OS. Until `navigator.userAgentData` is fully supported, we may be stuck polyfilling it with the deprecated `navigator.platform` or the unreliable `User-Agent` string. Fortunately, between those three APIs you should be able to get a good enough answer. And worst case, if you guess wrong it isn't the end of the world this is just a progressive enhancement that shouldn't break your site.
 
 ![Screenshot from the Astro docs showing the search hotkey is "/"](/images/astro-search.png)
