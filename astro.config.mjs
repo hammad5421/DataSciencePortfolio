@@ -29,5 +29,12 @@ export default defineConfig({
     sitemap(), 
   ],
   output: "static",
-  adapter: vercel()
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+    speedInsights: {
+      enabled: true,
+    },
+  })
 });

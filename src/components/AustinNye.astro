@@ -1,0 +1,81 @@
+---
+---
+
+<img src="/images/nye/main00.png" />
+<canvas id="nye-vid" class="mx-auto w-full aspect-video max-w-[960px]"/>
+
+
+<script>
+    // Setup...
+    const n = 68;
+    const fmtImgPath = (i: number) => `/images/nye/main${i.toString().padStart(2,'0')}.png`;
+    const imagePaths = new Array(n).fill(0).map((_, i) => fmtImgPath(i));
+
+    // Load one image first...
+    const firstImg = await (async () => {
+        const img = new Image();
+        img.src = fmtImgPath(0);
+        await new Promise((resolve, reject) => {
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+        });
+        return img;
+    })();
+
+    // Get the canvas reference...
+    const canvas = document.querySelector('canvas#nye-vid') as HTMLCanvasElement;
+    const ctx = canvas.getContext('2d') as CanvasRenderingContext2D;
+
+    // Draw the first image...
+    ctx.drawImage(firstImg, 0, 0);
+
+    // Load the rest of the images...
+    const images = await Promise.all(imagePaths.map((src): Promise<HTMLImageElement> => {
+        const img = new Image();
+        img.src = src;
+        return new Promise((resolve, reject) => {
+            img.onload = () => resolve(img);
+            img.onerror = reject;
+        });
+    }));
+
+    // Then start the animation loop...
+    const fps = 32;
+    let currentFrame = 0;
+    let prev: number | undefined;
+    function step(ts: number) {
+        // Set the timestamp if it's not set...
+        if (!prev) prev = ts - (1000 / fps);
+
+        // Get the next frame step...
+        const elapsed = ts - prev;
+
+        // Update the current frame...
+        const frameChange = Math.floor(elapsed / (1000 / fps));
+
+        if (frameChange > 0) {
+            prev = ts;
+            currentFrame = (currentFrame + frameChange) % n;
+            
+            // Clear the canvas...
+            ctx?.clearRect(0, 0, canvas.width, canvas.height);
+
+            // // Calculate the width the images should be drawn at.
+            // // The images are all 960x540. Use the canvas width and height
+            // // to calculate the width the images should be drawn at.
+            // const hratio = canvas.width / images[currentFrame].width;
+            // const wratio = canvas.height / images[currentFrame].height;
+            // const ratio = Math.min(hratio, wratio);
+
+            // ctx.scale(ratio, ratio);
+        
+            // Draw the next frame...
+            ctx?.drawImage(images[currentFrame], 0, 0);
+            // ctx.scale(1/ratio, 1/ratio);
+        }
+
+        // Recall the animation loop...
+        window.requestAnimationFrame(step);
+    }
+    window.requestAnimationFrame(step);
+</script>
