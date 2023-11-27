@@ -29,7 +29,7 @@ function formatDate(d: Date): string {
   return `${year}-${month}-${day}`;
 }
 
-const pageTitle = `${ entry.data.pageTitie || entry.data.title } | Austin's Blog`;
+const pageTitle = `${ entry.data.pageTitle || entry.data.title } | Austin's Blog`;
 const pageDescription = entry.data.description;
 
 // Format the recommended posts...

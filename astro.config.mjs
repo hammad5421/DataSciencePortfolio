@@ -31,10 +31,10 @@ export default defineConfig({
   output: "static",
   adapter: vercel({
     webAnalytics: {
-      enabled: true,
+      enabled: process.env.NODE_ENV === "production",
     },
     speedInsights: {
-      enabled: true,
+      enabled: process.env.NODE_ENV === "production",
     },
   })
 });
