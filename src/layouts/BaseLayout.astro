@@ -13,6 +13,9 @@ interface Props {
 
 const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
 
+
+const isProd = import.meta.env.PROD;
+
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -53,16 +56,19 @@ const { activeTab, pageTitle, pageDescription }: Props = Astro.props;
             }
         </style>
 
-        <script
-            is:inline 
-            defer 
-            id="plausible-script"
-            data-domain="austinpoor.com"
-            src="/stats/js/script.outbound-links.tagged-events.js"
-            data-api="/stats/api/event"
-        >
-        </script>
-        <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+        {/* Only set up Plausible Analytics if running in production */}
+        {isProd && (
+            <script
+                is:inline 
+                defer 
+                id="plausible-script"
+                data-domain="austinpoor.com"
+                src="/stats/js/script.outbound-links.tagged-events.js"
+                data-api="/stats/api/event"
+            >
+            </script>
+            <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
+        )}
 	</head>
 	<body class="relative ">
         <Nav activeTab={activeTab}/>
