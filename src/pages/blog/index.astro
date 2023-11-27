@@ -1,7 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
-import Layout from '../../layouts/BaseLayout.astro';
-import SiteMeta from '../../components/SiteMeta.astro';
+import Layout from '@/layouts/BaseLayout.astro';
+import SiteMeta from '@/components/SiteMeta.astro';
+import { Image } from 'astro:assets';
 
 const blogPosts = await getCollection('blog')
     .then(ps => (ps
@@ -36,7 +37,7 @@ const pageDescription = "Check out my recent blog posts and let me know what you
     <link rel="canonical" href="https://austinpoor.com/blog" slot="head"/>
 
     <!-- Content -->
-    <div class="max-w-2xl mx-auto mb-12 text-neutral-900 dark:text-neutral-100">
+    <div class="max-w-2xl mx-auto mb-12">
         <h1 class="text-4xl sm:text-6xl font-bold text-center mb-4">
             Blog
         </h1>
@@ -59,8 +60,6 @@ const pageDescription = "Check out my recent blog posts and let me know what you
             lg:grid-cols-3
             grid-rows-auto 
             mb-48
-            text-neutral-900 
-            dark:text-neutral-100
         "
     >
         {blogPosts.map(b => (

@@ -1,8 +1,8 @@
 ---
 import { getCollection, getEntryBySlug } from 'astro:content';
-import Layout from '../../layouts/BaseLayout.astro';
-import BlogMeta from '../../components/BlogMeta.astro';
-import '../../styles/blog.css';
+import Layout from '@/layouts/BaseLayout.astro';
+import BlogMeta from '@/components/BlogMeta.astro';
+import '@/styles/blog.css';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -77,8 +77,7 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
       space-y-2 
       mb-4
       px-6
-      text-slate-600
-      dark:text-slate-400
+      text-slate-400
     "
   >
     <a href="/blog" class="text-sm font-medium flex items-center space-x-2 -ml-[1px]">
@@ -106,14 +105,14 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
         { entry.data.title }
       </h1>
       { entry.data.subtitle && (
-        <h2 class="text-lg font-medium text-slate-600 dark:text-slate-300">
+        <h2 class="text-lg font-medium text-slate-300">
           { entry.data.subtitle }
         </h2>
       )}
-      <p class="text-sm font-medium pt-2 text-slate-800 dark:text-slate-200">
+      <p class="text-sm font-medium pt-2 text-slate-200">
         Written by Austin Poor
       </p>
-      <p class="text-sm font-medium text-slate-800 dark:text-slate-200">
+      <p class="text-sm font-medium text-slate-200">
         Published { formatDate(entry.data.publishDate) }
         { entry.data.updateDate && (
           <>
