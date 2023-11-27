@@ -109,14 +109,20 @@ const tabs: TabData[] = [
 </div>
 
 <script>
+  //@ts-ignore
   import { animate } from 'motion';
 
   const toggleMobileNav = document.getElementById("toggle-mobile-nav-button");
-  const navOpenIcon = toggleMobileNav.querySelector(".nav-open");
-  const navCloseIcon = toggleMobileNav.querySelector(".nav-close");
+  const navOpenIcon = toggleMobileNav?.querySelector(".nav-open");
+  const navCloseIcon = toggleMobileNav?.querySelector(".nav-close");
   const mobileNav = document.getElementById("mobile-nav");
 
   toggleMobileNav?.addEventListener("click", async () => {
+    if (!toggleMobileNav) return;
+    if (!navOpenIcon) return;
+    if (!navCloseIcon) return;
+    if (!mobileNav) return;
+
     if (toggleMobileNav.dataset.open !== "true") {
       // Mark the nav as open...
       toggleMobileNav.dataset.open = "true";
@@ -140,7 +146,7 @@ const tabs: TabData[] = [
       const height = mobileNav?.scrollHeight;
 
       // Start animating the height up from zero...
-      await animate(mobileNav, { height: [0, `${height}px`] }, { duration: 0.2 });
+      await animate(mobileNav, { height: [0, `${height}px`] }, { duration: 0.2 }).finished;
     } else {
       // Get the height of the nav...
       const height = mobileNav?.scrollHeight;
@@ -163,7 +169,7 @@ const tabs: TabData[] = [
       toggleMobileNav.dataset.open = "false";
       
       // Animate the height back down to zero...
-      await animate(mobileNav, { height: [`${height}px`, 0] }, { duration: 0.2 });
+      await animate(mobileNav, { height: [`${height}px`, 0] }, { duration: 0.2 }).finished;
       mobileNav?.classList.add("hidden");
     }
   });

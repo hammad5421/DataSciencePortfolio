@@ -43,14 +43,14 @@ interface IRec {
   };
 }
 
-const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: string) => {
+const recs = await Promise.all((entry.data.recommended || []).map(async (r: string) => {
   const rec = await getEntryBySlug('blog', r);
   return {
     slug: rec?.slug,
     title: rec?.data.title,
     subtitle: rec?.data.subtitle,
     image: rec?.data.image,
-  }
+  } as IRec;
 }));
 
 ---
@@ -58,7 +58,7 @@ const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: stri
   <!-- Page metadata -->
   <BlogMeta 
     slot="head"
-    title={entry.data.pageTitle}
+    title={pageTitle}
     pageUrl={`https://austinpoor.com/blog/${entry.slug}`}
     imageUrl={`https://austinpoor.com/${entry.data.image.src}`}
     description={entry.data.description}
