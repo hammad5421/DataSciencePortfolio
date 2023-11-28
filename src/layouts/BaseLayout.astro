@@ -4,6 +4,8 @@ import type { Tab } from '@/components/Nav.astro';
 import Footer from '@/components/Footer.astro';
 import BackToTop from '@/components/BackToTop.astro';
 import PageMeta from '@/components/PageMeta.astro';
+import SearchModal from '@/components/SearchModal.astro';
+
 
 interface Props {
     activeTab?: Tab;
@@ -86,5 +88,7 @@ const isProd = import.meta.env.PROD;
                 <slot name="footer" />
             </Footer>
         </div>
+
+        <SearchModal />
 	</body>
 </html>

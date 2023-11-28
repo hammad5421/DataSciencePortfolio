@@ -69,7 +69,7 @@ const tabs: TabData[] = [
     </ul>
   </nav>  
 
-  <button id="toggle-search-box" class="flex rounded-lg bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 w-[44px] h-[44px] place-items-center">
+  <button id="toggle-search-modal" class="flex rounded-lg bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 w-[44px] h-[44px] place-items-center">
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto">
       <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
     </svg>
@@ -112,11 +112,14 @@ const tabs: TabData[] = [
   //@ts-ignore
   import { animate } from 'motion';
 
+  // Get the elements we need...
   const toggleMobileNav = document.getElementById("toggle-mobile-nav-button");
   const navOpenIcon = toggleMobileNav?.querySelector(".nav-open");
   const navCloseIcon = toggleMobileNav?.querySelector(".nav-close");
   const mobileNav = document.getElementById("mobile-nav");
+  const searchButton = document.getElementById("toggle-search-modal");
 
+  // Add the event listener to the mobile nav toggle button...
   toggleMobileNav?.addEventListener("click", async () => {
     if (!toggleMobileNav) return;
     if (!navOpenIcon) return;
@@ -174,13 +177,8 @@ const tabs: TabData[] = [
     }
   });
 
-  const burgerOpen = document.getElementById("nav-burger-open-icon");
-  const burgerClose = document.getElementById("nav-burger-close-icon");
-  const burger = document.getElementById("dropdown-nav-burger");
-  const dropdown = document.getElementById("dropdown-nav");
-  burger?.addEventListener("click", () => {
-    dropdown?.classList.toggle("hidden");
-    burgerOpen?.classList.toggle("hidden");
-    burgerClose?.classList.toggle("hidden");
+  // Add the event listener to the search button...
+  searchButton?.addEventListener("click", () => {
+    console.log("Search button clicked!");
   });
 </script>
