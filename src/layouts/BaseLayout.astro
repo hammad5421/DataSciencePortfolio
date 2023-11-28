@@ -25,10 +25,11 @@ const isProd = import.meta.env.PROD;
             description={pageDescription}
         />
         <slot name="head" />
+        <meta name="theme-color" content="#18181b"/> {/* bg-zinc-900 */}
 
         <style>
             html {
-                @apply bg-zinc-900 h-full text-neutral-50;
+                @apply bg-zinc-900 h-full text-zinc-50;
             }
 
             body {
@@ -36,13 +37,7 @@ const isProd = import.meta.env.PROD;
             }
 
             .bg {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                min-height: 100vh;
-                pointer-events: none;
-                z-index: -1;
+                @apply absolute h-full w-full pointer-events-none -z-10;
             }
 
             #bg-grid {
@@ -70,24 +65,26 @@ const isProd = import.meta.env.PROD;
             <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
         )}
 	</head>
-	<body class="relative ">
-        <Nav activeTab={activeTab}/>
-
-        <header>
-            <slot name="header" />
-        </header>
-
-        <main>
-            <slot />
-        </main>
-
-        <BackToTop />
-        
-        <Footer>
-            <slot name="footer" />
-        </Footer>
-        
-        <div class="bg" id="bg-noise"/>
-        <div class="bg" id="bg-grid"/>
+	<body>
+        <div class="relative overflow-scroll min-h-screen">
+            <div class="bg" id="bg-noise"/>
+            <div class="bg" id="bg-grid"/>
+            
+            <Nav activeTab={activeTab}/>
+    
+            <header>
+                <slot name="header" />
+            </header>
+    
+            <main>
+                <slot />
+            </main>
+    
+            <BackToTop />
+            
+            <Footer>
+                <slot name="footer" />
+            </Footer>
+        </div>
 	</body>
 </html>
