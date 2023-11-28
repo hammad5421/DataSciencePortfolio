@@ -3,8 +3,8 @@
 
 <search-modal open="true" class="fixed left-0 top-0 right-0 bottom-0 items-center justify-center backdrop-blur-[2px] text-lg hidden">
     <div class="pb-12 max-w-xl w-full">
-        <div class="search-modal-box bg-zinc-100 text-zinc-950 rounded-lg overflow-hidden shadow-xl w-full">
-            <div class="relative w-full px-1">
+        <div class="search-modal-box bg-zinc-100 text-zinc-950 rounded-lg overflow-hidden shadow-xl w-full pb-1">
+            <div class="relative w-full px-1 mb-1">
                 <input type="text" placeholder="Search..." class="bg-zinc-100 w-full rounded-md block mx-auto my-1 pl-1 py-1 pr-8" />
                 <div class="absolute top-0 right-0 bottom-0 pr-2 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto">
@@ -12,19 +12,23 @@
                     </svg>
                 </div>
             </div>
-            <div class="w-full mx-auto my-1 border-t border-zinc-500/25"/>
-            <div class="w-full px-2 pb-2">
-                <ul class="match-results">
+            <div class="w-full mx-auto border-t border-zinc-500/25"/>
+            <div class="w-full">
+                <ul class="results-container max-h-64 overflow-scroll list-none">
                     <li>
-                        <search-result title="GitHub" url="https://github.com/a-poor"></search-result>
+                        <search-result title="GitHub" url="https://github.com/a-poor" excerpt=""/>
                     </li>
                     <li>
-                        <search-result title="Blog" url="/blog" excerpt="Check out some of my blog posts!"></search-result>
+                        <search-result title="Blog" url="/blog" excerpt="Check out some of my blog posts!"/>
                     </li>
                     <li>
-                        <search-result title="About Me" url="/about" excerpt="Want to learn more about me?"></search-result>
+                        <search-result title="About Me" url="/about" excerpt="Want to learn more about me?"/>
                     </li>
                 </ul>
+            </div>
+            <div class="w-full mx-auto border-t border-zinc-500/25"/>
+            <div class="w-full px-2 pt-1">
+                Search results...
             </div>
         </div>
     </div>
@@ -42,7 +46,65 @@
     const searchClient = algoliasearch(ALGOLIA_APP_ID, ALGOLIA_SEARCH_ONLY_API_KEY);
     const index = searchClient.initIndex(BLOG_INDEX_NAME);
 
-    
+
+    type SearchResType = {
+        objectID: string;
+        id: string;
+        slug: string;
+        body: string;
+        collection: string;
+        data: {
+            isDraft: boolean;
+            title: string;
+            subtitle: string;
+            description: string;
+            image: {
+                src: string;
+                alt: string;
+                caption: string;
+            };
+            tags: string[];
+            publishDate: string;
+            updateDate: string;
+            recommended: string[];
+        };
+        _snippetResult: {};
+        _highlightResult: {};
+        _rankingInfo: {};
+    };
+
+    // // Define the default search results...
+    // const defaultSearchResults = [
+    //     {
+    //         title: "GitHub",
+    //         url: "",
+    //     },
+    //     {
+    //         title: "Blog",
+    //         url: "",
+    //     },
+    //     {
+    //         title: "About Me",
+    //         url: "",
+    //     },
+    // ];
+
+    function debounce<T extends (...args: any[]) => void>(wait: number, callback: T): (...args: Parameters<T>) => void  {
+        let timeoutId: number | undefined;
+        return (...args) => {
+            window.clearTimeout(timeoutId);
+            timeoutId = window.setTimeout(() => {
+                callback(...args);
+            }, wait);
+        };
+    }
+
+    function runSearch(query: string, callback?: (results: SearchResType[]) => void) {
+        // Search for the query...
+        index.search(query)
+            .then(({ hits }) => callback?.(hits as any as SearchResType[]));
+    }
+    const debouncedSearch = debounce(100, runSearch);
 
     class SearchResult extends HTMLElement {
         static observedAttributes = ['title', 'url', 'excerpt', 'icon'];
@@ -52,26 +114,62 @@
         }
         
         connectedCallback() {
-            this.update();
+            this.innerHTML = `
+                <a href="" class="block px-2 py-1 hover:bg-zinc-500/25 rounded-md">
+                    <h3 class="text-lg font-semibold"></h3>
+                    <p class="text-sm"></p>
+                </a>
+            `;
+            this.updateTitle();
+            this.updateURL();
+            this.updateExcerpt();
+            this.updateIcon();
         }
 
         attributeChangedCallback(name: string, oldValue: string, newValue: string) {
             console.log(`Changing attribute "${name}" from "${oldValue}" to "${newValue}"`);
-            this.update();
+            if (name === "title") {
+                this.updateTitle();
+            }
+            if (name === "url") {
+                this.updateURL();
+            }
+            if (name === "excerpt") {
+                this.updateExcerpt();
+            }
+            if (name === "icon") {
+                this.updateIcon();
+            }
         }
 
-        update() {
+        updateTitle() {
             const title = this.getAttribute('title');
-            const url = this.getAttribute('url');
-            const excerpt = this.getAttribute('excerpt');
-            const excerptStr = excerpt ? `<p class="text-sm">${excerpt}</p>` : "";
-            this.innerHTML = `
-                <a href="${url}" class="block px-2 py-1 hover:bg-zinc-500/25 rounded-md">
-                    <h3 class="text-lg font-semibold">${title}</h3>
-                    ${excerptStr}
-                </a>
-            `;
+            const stitle = title // ? JSON.parse(title) : "";
+            const h3 = this.querySelector("h3");
+            if (h3) {
+                h3.innerHTML = stitle;
+            }
         }
+
+        updateURL() {
+            const url = this.getAttribute('url');
+            const surl = url // ? JSON.parse(url) : "";
+            const a = this.querySelector("a");
+            if (a) {
+                a.href = surl;
+            }
+        }
+
+        updateExcerpt() {
+            const excerpt = this.getAttribute('excerpt');
+            const sexcerpt = excerpt // ? JSON.parse(excerpt) : "";
+            const p = this.querySelector("p");
+            if (p) {
+                p.innerHTML = sexcerpt;
+            }
+        }
+
+        updateIcon() {}
     }
     customElements.define('search-result', SearchResult);
 
@@ -121,6 +219,7 @@
                     // e.stopPropagation();
                     console.log("Enter pressed!");
                     // TODO - Search for the query...
+                    this.search();
                 }
             });
             searchInput.addEventListener("input", e => {
@@ -130,6 +229,45 @@
 
         isOpen() {
             return this.getAttribute("open") === "true";
+        }
+
+        updateResults(results: SearchResType[]) {
+            // Get the results container element...
+            const resultsContainer = this.querySelector(".results-container") as HTMLUListElement;
+            if (!resultsContainer) {
+                console.error("Could not find results container!");
+                return;
+            }
+            
+            // Clear the current results...
+            resultsContainer.innerHTML = ""; 
+
+            // Add the new results...
+            results.forEach(r => {
+                const sr = document.createElement("search-result") as SearchResult;
+                sr.setAttribute("title", r.data.title);
+                sr.setAttribute("url", `/blog/${r.slug}`);
+                sr.setAttribute("excerpt", r?.data?.description ? r.data.description : "");
+                
+                const result = document.createElement("li");
+                result.appendChild(sr);
+                
+                resultsContainer.appendChild(result);
+            });
+        }
+
+        search() {
+            // Get the input...
+            const searchInput = this.querySelector("input") as HTMLInputElement;
+            const query = searchInput.value;
+            console.log(`Searching for "${query}"...`);
+
+            // Search for the query...
+            debouncedSearch(query, (results) => {
+                console.log("Got results!");
+                console.log(results);
+                this.updateResults(results);
+            });
         }
 
         openModal() {
