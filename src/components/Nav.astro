@@ -179,6 +179,7 @@ const tabs: TabData[] = [
 
   // Add the event listener to the search button...
   searchButton?.addEventListener("click", () => {
-    console.log("Search button clicked!");
+    const searchModal = document.querySelector("search-modal");
+    searchModal?.setAttribute("open", "true");
   });
 </script>

@@ -67,28 +67,31 @@ const isProd = import.meta.env.PROD;
             <script is:inline>window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) }</script>
         )}
 	</head>
-	<body>
-        <div class="relative overflow-scroll min-h-screen">
-            <div class="bg" id="bg-noise"/>
-            <div class="bg" id="bg-grid"/>
-            
-            <Nav activeTab={activeTab}/>
-    
-            <header>
-                <slot name="header" />
-            </header>
-    
-            <main>
-                <slot />
-            </main>
-    
-            <BackToTop />
-            
-            <Footer>
-                <slot name="footer" />
-            </Footer>
-        </div>
+	<body class="h-screen">
+        <div id="body-inner" class="h-screen overflow-scroll">
+            <div class="relative">
 
+                <div class="bg" id="bg-noise"/>
+                <div class="bg" id="bg-grid"/>
+                
+                <Nav activeTab={activeTab}/>
+                
+                <header>
+                    <slot name="header" />
+                </header>
+                
+                <main>
+                    <slot />
+                </main>
+                
+                <BackToTop />
+                
+                <Footer>
+                    <slot name="footer" />
+                </Footer>
+            </div>
+        </div>
+        
         <SearchModal />
 	</body>
 </html>
