@@ -33,6 +33,8 @@ import SearchResIcon from "./SearchResIcon.astro";
 </search-modal>
 
 <script>
+    //@ts-ignore
+    import { animate } from 'motion';
     import algoliasearch from 'algoliasearch/lite';
 
     // Define config values...
@@ -328,19 +330,39 @@ import SearchResIcon from "./SearchResIcon.astro";
             bodyInner?.classList.remove("overflow-scroll");
             bodyInner?.classList.add("overflow-clip");
 
-            // Focus the search box...
-            const searchBox = this.querySelector("input") as HTMLInputElement;
-            searchBox.focus();
+            // Animate this element...
+            animate(this, {
+                opacity: [0, 1],
+                scale: [0.25, 1],
+                transform: ["translateY(25px)", "none"],
+            }, {
+                duration: 0.08,
+                easing: "ease-out",
+            }).finished.then(() => {
+                // Focus the search box...
+                const searchBox = this.querySelector("input") as HTMLInputElement;
+                searchBox.focus();
+            });
         }
 
         closeModal() {
-            this.classList.add("hidden");
-            this.classList.remove("flex");
+            // Animate this element off...
+            animate(this, {
+                opacity: [1, 0],
+                scale: [1, 0.25],
+                transform: ["none", "translateY(25px)"],
+            }, {
+                duration: 0.05,
+                easing: "ease-in",
+            }).finished.then(() => {
+                this.classList.add("hidden");
+                this.classList.remove("flex");
 
-            // Re-allow scrolling on the body...
-            const bodyInner = document.querySelector("#body-inner");
-            bodyInner?.classList.add("overflow-scroll");
-            bodyInner?.classList.remove("overflow-clip");
+                // Re-allow scrolling on the body...
+                const bodyInner = document.querySelector("#body-inner");
+                bodyInner?.classList.add("overflow-scroll");
+                bodyInner?.classList.remove("overflow-clip");
+            });
         }
 
         attributeChangedCallback(name: string, oldValue: string, newValue: string) {
