@@ -3,9 +3,9 @@ import SearchResIcon from "./SearchResIcon.astro";
 ---
 <SearchResIcon/>
 
-<search-modal open="false" class="fixed left-0 top-0 right-0 bottom-0 items-center justify-center backdrop-blur-[2px] text-lg hidden">
+<search-modal open="false" class="fixed left-0 top-0 right-0 bottom-0 items-center justify-center backdrop-blur-[4px] text-lg hidden">
     <div class="pb-12 max-w-xl w-full">
-        <div class="search-modal-box bg-zinc-100 text-zinc-950 rounded-lg overflow-hidden shadow-xl w-full pb-1">
+        <div role="dialog" class="search-modal-box bg-zinc-100 text-zinc-950 rounded-lg overflow-hidden shadow-xl w-full pb-1">
             <div class="relative w-full px-1 mb-1">
                 <input type="text" placeholder="Search..." class="bg-zinc-100 w-full rounded-md block mx-auto my-1 pl-2 py-1 pr-8" />
                 <div class="absolute top-0 right-0 bottom-0 pr-2 flex items-center">
