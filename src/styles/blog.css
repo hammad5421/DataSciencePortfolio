@@ -6,7 +6,6 @@
 
 article {
     @apply container mx-auto;
-    @apply text-neutral-100;
 }
 
 article > * {
