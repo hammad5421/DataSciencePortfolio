@@ -16,23 +16,75 @@ const pageDescription = "Austin Poor personal website. Hi, I'm Austin and I'm a 
 	/>
 	<link rel="canonical" href="https://austinpoor.com" slot="head"/>
 
-	<!-- Body Tags -->
-	<section class="">
-		<div class="max-w-7xl mx-auto">
-			<h1>Hello, World!</h1>
-			<h1>Hello, World!</h1>
-			<h1>Hello, World!</h1>
-			<h1>Hello, World!</h1>
-			<h1>Hello, World!</h1>
-			<h1>Hello, World!</h1>
-			<h1>Hello, World!</h1>
+	<section class="hero">
+		<div class="max-w-7xl mx-auto px-2 pt-20 pb-24 lg:pt-32 lg:pb-36">
+			<h1 id="big-name" class="init-hidden text-center text-5xl sm:text-7xl lg:text-9xl font-semibold uppercase tracking-tight">
+				Austin Poor
+			</h1>
+			<h2 class="init-hidden max-w-md lg:max-w-xl mx-auto text-center text-lg lg:text-2xl font-medium uppercase pt-2">
+				Hi, I'm Austin. I'm a full-stack software engineer living
+				in Los Angeles, CA.
+			</h2>
 		</div>
 	</section>
 
-	<div>
-		<h1>More Stuff</h1>
-		<p>Hello, World!</p>
-	</div>
 
-	<style></style>
+	<style>
+		.init-hidden {
+			opacity: 0;
+		}
+	</style>
+	<noscript>
+		<style>
+			.init-hidden {
+				opacity: 100 !important;
+			}
+		</style>
+	</noscript>
+
+	<script>
+		//@ts-ignore
+		import { animate } from 'motion';
+
+		setTimeout(() => {
+			// Get a reference to the elements...
+			const h1 = document.getElementById('big-name') as HTMLHeadingElement;
+			const h2 = document.querySelector('.hero h2') as HTMLHeadingElement;
+			
+			// Get the final text...
+			const initialText = h1.innerText.trim();
+			const chars = initialText.split('');
+
+			// Set the initial text...
+			h1.innerText = '_';
+
+			// Unhide the element...
+			h1.classList.remove('init-hidden');
+
+			// Animate the text...
+			const formatText = (progress: number) => {
+				// Get the number of characters to show...
+				const numChars = Math.floor(progress * chars.length);
+
+				// Get the characters to show...
+				const text = chars.slice(0, numChars).join('');
+
+				// Set the text...
+				h1.innerText = text;
+
+				// If not done, add an underscore...
+				if (numChars < chars.length) {
+					h1.innerText += '_';
+				}
+			};
+			animate(
+				formatText, 
+				{ duration: 1, easing: 'ease-in' }
+			).finished.then(() => {
+				h2.classList.remove('init-hidden');
+				animate(h2, {opacity: [0, 1]}, {duration: 0.3, easing: 'ease'});
+			});
+		}, 100);
+
+	</script>
 </Layout>
