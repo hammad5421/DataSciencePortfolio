@@ -1,4 +1,5 @@
 ---
+import SearchResIcon from "./SearchResIcon.astro";
 ---
 
 <search-modal open="true" class="fixed left-0 top-0 right-0 bottom-0 items-center justify-center backdrop-blur-[2px] text-lg hidden">
@@ -16,23 +17,57 @@
             <div class="w-full">
                 <ul class="results-container max-h-64 overflow-scroll list-none">
                     <li>
-                        <search-result title="GitHub" url="https://github.com/a-poor" excerpt=""/>
+                        <search-result 
+                            title="Running JavaScript in Rust with Deno" 
+                            url="/blog/js-in-rs" 
+                            excerpt="Explore how the Deno runtime can enable JavaScript code execution in a Rust application via a proof-of-concept project called &quot;js-in-rs&quot;. Discover the flexibility and versatility of using JavaScript expressions as filters in a CLI, written in Rust, as a powerful alternative to regular expressions. Watch out grep!" 
+                        />
                     </li>
                     <li>
-                        <search-result title="Blog" url="/blog" excerpt="Check out some of my blog posts!"/>
+                        <search-result 
+                            title="Making apoor.dev" 
+                            url="/blog/apoor-dot-dev" 
+                            excerpt="I recently built a URL shortener using Rust, Tokio, and Axum, and in this blog post, I'm sharing my experience. From selecting the right tech stack to load testing the application, I cover everything that went into building this service." 
+                        />
                     </li>
                     <li>
-                        <search-result title="About Me" url="/about" excerpt="Want to learn more about me?"/>
+                        <search-result 
+                            title="On Zero Trust Programming" 
+                            url="/blog/zero-trust-programming" 
+                            excerpt="Explore the concept of Zero Trust Programming (ZTP), which applies the Zero Trust security model to code, allowing granular permissions and enhancing open source software security. Discover ZTP's potential benefits in reducing vulnerabilities and improving audit processes, while considering the challenges and tradeoffs. Learn how ZTP could be implemented in existing or new languages and ecosystems." 
+                        />
+                    </li>
+                    <li>
+                        <search-result 
+                            title="Re-Re-Rewriting My Site in Astro" 
+                            url="/blog/astro-rewrite" 
+                            excerpt="Recapping the process of rewriting my personal site and blog using the new Astro framework."
+                        />
+                    </li>
+                    <li>
+                        <search-result 
+                            title="Serving ML Models with gRPC" 
+                            url="/blog/serve-ml-with-grpc" 
+                            excerpt="gRPC APIs are fast, efficient, and type-safe. Next time you need to create an ML prediction service, ditch REST and give gRPC a shot!" 
+                        />
                     </li>
                 </ul>
             </div>
             <div class="w-full mx-auto border-t border-zinc-500/25"/>
-            <div class="w-full px-2 pt-1">
-                Search results...
+            <div class="w-full px-2 pt-1 flex items-center space-x-1">
+                <div class="flex-grow"></div>
+                <div class="">
+                    <svg xmlns="http://www.w3.org/2000/svg" height="14" width="14" viewBox="0 0 512 512"><!--!Font Awesome Free 6.5.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2023 Fonticons, Inc.--><path d="M256 0C116.1 0 2 112.7 0 252.1C-2 393.6 112.9 510.8 254.5 511.6c43.7 .3 85.9-10.4 123.3-30.7c3.6-2 4.2-7 1.1-9.7l-24-21.2c-4.9-4.3-11.8-5.5-17.8-3c-26.1 11.1-54.5 16.8-83.7 16.4C139 461.9 46.5 366.8 48.3 252.4C50.1 139.5 142.6 48.2 256 48.2H463.7V417.2L345.9 312.5c-3.8-3.4-9.7-2.7-12.7 1.3c-18.9 25-49.7 40.6-83.9 38.2c-47.5-3.3-85.9-41.5-89.5-88.9c-4.2-56.6 40.6-103.9 96.3-103.9c50.4 0 91.9 38.8 96.2 88c.4 4.4 2.4 8.5 5.7 11.4l30.7 27.2c3.5 3.1 9 1.2 9.9-3.4c2.2-11.8 3-24.2 2.1-36.8c-4.9-72-63.3-130-135.4-134.4c-82.7-5.1-151.8 59.5-154 140.6c-2.1 78.9 62.6 147 141.6 148.7c33 .7 63.6-9.6 88.3-27.6L495 509.4c6.6 5.8 17 1.2 17-7.7V9.7c0-5.4-4.4-9.7-9.7-9.7H256z"/></svg>
+                </div>
+                <div class="text-sm">
+                    Powered by Algolia
+                </div>
             </div>
         </div>
     </div>
 </search-modal>
+
+<SearchResIcon/>
 
 <script>
     import algoliasearch from 'algoliasearch/lite';
@@ -73,22 +108,6 @@
         _rankingInfo: {};
     };
 
-    // // Define the default search results...
-    // const defaultSearchResults = [
-    //     {
-    //         title: "GitHub",
-    //         url: "",
-    //     },
-    //     {
-    //         title: "Blog",
-    //         url: "",
-    //     },
-    //     {
-    //         title: "About Me",
-    //         url: "",
-    //     },
-    // ];
-
     function debounce<T extends (...args: any[]) => void>(wait: number, callback: T): (...args: Parameters<T>) => void  {
         let timeoutId: number | undefined;
         return (...args) => {
@@ -101,10 +120,12 @@
 
     function runSearch(query: string, callback?: (results: SearchResType[]) => void) {
         // Search for the query...
-        index.search(query)
-            .then(({ hits }) => callback?.(hits as any as SearchResType[]));
+        index.search(query, {
+            hitsPerPage: 5,
+        }).then(({ hits }) => callback?.(hits as any as SearchResType[]));
     }
     const debouncedSearch = debounce(100, runSearch);
+
 
     class SearchResult extends HTMLElement {
         static observedAttributes = ['title', 'url', 'excerpt', 'icon'];
@@ -115,9 +136,14 @@
         
         connectedCallback() {
             this.innerHTML = `
-                <a href="" class="block px-2 py-1 hover:bg-zinc-500/25 rounded-md">
-                    <h3 class="text-lg font-semibold"></h3>
-                    <p class="text-sm"></p>
+                <a href="" class="flex space-x-2 px-2 py-1 hover:bg-zinc-500/25 rounded-md">
+                    <div class="flex items-center">
+                        <search-res-icon icon="blog"></search-res-icon>
+                    </div>
+                    <div class="flex-grow">
+                        <h3 class="text-lg font-semibold"></h3>
+                        <p class="text-sm line-clamp-2"></p>
+                    </div>
                 </a>
             `;
             this.updateTitle();
@@ -144,7 +170,7 @@
 
         updateTitle() {
             const title = this.getAttribute('title');
-            const stitle = title // ? JSON.parse(title) : "";
+            const stitle = title;
             const h3 = this.querySelector("h3");
             if (h3) {
                 h3.innerHTML = stitle;
@@ -153,7 +179,7 @@
 
         updateURL() {
             const url = this.getAttribute('url');
-            const surl = url // ? JSON.parse(url) : "";
+            const surl = url;
             const a = this.querySelector("a");
             if (a) {
                 a.href = surl;
@@ -162,7 +188,7 @@
 
         updateExcerpt() {
             const excerpt = this.getAttribute('excerpt');
-            const sexcerpt = excerpt // ? JSON.parse(excerpt) : "";
+            const sexcerpt = excerpt;
             const p = this.querySelector("p");
             if (p) {
                 p.innerHTML = sexcerpt;
@@ -215,10 +241,6 @@
             const searchInput = this.querySelector("input") as HTMLInputElement;
             searchInput.addEventListener("keydown", e => {
                 if (e.key === "Enter") {
-                    // e.preventDefault();
-                    // e.stopPropagation();
-                    console.log("Enter pressed!");
-                    // TODO - Search for the query...
                     this.search();
                 }
             });
@@ -306,5 +328,4 @@
         }
     }
     customElements.define('search-modal', SearchModal);
-
 </script>
