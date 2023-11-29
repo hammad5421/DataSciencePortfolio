@@ -40,7 +40,7 @@ const tabs: TabData[] = [
 
 <div class="flex max-w-7xl mx-auto px-2 py-4 align-middle items-stretch space-x-1 sm:space-x-2">
   <a href="/" class="pl-2 pr-3 py-1 flex items-center space-x-1 rounded-lg bg-zinc-800">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8" width="32" height="32">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-8 h-8 hidden sm:block" width="32" height="32">
       <path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z" />
     </svg>
     <span class="font-sans text-2xl font-semibold pb-1">
@@ -69,8 +69,11 @@ const tabs: TabData[] = [
     </ul>
   </nav>  
 
-  <button id="toggle-search-modal" class="flex rounded-lg bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 w-[44px] h-[44px] place-items-center">
-    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto">
+  <button id="toggle-search-modal" class="flex rounded-lg bg-zinc-800 hover:bg-zinc-700 active:bg-zinc-900 w-[44px] lg:w-[140px] h-[44px] place-items-center">
+    <div class="hidden lg:block pl-3 pb-1 flex-grow text-left">
+      Search...
+    </div>
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto lg:mx-2">
       <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
     </svg>
   </button>
