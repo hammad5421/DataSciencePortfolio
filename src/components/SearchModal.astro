@@ -329,6 +329,9 @@ import SearchResIcon from "./SearchResIcon.astro";
             const bodyInner = document.querySelector("#body-inner");
             bodyInner?.classList.remove("overflow-scroll");
             bodyInner?.classList.add("overflow-clip");
+            bodyInner?.setAttribute("aria-hidden", "true");
+            this.setAttribute("tabindex", "0");
+            bodyInner?.setAttribute("tabindex", "-1");
 
             // Animate this element...
             animate(this, {
@@ -362,6 +365,9 @@ import SearchResIcon from "./SearchResIcon.astro";
                 const bodyInner = document.querySelector("#body-inner");
                 bodyInner?.classList.add("overflow-scroll");
                 bodyInner?.classList.remove("overflow-clip");
+                bodyInner?.removeAttribute("aria-hidden");
+                this.removeAttribute("tabindex");
+                bodyInner?.removeAttribute("tabindex");
             });
         }
 
