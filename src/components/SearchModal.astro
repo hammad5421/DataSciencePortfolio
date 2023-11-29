@@ -1,12 +1,13 @@
 ---
 import SearchResIcon from "./SearchResIcon.astro";
 ---
+<SearchResIcon/>
 
-<search-modal open="true" class="fixed left-0 top-0 right-0 bottom-0 items-center justify-center backdrop-blur-[2px] text-lg hidden">
+<search-modal open="false" class="fixed left-0 top-0 right-0 bottom-0 items-center justify-center backdrop-blur-[2px] text-lg hidden">
     <div class="pb-12 max-w-xl w-full">
         <div class="search-modal-box bg-zinc-100 text-zinc-950 rounded-lg overflow-hidden shadow-xl w-full pb-1">
             <div class="relative w-full px-1 mb-1">
-                <input type="text" placeholder="Search..." class="bg-zinc-100 w-full rounded-md block mx-auto my-1 pl-1 py-1 pr-8" />
+                <input type="text" placeholder="Search..." class="bg-zinc-100 w-full rounded-md block mx-auto my-1 pl-2 py-1 pr-8" />
                 <div class="absolute top-0 right-0 bottom-0 pr-2 flex items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 mx-auto">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
@@ -15,43 +16,7 @@ import SearchResIcon from "./SearchResIcon.astro";
             </div>
             <div class="w-full mx-auto border-t border-zinc-500/25"/>
             <div class="w-full">
-                <ul class="results-container max-h-64 overflow-scroll list-none">
-                    <li>
-                        <search-result 
-                            title="Running JavaScript in Rust with Deno" 
-                            url="/blog/js-in-rs" 
-                            excerpt="Explore how the Deno runtime can enable JavaScript code execution in a Rust application via a proof-of-concept project called &quot;js-in-rs&quot;. Discover the flexibility and versatility of using JavaScript expressions as filters in a CLI, written in Rust, as a powerful alternative to regular expressions. Watch out grep!" 
-                        />
-                    </li>
-                    <li>
-                        <search-result 
-                            title="Making apoor.dev" 
-                            url="/blog/apoor-dot-dev" 
-                            excerpt="I recently built a URL shortener using Rust, Tokio, and Axum, and in this blog post, I'm sharing my experience. From selecting the right tech stack to load testing the application, I cover everything that went into building this service." 
-                        />
-                    </li>
-                    <li>
-                        <search-result 
-                            title="On Zero Trust Programming" 
-                            url="/blog/zero-trust-programming" 
-                            excerpt="Explore the concept of Zero Trust Programming (ZTP), which applies the Zero Trust security model to code, allowing granular permissions and enhancing open source software security. Discover ZTP's potential benefits in reducing vulnerabilities and improving audit processes, while considering the challenges and tradeoffs. Learn how ZTP could be implemented in existing or new languages and ecosystems." 
-                        />
-                    </li>
-                    <li>
-                        <search-result 
-                            title="Re-Re-Rewriting My Site in Astro" 
-                            url="/blog/astro-rewrite" 
-                            excerpt="Recapping the process of rewriting my personal site and blog using the new Astro framework."
-                        />
-                    </li>
-                    <li>
-                        <search-result 
-                            title="Serving ML Models with gRPC" 
-                            url="/blog/serve-ml-with-grpc" 
-                            excerpt="gRPC APIs are fast, efficient, and type-safe. Next time you need to create an ML prediction service, ditch REST and give gRPC a shot!" 
-                        />
-                    </li>
-                </ul>
+                <ul class="results-container max-h-64 overflow-scroll list-none"></ul>
             </div>
             <div class="w-full mx-auto border-t border-zinc-500/25"/>
             <div class="w-full px-2 pt-1 flex items-center space-x-1">
@@ -67,8 +32,6 @@ import SearchResIcon from "./SearchResIcon.astro";
     </div>
 </search-modal>
 
-<SearchResIcon/>
-
 <script>
     import algoliasearch from 'algoliasearch/lite';
 
@@ -82,7 +45,7 @@ import SearchResIcon from "./SearchResIcon.astro";
     const index = searchClient.initIndex(BLOG_INDEX_NAME);
 
 
-    type SearchResType = {
+    type AlgoliaSearchRes = {
         objectID: string;
         id: string;
         slug: string;
@@ -108,6 +71,40 @@ import SearchResIcon from "./SearchResIcon.astro";
         _rankingInfo: {};
     };
 
+    type SearchResType = {
+        title: string;
+        url: string;
+        excerpt?: string;
+        icon: string;
+    };
+
+    const DEFAULT_RESULTS: SearchResType[] = [
+        {
+            title: "GitHub",
+            url: "https://github.com/a-poor",
+            excerpt: "Check out my GitHub profile for more projects!",
+            icon: "github",
+        },
+        {
+            title: "LinkedIn",
+            url: "https://github.com/a-poor",
+            excerpt: "Check out my LinkedIn profile and connect with me!",
+            icon: "linkedin",
+        },
+        {
+            title: "Blog",
+            url: "/blog",
+            excerpt: "Check out my latest blog posts!",
+            icon: "blog",
+        },
+        {
+            title: "About Me",
+            url: "/about",
+            excerpt: "Check out my about me page to learn more about me!",
+            icon: "about",
+        },
+    ];
+
     function debounce<T extends (...args: any[]) => void>(wait: number, callback: T): (...args: Parameters<T>) => void  {
         let timeoutId: number | undefined;
         return (...args) => {
@@ -118,11 +115,11 @@ import SearchResIcon from "./SearchResIcon.astro";
         };
     }
 
-    function runSearch(query: string, callback?: (results: SearchResType[]) => void) {
+    function runSearch(query: string, callback?: (results: AlgoliaSearchRes[]) => void) {
         // Search for the query...
         index.search(query, {
             hitsPerPage: 5,
-        }).then(({ hits }) => callback?.(hits as any as SearchResType[]));
+        }).then(({ hits }) => callback?.(hits as any as AlgoliaSearchRes[]));
     }
     const debouncedSearch = debounce(100, runSearch);
 
@@ -138,7 +135,7 @@ import SearchResIcon from "./SearchResIcon.astro";
             this.innerHTML = `
                 <a href="" class="flex space-x-2 px-2 py-1 hover:bg-zinc-500/25 rounded-md">
                     <div class="flex items-center">
-                        <search-res-icon icon="blog"></search-res-icon>
+                        <search-res-icon class="sri"></search-res-icon>
                     </div>
                     <div class="flex-grow">
                         <h3 class="text-lg font-semibold"></h3>
@@ -146,56 +143,73 @@ import SearchResIcon from "./SearchResIcon.astro";
                     </div>
                 </a>
             `;
-            this.updateTitle();
-            this.updateURL();
-            this.updateExcerpt();
-            this.updateIcon();
+            const {
+                title,
+                url,
+                excerpt,
+                icon,
+            } = this.getAttrs();
+            this.updateTitle(title);
+            this.updateURL(url);
+            this.updateExcerpt(excerpt);
+            this.updateIcon(icon);
+        }
+
+        getAttrs() {
+            return {
+                title: this.getAttribute("title"),
+                url: this.getAttribute("url"),
+                excerpt: this.getAttribute("excerpt"),
+                icon: this.getAttribute("icon"),
+            };
         }
 
         attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-            console.log(`Changing attribute "${name}" from "${oldValue}" to "${newValue}"`);
+            if (!this.isConnected) {
+                return;
+            }
+
             if (name === "title") {
-                this.updateTitle();
+                this.updateTitle(newValue);
             }
             if (name === "url") {
-                this.updateURL();
+                this.updateURL(newValue);
             }
             if (name === "excerpt") {
-                this.updateExcerpt();
+                this.updateExcerpt(newValue);
             }
             if (name === "icon") {
-                this.updateIcon();
+                this.updateIcon(newValue);
             }
         }
 
-        updateTitle() {
-            const title = this.getAttribute('title');
-            const stitle = title;
+        updateTitle(title: string) {
             const h3 = this.querySelector("h3");
             if (h3) {
-                h3.innerHTML = stitle;
+                h3.innerHTML = title;
             }
         }
 
-        updateURL() {
-            const url = this.getAttribute('url');
-            const surl = url;
+        updateURL(url: string) {
             const a = this.querySelector("a");
             if (a) {
-                a.href = surl;
+                a.href = url;
             }
         }
 
-        updateExcerpt() {
-            const excerpt = this.getAttribute('excerpt');
-            const sexcerpt = excerpt;
+        updateExcerpt(excerpt: string) {
             const p = this.querySelector("p");
             if (p) {
-                p.innerHTML = sexcerpt;
+                p.innerHTML = excerpt;
             }
         }
 
-        updateIcon() {}
+        updateIcon(iconName: string) {
+            const sri = this.querySelector("search-res-icon") as (HTMLElement & {icon: string});
+            if (sri) {
+                sri.setAttribute("icon", iconName);
+            }
+        }
     }
     customElements.define('search-result', SearchResult);
 
@@ -205,9 +219,11 @@ import SearchResIcon from "./SearchResIcon.astro";
 
         constructor() {
             super();
+        }
 
+        connectedCallback() {
             // Init props for this element...
-            // this.setAttribute("open", "false"); // TODO - Uncomment me...
+            this.setAttribute("open", "false");
 
             // Add event listeners...
             this.onclick = () => {
@@ -244,9 +260,10 @@ import SearchResIcon from "./SearchResIcon.astro";
                     this.search();
                 }
             });
-            searchInput.addEventListener("input", e => {
-                console.log("Input changed!");
+            searchInput.addEventListener("input", () => {
+                this.search();
             });
+            this.search();
         }
 
         isOpen() {
@@ -265,11 +282,12 @@ import SearchResIcon from "./SearchResIcon.astro";
             resultsContainer.innerHTML = ""; 
 
             // Add the new results...
-            results.forEach(r => {
+            results.forEach(d => {
                 const sr = document.createElement("search-result") as SearchResult;
-                sr.setAttribute("title", r.data.title);
-                sr.setAttribute("url", `/blog/${r.slug}`);
-                sr.setAttribute("excerpt", r?.data?.description ? r.data.description : "");
+                sr.setAttribute("title", d.title);
+                sr.setAttribute("url", d.url);
+                sr.setAttribute("excerpt", d.excerpt || "");
+                sr.setAttribute("icon", d.icon);
                 
                 const result = document.createElement("li");
                 result.appendChild(sr);
@@ -281,14 +299,22 @@ import SearchResIcon from "./SearchResIcon.astro";
         search() {
             // Get the input...
             const searchInput = this.querySelector("input") as HTMLInputElement;
-            const query = searchInput.value;
-            console.log(`Searching for "${query}"...`);
+            const query = searchInput.value.trim();
+
+            // If query is empty, clear the results...
+            if (query === "") {
+                this.updateResults(DEFAULT_RESULTS);
+                return;
+            }
 
             // Search for the query...
             debouncedSearch(query, (results) => {
-                console.log("Got results!");
-                console.log(results);
-                this.updateResults(results);
+                this.updateResults(results.map(r => ({
+                    title: r.data.title,
+                    url: `/blog/${r.slug}`,
+                    excerpt: r.data.description,
+                    icon: "blog",
+                })));
             });
         }
 
@@ -318,7 +344,6 @@ import SearchResIcon from "./SearchResIcon.astro";
         }
 
         attributeChangedCallback(name: string, oldValue: string, newValue: string) {
-            console.log(`Changing attribute "${name}" from "${oldValue}" to "${newValue}"`);
             if (name === "open" && newValue === "true") {
                 this.openModal();
             }
