@@ -45,7 +45,11 @@
     // Set up button click handler...
     if (backToTopButton) {
         backToTopButton.onclick = () => {
+            // Scroll smoothly to the top...
             bodyInner.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Remove the fragment from the URL...
+            history.pushState("", document.title, window.location.pathname + window.location.search);
         };
     }
 

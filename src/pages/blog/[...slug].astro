@@ -15,13 +15,15 @@ export async function getStaticPaths() {
         slug: entry.slug,
       }, 
       props: { 
-        entry, 
+        entry,
       },
     }));
 }
 
 const { entry } = Astro.props;
-const { Content } = await entry.render();
+const { Content, headings } = await entry.render();
+const minHeadingDepth = Math.min(...headings.map(h => h.depth));
+const headingOffset = minHeadingDepth - 1;
 
 
 function formatDate(d: Date): string {
@@ -68,122 +70,162 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
     modifiedDate={entry.data.updateDate}
     tags={entry.data.tags}
   />
-  <link rel="canonical" href={`https://austinpoor.com/blog/${entry.slug}`} slot="head"/>
+  <link slot="head" rel="canonical" href={`https://austinpoor.com/blog/${entry.slug}`}/>
+
+
 
   <!-- Content -->
-  <div 
-    class="
-      max-w-lg
-      md:max-w-2xl
-      mx-auto 
-      space-y-2 
-      mb-4
-      px-6
-      text-slate-400
-    "
-  >
-    <a href="/blog" class="text-sm font-medium flex items-center space-x-2 -ml-[1px]">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
-      </svg>      
-      <span>
-        Back
-      </span>
-    </a>
-  </div>
-  
-  <div
-    class="
-      max-w-lg
-      md:max-w-2xl
-      mx-auto 
-      space-y-8
-      mb-8
-      px-6
-    "
-  >
-    <article>
-      <div class="space-y-1">
-        <h1 class="text-4xl font-medium">
-          { entry.data.title }
-        </h1>
-        { entry.data.subtitle && (
-          <h2 class="text-lg font-medium text-slate-300">
-            { entry.data.subtitle }
-          </h2>
-        )}
-        <p class="text-sm font-medium pt-2 text-slate-200">
-          Written by Austin Poor
-        </p>
-        <p class="text-sm font-medium text-slate-200">
-          Published { formatDate(entry.data.publishDate) }
-          { entry.data.updateDate && (
-            <>
-              { " | " } Updated { formatDate(entry.data.updateDate) }
-            </>
-          )}
-        </p>
-      </div>
+  <div class="
+    grid
+    grid-cols-1
+    lg:grid-cols-11
+    xl:grid-cols-12
+    justify-center
+    max-w-7xl
+    mx-auto
+    px-4
+  ">
 
-      <div class="pt-0 pb-8">
-        <figure class="text-sm tracking-tight">
-          <img 
-            class="w-full mx-auto mb-2"
-            src={entry.data.image.src} 
-            alt={entry.data.image.alt} 
-          />
-          {entry.data.image.caption && entry.data.image.captionLink && (
-            <figcaption class="text-center">
-              <a href={entry.data.image.captionLink}>
-                { entry.data.image.caption }
-              </a>
-            </figcaption>
-          )}
-          {entry.data.image.caption && !entry.data.image.captionLink && (
-            <figcaption class="text-center">
-              { entry.data.image.caption }
-            </figcaption>
-          )}
-        </figure>
-      </div>
-
-      <Content />
-
-    </article>
-  
-    <div class="text-base">
-      <hr class="mb-4"/>
-
-      <p class="mb-4">
-        Thank you so much for reading! If you have any thoughts, questions, or comments, I'd love to hear them.
-        You can find me on <a href="https://twitter.com/austin_poor">Twitter</a>, <a href="https://mastodon.social/@austinpoor">Mastodon</a>,
-        or <a href="https://www.linkedin.com/in/austinpoor">LinkedIn</a>.
-      </p>
-
-      {recs.length > 0 && (
-        <p class="mb-4">
-          If you liked this post, you might also like:
-        </p>
-
-        <ul class="list-none decoration-dotted">
-            {recs.map((r) => (
-              <li class="mb-2">
-                <a href={`/blog/${r.slug}`} class="flex flex-row items-start">
-                  <img 
-                    src={r.image.src}
-                    alt={r.image.alt}
-                    class="h-14 w-14 mr-4 rounded-lg object-cover"
-                  />
-                  <div>
-                    <h3 class="underline decoration-dotted">{ r.title }</h3>
-                    <h4>{ r.subtitle }</h4>
-                  </div>
+    <div class="hidden lg:block col-span-3 py-14">
+      {headings.length > 0 && (
+        <aside class="sticky top-4 py-2 mx-auto">
+          <h3 class="text-md font-semibold text-slate-300 tracking-tight mb-2">
+            Table of Contents
+          </h3>
+          <ul class="list-none">
+            {headings.map(h => (
+              <li>
+                <a 
+                  href={`#${h.slug}`} 
+                  class="text-sm font-medium text-zinc-400 hover:text-zinc-300 line-clamp-1"
+                >
+                  <span>{ "#".repeat(h.depth-headingOffset) }</span>
+                  <span>{ h.text }</span>
                 </a>
               </li>
             ))}
-        </ul>
+          </ul>
+        </aside>
       )}
     </div>
+    
+    <div
+      class="
+        col-span-1
+        lg:col-span-8
+        max-w-lg
+        md:max-w-2xl
+        lg:max-w-none
+        mx-auto 
+        space-y-8
+        mb-8
+        px-6
+      "
+    >
+      <a href="/blog" class="text-sm font-medium text-slate-400 flex items-center space-x-2 -ml-[1px] mb-4">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+        </svg>      
+        <span>
+          Back
+        </span>
+      </a>
+    
+      <article>
+        <div class="space-y-1">
+          <h1 class="text-4xl font-medium">
+            { entry.data.title }
+          </h1>
+          { entry.data.subtitle && (
+            <h2 class="text-lg font-medium text-slate-300">
+              { entry.data.subtitle }
+            </h2>
+          )}
+          <p class="text-sm font-medium pt-2 text-slate-200">
+            Written by Austin Poor
+          </p>
+          <p class="text-sm font-medium text-slate-200">
+            Published: { formatDate(entry.data.publishDate) }
+            { entry.data.updateDate && (
+              <>
+                { " | " } Updated { formatDate(entry.data.updateDate) }
+              </>
+            )}
+          </p>
+        </div>
+
+        <div class="pt-0 pb-8">
+          <figure class="text-sm tracking-tight">
+            <img 
+              class="w-full mx-auto mb-2"
+              src={entry.data.image.src} 
+              alt={entry.data.image.alt} 
+            />
+            {entry.data.image.caption && entry.data.image.captionLink && (
+              <figcaption class="text-center">
+                <a href={entry.data.image.captionLink}>
+                  { entry.data.image.caption }
+                </a>
+              </figcaption>
+            )}
+            {entry.data.image.caption && !entry.data.image.captionLink && (
+              <figcaption class="text-center">
+                { entry.data.image.caption }
+              </figcaption>
+            )}
+          </figure>
+        </div>
+
+        <Content />
+
+      </article>
+    
+      <div class="text-base">
+        <hr class="mb-4"/>
+
+        <p class="mb-4">
+          Thank you so much for reading! If you have any thoughts, questions, or comments, I'd love to hear them.
+          You can find me on <a href="https://twitter.com/austin_poor">Twitter</a>, <a href="https://mastodon.social/@austinpoor">Mastodon</a>,
+          or <a href="https://www.linkedin.com/in/austinpoor">LinkedIn</a>.
+        </p>
+
+        {recs.length > 0 && (
+          <p class="mb-4">
+            If you liked this post, you might also like:
+          </p>
+
+          <ul class="list-none decoration-dotted">
+              {recs.map((r) => (
+                <li class="mb-2">
+                  <a href={`/blog/${r.slug}`} class="flex flex-row items-start">
+                    <img 
+                      src={r.image.src}
+                      alt={r.image.alt}
+                      class="h-14 w-14 mr-4 rounded-lg object-cover"
+                    />
+                    <div>
+                      <h3 class="underline decoration-dotted">{ r.title }</h3>
+                      <h4>{ r.subtitle }</h4>
+                    </div>
+                  </a>
+                </li>
+              ))}
+          </ul>
+        )}
+      </div>
+    </div>
+
+    <div class="hidden lg:block"></div>
   </div>
 
 </Layout>
+
+<!-- <script>
+  document.querySelectorAll("aside a").forEach((a: HTMLAnchorElement) => {
+    a.onclick = (e) => {
+      e.preventDefault();
+      const target = document.querySelector(a.getAttribute("href"));
+      target.scrollIntoView({ behavior: "smooth" });
+    };
+  });
+</script> -->

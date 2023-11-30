@@ -48,6 +48,10 @@ blockquote {
     @apply px-4 pt-4 pb-6 rounded-lg text-sm;
 }
 
+p > img {
+    @apply mx-auto;
+}
+
 p > img + em {
-    @apply block text-center text-sm italic mt-2;
+    @apply block text-center text-sm italic mt-2 mx-auto;
 }
