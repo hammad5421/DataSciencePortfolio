@@ -20,4 +20,10 @@ export default defineConfig({
   ],
   output: "server",
   adapter: cloudflare({}),
+  redirects: {
+    "/github": "https://github.com/a-poor",
+    "/twitter": "https://twitter.com/austin_poor",
+    "/mastodon": "https://mastodon.social/@austinpoor",
+    "/linkedin": "https://www.linkedin.com/in/austinpoor",
+  },
 });
