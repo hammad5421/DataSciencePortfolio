@@ -1,25 +1,23 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, passthroughImageService } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import mdx from "@astrojs/mdx";
-import prefetch from "@astrojs/prefetch";
 import sitemap from "@astrojs/sitemap";
-
 import cloudflare from "@astrojs/cloudflare";
+
 
 export default defineConfig({
   site: "https://austinpoor.com/",
+  prefetch: true,
   integrations: [
     tailwind(), 
-    mdx({
-      drafts: true,
-    }), 
-    prefetch({
-      selector: "a[href^='/blog']",
-    }), 
+    mdx({drafts: true}),
     sitemap(),
   ],
   output: "server",
-  adapter: cloudflare({}),
+  adapter: cloudflare(),
+  image: {
+    service: passthroughImageService(),
+  },
   redirects: {
     "/github": "https://github.com/a-poor",
     "/twitter": "https://twitter.com/austin_poor",

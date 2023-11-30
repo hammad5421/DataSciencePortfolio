@@ -188,6 +188,7 @@ const tabs: TabData[] = [
     searchButton.onclick = () => {
       const searchModal = document.querySelector("search-modal");
       searchModal?.setAttribute("open", "true");
+      window.plausible?.("search-modal-open", {props: {method: "button"}});
     };
   }
 </script>
