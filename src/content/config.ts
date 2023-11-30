@@ -6,7 +6,7 @@ const blogCollection = defineCollection({
         isDraft: z.boolean().default(false),
         title: z.string(),
         subtitle: z.string().optional(),
-        pageTitie: z.string().optional(),
+        pageTitle: z.string().optional(),
         description: z.string(),
         image: z.object({
             src: z.string(),

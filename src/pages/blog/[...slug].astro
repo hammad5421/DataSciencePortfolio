@@ -1,8 +1,8 @@
 ---
 import { getCollection, getEntryBySlug } from 'astro:content';
-import Layout from '../../layouts/BaseLayout.astro';
-import BlogMeta from '../../components/BlogMeta.astro';
-import '../../styles/blog.css';
+import Layout from '@/layouts/BaseLayout.astro';
+import BlogMeta from '@/components/BlogMeta.astro';
+import '@/styles/blog.css';
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
@@ -29,7 +29,7 @@ function formatDate(d: Date): string {
   return `${year}-${month}-${day}`;
 }
 
-const pageTitle = `${ entry.data.pageTitie || entry.data.title } | Austin's Blog`;
+const pageTitle = `${ entry.data.pageTitle || entry.data.title } | Austin's Blog`;
 const pageDescription = entry.data.description;
 
 // Format the recommended posts...
@@ -43,14 +43,14 @@ interface IRec {
   };
 }
 
-const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: string) => {
+const recs = await Promise.all((entry.data.recommended || []).map(async (r: string) => {
   const rec = await getEntryBySlug('blog', r);
   return {
     slug: rec?.slug,
     title: rec?.data.title,
     subtitle: rec?.data.subtitle,
     image: rec?.data.image,
-  }
+  } as IRec;
 }));
 
 ---
@@ -58,7 +58,7 @@ const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: stri
   <!-- Page metadata -->
   <BlogMeta 
     slot="head"
-    title={entry.data.pageTitle}
+    title={pageTitle}
     pageUrl={`https://austinpoor.com/blog/${entry.slug}`}
     imageUrl={`https://austinpoor.com/${entry.data.image.src}`}
     description={entry.data.description}
@@ -77,8 +77,7 @@ const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: stri
       space-y-2 
       mb-4
       px-6
-      text-slate-600
-      dark:text-slate-400
+      text-slate-400
     "
   >
     <a href="/blog" class="text-sm font-medium flex items-center space-x-2 -ml-[1px]">
@@ -91,7 +90,7 @@ const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: stri
     </a>
   </div>
   
-  <article 
+  <div
     class="
       max-w-lg
       md:max-w-2xl
@@ -101,66 +100,70 @@ const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: stri
       px-6
     "
   >
-    <div class="space-y-1">
-      <h1 class="text-4xl font-medium">
-        { entry.data.title }
-      </h1>
-      { entry.data.subtitle && (
-        <h2 class="text-lg font-medium text-slate-600 dark:text-slate-300">
-          { entry.data.subtitle }
-        </h2>
-      )}
-      <p class="text-sm font-medium pt-2 text-slate-800 dark:text-slate-200">
-        Written by Austin Poor
-      </p>
-      <p class="text-sm font-medium text-slate-800 dark:text-slate-200">
-        Published { formatDate(entry.data.publishDate) }
-        { entry.data.updateDate && (
-          <>
-            { " | " } Updated { formatDate(entry.data.updateDate) }
-          </>
+    <article>
+      <div class="space-y-1">
+        <h1 class="text-4xl font-medium">
+          { entry.data.title }
+        </h1>
+        { entry.data.subtitle && (
+          <h2 class="text-lg font-medium text-slate-300">
+            { entry.data.subtitle }
+          </h2>
         )}
-      </p>
-    </div>
+        <p class="text-sm font-medium pt-2 text-slate-200">
+          Written by Austin Poor
+        </p>
+        <p class="text-sm font-medium text-slate-200">
+          Published { formatDate(entry.data.publishDate) }
+          { entry.data.updateDate && (
+            <>
+              { " | " } Updated { formatDate(entry.data.updateDate) }
+            </>
+          )}
+        </p>
+      </div>
 
-    <div class="pt-0 pb-8">
-      <figure class="text-sm tracking-tight">
-        <img 
-          class="w-full mx-auto mb-2"
-          src={entry.data.image.src} 
-          alt={entry.data.image.alt} 
-        />
-        {entry.data.image.caption && entry.data.image.captionLink && (
-          <figcaption class="text-center">
-            <a href={entry.data.image.captionLink}>
+      <div class="pt-0 pb-8">
+        <figure class="text-sm tracking-tight">
+          <img 
+            class="w-full mx-auto mb-2"
+            src={entry.data.image.src} 
+            alt={entry.data.image.alt} 
+          />
+          {entry.data.image.caption && entry.data.image.captionLink && (
+            <figcaption class="text-center">
+              <a href={entry.data.image.captionLink}>
+                { entry.data.image.caption }
+              </a>
+            </figcaption>
+          )}
+          {entry.data.image.caption && !entry.data.image.captionLink && (
+            <figcaption class="text-center">
               { entry.data.image.caption }
-            </a>
-          </figcaption>
-        )}
-        {entry.data.image.caption && !entry.data.image.captionLink && (
-          <figcaption class="text-center">
-            { entry.data.image.caption }
-          </figcaption>
-        )}
-      </figure>
-    </div>
+            </figcaption>
+          )}
+        </figure>
+      </div>
 
-    <Content />
+      <Content />
 
-    <hr />
+    </article>
+  
+    <div class="text-base">
+      <hr class="mb-4"/>
 
-    <p>
-      Thank you so much for reading! If you have any thoughts, questions, or comments, I'd love to hear them.
-      You can find me on <a href="https://twitter.com/austin_poor">Twitter</a>, <a href="https://mastodon.social/@austinpoor">Mastodon</a>,
-      or <a href="https://www.linkedin.com/in/austinpoor">LinkedIn</a>.
-    </p>
+      <p class="mb-4">
+        Thank you so much for reading! If you have any thoughts, questions, or comments, I'd love to hear them.
+        You can find me on <a href="https://twitter.com/austin_poor">Twitter</a>, <a href="https://mastodon.social/@austinpoor">Mastodon</a>,
+        or <a href="https://www.linkedin.com/in/austinpoor">LinkedIn</a>.
+      </p>
 
-    {recs.length > 0 && (
-      <>
-        <p>
+      {recs.length > 0 && (
+        <p class="mb-4">
           If you liked this post, you might also like:
         </p>
-        <ul class="list-none -mt-8">
+
+        <ul class="list-none decoration-dotted">
             {recs.map((r) => (
               <li class="mb-2">
                 <a href={`/blog/${r.slug}`} class="flex flex-row items-start">
@@ -170,16 +173,15 @@ const recs: IRec[] = await Promise.all(entry.data.recommended.map(async (r: stri
                     class="h-14 w-14 mr-4 rounded-lg object-cover"
                   />
                   <div>
-                    <h3>{ r.title }</h3>
-                    <h4 class="no-underline">{ r.subtitle }</h4>
+                    <h3 class="underline decoration-dotted">{ r.title }</h3>
+                    <h4>{ r.subtitle }</h4>
                   </div>
                 </a>
               </li>
             ))}
         </ul>
-      </>
-    )}
-
-  </article>
+      )}
+    </div>
+  </div>
 
 </Layout>
