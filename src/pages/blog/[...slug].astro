@@ -75,18 +75,22 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
 
 
   <!-- Content -->
-  <div class="
+  <div class={`
     grid
     grid-cols-1
-    lg:grid-cols-11
-    xl:grid-cols-12
     justify-center
     max-w-7xl
     mx-auto
     px-4
-  ">
+  ` + (
+    headings.length > 0 
+    ? "lg:grid-cols-11 xl:grid-cols-12" 
+    : ""
+  )}>
 
-    <div class="hidden lg:block col-span-3 py-14">
+    <div class={"hidden" + (
+      headings.length > 0 ? " lg:block col-span-3 py-14" : ""
+    )}>
       {headings.length > 0 && (
         <aside class="sticky top-4 py-2 mx-auto">
           <h3 class="text-md font-semibold text-slate-300 tracking-tight mb-2">
@@ -115,7 +119,7 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
         lg:col-span-8
         max-w-lg
         md:max-w-2xl
-        lg:max-w-none
+        lg:max-w-4xl
         mx-auto 
         space-y-8
         mb-8
