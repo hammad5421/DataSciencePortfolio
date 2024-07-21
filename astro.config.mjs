@@ -18,10 +18,4 @@ export default defineConfig({
   image: {
     service: passthroughImageService(),
   },
-  redirects: {
-    "/github": "https://github.com/a-poor",
-    "/twitter": "https://twitter.com/austin_poor",
-    "/mastodon": "https://mastodon.social/@austinpoor",
-    "/linkedin": "https://www.linkedin.com/in/austinpoor",
-  },
 });
