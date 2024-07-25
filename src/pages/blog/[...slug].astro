@@ -75,18 +75,17 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
 
 
   <!-- Content -->
-  <div class={`
-    grid
-    grid-cols-1
-    justify-center
-    max-w-7xl
-    mx-auto
-    px-4
-  ` + (
-    headings.length > 0 
-    ? "lg:grid-cols-11 xl:grid-cols-12" 
-    : ""
-  )}>
+  <div class:list={[
+    "grid",
+    "grid-cols-1",
+    "justify-center",
+    "max-w-7xl",
+    "mx-auto",
+    "px-4",
+    (headings.length > 0 
+      ? "lg:grid-cols-11 xl:grid-cols-12" 
+      : ""),
+    ]}>
 
     <div class={"hidden" + (
       headings.length > 0 ? " lg:block col-span-3 py-14" : ""
@@ -114,22 +113,22 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
     </div>
     
     <div
-      class="
-        col-span-1
-        lg:col-span-8
-        max-w-lg
-        md:max-w-2xl
-        lg:max-w-4xl
-        mx-auto 
-        space-y-8
-        mb-8
-        px-6
-      "
+      class:list={[
+        "col-span-1",
+        "lg:col-span-8",
+        "max-w-lg",
+        "md:max-w-2xl",
+        "lg:max-w-4xl",
+        "mx-auto",
+        "space-y-4",
+        "mb-8",
+        "sm:px-6",
+      ]}
     >
       <a href="/blog" class="text-sm font-medium text-slate-400 flex items-center space-x-2 -ml-[1px] mb-4">
         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
           <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
-        </svg>      
+        </svg>
         <span>
           Back
         </span>
@@ -189,47 +188,36 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
 
         <p class="mb-4">
           Thank you so much for reading! If you have any thoughts, questions, or comments, I'd love to hear them.
-          You can find me on <a href="https://twitter.com/austin_poor">Twitter</a>, <a href="https://mastodon.social/@austinpoor">Mastodon</a>,
-          or <a href="https://www.linkedin.com/in/austinpoor">LinkedIn</a>.
+          You can find me on <a href="https://twitter.com/austin_poor" class="underline">Twitter</a>, <a href="https://mastodon.social/@austinpoor" class="underline">Mastodon</a>,
+          or <a href="https://www.linkedin.com/in/austinpoor" class="underline">LinkedIn</a>.
         </p>
 
         {recs.length > 0 && (
-          <p class="mb-4">
+          <p class="pb-4">
             If you liked this post, you might also like:
           </p>
-
-          <ul class="list-none decoration-dotted">
-              {recs.map((r) => (
-                <li class="mb-2">
-                  <a href={`/blog/${r.slug}`} class="flex flex-row items-start">
-                    <img 
-                      src={r.image.src}
-                      alt={r.image.alt}
-                      class="h-14 w-14 mr-4 rounded-lg object-cover"
-                    />
-                    <div>
-                      <h3 class="underline decoration-dotted">{ r.title }</h3>
-                      <h4>{ r.subtitle }</h4>
-                    </div>
-                  </a>
-                </li>
-              ))}
+          <ul class="grid grid-cols-1 list-none divide-y divide-zinc-700/50">
+            {recs.map((r) => (
+              <li class="py-3">
+                <a href={`/blog/${r.slug}`} class="flex flex-row items-center">
+                  <img 
+                    src={r.image.src}
+                    alt={r.image.alt}
+                    class="h-14 w-14 mr-4 rounded-lg object-cover hidden sm:block"
+                  />
+                  <div>
+                    <h3 class="underline decoration-1 underline-offset-2 decoration-zinc-500">{ r.title }</h3>
+                    <h4 class="text-base sm:text-lg line-clamp-2">{ r.subtitle }</h4>
+                  </div>
+                </a>
+              </li>
+            ))}
           </ul>
         )}
       </div>
     </div>
 
-    <div class="hidden lg:block"></div>
+    <!-- <div class="hidden lg:block"></div> -->
   </div>
 
 </Layout>
-
-<!-- <script>
-  document.querySelectorAll("aside a").forEach((a: HTMLAnchorElement) => {
-    a.onclick = (e) => {
-      e.preventDefault();
-      const target = document.querySelector(a.getAttribute("href"));
-      target.scrollIntoView({ behavior: "smooth" });
-    };
-  });
-</script> -->

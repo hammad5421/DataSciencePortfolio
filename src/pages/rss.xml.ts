@@ -10,7 +10,7 @@ export async function get(context: APIContext) {
         title: "Austin's Blog",
 
         // `<description>` field in output xml
-        description: "A humble Astronaut's guide to the stars",
+        description: "Blog posts by Austin Poor.",
 
         // Pull in your project "site" from the endpoint context
         // https://docs.astro.build/en/reference/api-reference/#contextsite

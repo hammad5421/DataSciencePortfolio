@@ -4,21 +4,20 @@ title: Algorithmic Color Palettes
 subtitle: Using Machine Learning to Generate Color Palettes from Images
 description: Using Unsupervised Machine Learning algorithms to generate color palettes from film stills.
 image:
-    src: /images/color-palette-example.webp
-    alt: A photo of mountains with a color palette generated from the image.
-    caption: Photo by Trey Ratcliff (Source) with my generated color palette.
-    captionLink: https://flickr.com/photos/stuckincustoms/8837173497
+  src: /images/color-palette-example.webp
+  alt: A photo of mountains with a color palette generated from the image.
+  caption: Photo by Trey Ratcliff (Source) with my generated color palette.
+  captionLink: https://flickr.com/photos/stuckincustoms/8837173497
 publishDate: "2020-10-13"
-# updateDate: "2023-02-16"
 tags:
-- data-science
-- machine-learning
-- clustering
-- color-theory
-- image-processing
+  - data-science
+  - machine-learning
+  - clustering
+  - color-theory
+  - image-processing
 recommended:
-- predict-spotify-skips
-- big-query-data-augmentation
+  - predict-spotify-skips
+  - big-query-data-augmentation
 ---
 
 I was recently working on a project in which I wanted to be able to compare the look and feel of images which led me to look for a way to create color palettes using machine learning.
@@ -26,7 +25,7 @@ I was recently working on a project in which I wanted to be able to compare the 
 Generating a color palette can be thought of as a clustering problem in disguise. We want to partition all of an image's pixels into k different groups that best represent the image.
 
 ![Image of RGB Color Space (https://en.wikipedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_b.png)](/images/rbg-color-space.webp)
-*[Source Wikipedia](https://en.wikipedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_b.png)*
+_[Source Wikipedia](https://en.wikipedia.org/wiki/File:RGB_Cube_Show_lowgamma_cutout_b.png)_
 
 Instead of viewing our image as a grid of pixels — each with a red, green, and blue value — we can think of it as an array of points plotted in [3D color-space](https://en.wikipedia.org/wiki/RGB_color_space). There's a dimension for red, a dimension for green, and a dimension for blue and a point can sit anywhere between `0` and `255` in each dimension.
 
@@ -37,7 +36,7 @@ There are many different clustering algorithms to choose from — each with thei
 I picked 5 sample stills from the film [Only God Forgives (2013)](https://en.wikipedia.org/wiki/Only_God_Forgives) (using the site [FILMGRAB](http://film-grab.com/)) because of its rich palettes.
 
 ![Still from Only God Forgives (2013) with k-means generated palette](/images/palette-only-god-forgives-k-means-1.webp)
-*Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette.*
+_Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette._
 
 Above is an example film still and the color palette generated using K-Means. As you can see, the algorithm does a fairly good job of making a nice representative palette without much hyper-parameter tuning. Additionally, it allows you to specify a color palette size — which some other clustering algorithms don't (DBSCAN, for example).
 
@@ -48,21 +47,21 @@ You can see more examples of generated palettes in my [notebook](https://nbviewe
 As it turns out, algorithms like K-Means favor high-volume colors over sparse-but-prominent colors. For example, see the below still.
 
 ![Still from Only God Forgives (2013) with k-means generated palette](/images/palette-only-god-forgives-k-means-2.webp)
-*Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette.*
+_Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette._
 
 The K-Means palette gets a good approximation of a majority of the colors, but looking at the image, you might expect it to include some blue (such as on the mat or the shorts of the downed boxer) or red (such as on the ropes , or the standing boxer's gloves/attire/etc).
 
-Thinking back to how K-Means works, the algorithm tries to partition the colors in the image into *k* groups — represented by *k* average points in color-space. In this case, there isn't enough blue or red in the image to be picked up by the algorithm so they're getting washed out by the other similar, more abundant colors.
+Thinking back to how K-Means works, the algorithm tries to partition the colors in the image into _k_ groups — represented by _k_ average points in color-space. In this case, there isn't enough blue or red in the image to be picked up by the algorithm so they're getting washed out by the other similar, more abundant colors.
 
 In order to work around this, there are a few things we could try.
 
 ![Still from Only God Forgives (2013) with k-means and agglomerative generated palettes.](/images/palette-only-god-forgives-k-means-vs-agglomerative.webp)
-*Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means and agglomerative generated palettes.*
+_Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means and agglomerative generated palettes._
 
 The above image shows palettes generated using both K-Means and Agglomerative clustering. Agglomerative clustering chose to include a blue in the palette, though it lost the muted yellow and still didn't include any red.
 
 ![Still from Only God Forgives (2013) with k-means generated palettes using RGB and HSV colors](/images/palette-only-god-forgives-k-means-rgb-vs-hsv.webp)
-*Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palettes using RGB and HSV colors.*
+_Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palettes using RGB and HSV colors._
 
 Another approach is to convert the image's colors from RGB to HSV. RGB represents a color as a combination of the intensities of the red, green, and blue channels while HSV represents a color as the hue (the spectrum of base colors), saturation (the intensity of a color), and value (the relative lightness or darkness of a color) — which you can read more about [here](https://en.wikipedia.org/wiki/HSL_and_HSV). The above image shows palettes generated for the same image using K-Means clustering with RGB colors and HSV colors. As you can see, the HSV approach includes both the blue and the yellow (though still no red).
 
@@ -77,14 +76,14 @@ Additionally, I found that the website [Coolors](https://coolors.co/) makes it e
 For example, using this image…
 
 ![Film still from Only God Forgives (2013)](/images/palettes-only-god-forgives-no-palette.webp)
-*Only God Forgives (2013), courtesy of FILMGRAB*
+_Only God Forgives (2013), courtesy of FILMGRAB_
 
 ...the API would produce the following link: https://coolors.co/3c030b-050002-3967cd-152f63-760102-7e504c-110c33-b4d1df
 
 Viewed together, you would get...
 
 ![Still from Only God Forgives (2013) with k-means generated palette courtesy of Coolors](/images/palettes-only-god-forgives-with-generated-palette.webp)
-*Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette courtesy of Coolors.*
+_Still from Only God Forgives (2013), courtesy of FILMGRAB, with k-means generated palette courtesy of Coolors._
 
 You can check out the Flask app in my GitHub repo, [here](https://github.com/a-poor/color-palettes).
 
@@ -93,4 +92,3 @@ You can check out the Flask app in my GitHub repo, [here](https://github.com/a-p
 This was a short but fun side-project and there's definitely a lot more to explore here. Definitely check out [FILMGRAB](https://film-grab.com/) and [Coolors](https://coolors.co/) if you think you might be interested.
 
 You can find my code on [GitHub](https://github.com/a-poor/color-palettes) or check out the notebook with [nbviewer](https://nbviewer.jupyter.org/github/a-poor/color-palettes/blob/main/color-palettes.ipynb#) or [Binder](https://mybinder.org/v2/gh/a-poor/color-palettes/main?filepath=color-palettes.ipynb).
-
