@@ -1,56 +1,55 @@
 :root {
-    @apply font-sans;
+  @apply font-sans;
 }
 
-
 article {
-    @apply container mx-auto;
+  @apply container mx-auto;
 }
 
 article > * {
-    @apply mb-4;
+  @apply mb-4;
 }
 
 h1 {
-    @apply text-4xl;
+  @apply text-4xl;
 }
 
 h2 {
-    @apply text-3xl;
+  @apply text-3xl mt-8;
 }
 
 h3 {
-    @apply text-2xl;
+  @apply text-2xl mt-8;
 }
 
 p {
-    @apply text-base;
+  @apply text-base;
 }
 
 ul {
-    @apply list-disc list-inside;
+  @apply list-disc list-inside;
 }
 
 ol {
-    @apply list-decimal list-inside;
+  @apply list-decimal list-inside;
 }
 
 article a {
-    @apply underline decoration-dotted;
+  @apply underline decoration-dotted;
 }
 
 blockquote {
-    @apply italic border-l-4 pl-2;
+  @apply italic border-l-4 pl-2;
 }
 
 .astro-code {
-    @apply px-4 pt-4 pb-6 rounded-lg text-sm;
+  @apply px-4 pt-4 pb-6 rounded-lg text-sm;
 }
 
 p > img {
-    @apply mx-auto;
+  @apply mx-auto;
 }
 
 p > img + em {
-    @apply block text-center text-sm italic mt-2 mx-auto;
+  @apply block text-center text-sm italic mt-2 mx-auto;
 }
