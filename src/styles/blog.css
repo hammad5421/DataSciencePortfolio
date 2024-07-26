@@ -10,27 +10,27 @@ article > * {
   @apply mb-4;
 }
 
-h1 {
+article h1 {
   @apply text-4xl;
 }
 
-h2 {
+article h2 {
   @apply text-3xl mt-8;
 }
 
-h3 {
+article h3 {
   @apply text-2xl mt-8;
 }
 
-p {
+article p {
   @apply text-base;
 }
 
-ul {
+article ul {
   @apply list-disc list-inside;
 }
 
-ol {
+article ol {
   @apply list-decimal list-inside;
 }
 
@@ -38,7 +38,7 @@ article a {
   @apply underline decoration-dotted;
 }
 
-blockquote {
+article blockquote {
   @apply italic border-l-4 pl-2;
 }
 
@@ -46,10 +46,10 @@ blockquote {
   @apply px-4 pt-4 pb-6 rounded-lg text-sm;
 }
 
-p > img {
+article p > img {
   @apply mx-auto;
 }
 
-p > img + em {
+article p > img + em {
   @apply block text-center text-sm italic mt-2 mx-auto;
 }
