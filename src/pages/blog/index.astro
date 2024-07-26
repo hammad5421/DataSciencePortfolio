@@ -1,103 +1,107 @@
 ---
-import { getCollection } from 'astro:content';
-import Layout from '@/layouts/BaseLayout.astro';
-import SiteMeta from '@/components/SiteMeta.astro';
-import { Image } from 'astro:assets';
+import { getCollection } from "astro:content";
+import Layout from "@/layouts/BaseLayout.astro";
+import SiteMeta from "@/components/SiteMeta.astro";
+import { Image } from "astro:assets";
 
-const blogPosts = await getCollection('blog')
-    .then(ps => (ps
-        .filter(p => !p.data.isDraft)
-        .sort((a, b) => {
-            if (a.data.publishDate < b.data.publishDate) return -1;
-            if (a.data.publishDate > b.data.publishDate) return 1;
-            return 0;
-        })
-        .reverse()
-    ));
+const blogPosts = await getCollection("blog").then((ps) =>
+  ps
+    .filter((p) => !p.data.isDraft)
+    .sort((a, b) => {
+      if (a.data.publishDate < b.data.publishDate) return -1;
+      if (a.data.publishDate > b.data.publishDate) return 1;
+      return 0;
+    })
+    .reverse()
+);
 
 function formatDate(d: Date): string {
   const year = d.getFullYear();
-  const month = String(d.getMonth()+1).padStart(2,'0');
-  const day = String(d.getDate()).padStart(2,'0');
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
 
 const pageTitle = "Blog | Austin Poor";
-const pageDescription = "Check out my recent blog posts and let me know what you think!";
-
+const pageDescription =
+  "Check out my recent blog posts and let me know what you think!";
 ---
-<Layout activeTab="blog" pageTitle={pageTitle} pageDescription={pageDescription}>
-    <!-- Metadata -->
-    <SiteMeta 
-        slot="head"
-        title={pageTitle}
-        description={pageDescription}
-        url="https://austinpoor.com/blog"
-    />
-    <link rel="canonical" href="https://austinpoor.com/blog" slot="head"/>
 
-    <!-- Content -->
-    <div class="max-w-2xl mx-auto mb-12">
-        <h1 class="text-4xl sm:text-6xl font-bold text-center mb-4">
-            Blog
-        </h1>
-        <p class="text-base text-center">
-            Check out some blog posts I've written about various topics.
-        </p>
-        <p class="text-base text-center">
-            I don't post very often, but I try to make each post count.
-        </p>
-    </div>
-    <ul class="max-w-4xl mx-auto px-2 mb-8 space-y-4">
-        {blogPosts.map((b, i) => (
-            <li 
-                class="
-                    px-4
-                    py-4
-                    outline-1
-                    outline-slate-300
-                    rounded-md
-                    hover:bg-zinc-800
-                "
-            >
-                <a 
-                    href={`/blog/${b.slug}`} 
-                    class="
-                        flex 
-                        flex-col 
-                        sm:flex-row 
-                        items-center 
-                        sm:items-start 
-                        space-x-0 
-                        sm:space-x-6 
-                        space-y-6 
-                        sm:space-y-0
-                    "
-                >
-                    <Image 
-                        src={ b.data.image.src }
-                        alt={ b.data.image.alt }
-                        decoding="async"
-                        loading="lazy"
-                        width="200"
-                        height="200"
-                        class="w-[200px] h-[200px] object-cover aspect-square rounded-md"
-                    />
-                    <div class="flex-grow text-center sm:text-left">
-                        <h2 class="text-2xl font-semibold tracking-tight">
-                            { b.data.title }
-                        </h2>
-                        <time class="text-sm text-zinc-400" datetime={ b.data.publishDate.toISOString() }>
-                            { formatDate(b.data.publishDate) }
-                        </time>
-                        <p class="text-base line-clamp-4">
-                            { b.data.description }
-                        </p>
-                    </div>
-                </a>
-            </li>
-        ))}
-    </ul>
+<Layout
+  activeTab="blog"
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+>
+  <!-- Metadata -->
+  <SiteMeta
+    slot="head"
+    title={pageTitle}
+    description={pageDescription}
+    url="https://austinpoor.com/blog"
+  />
+  <link rel="canonical" href="https://austinpoor.com/blog" slot="head" />
 
+  <!-- Content -->
+  <div class="max-w-2xl mx-auto mb-12">
+    <h1 class="text-4xl sm:text-6xl font-bold text-center mb-4">Blog</h1>
+    <p class="text-base text-center">
+      Check out some blog posts I've written about various topics.
+    </p>
+    <p class="text-base text-center">
+      I don't post very often, but I try to make each post count.
+    </p>
+  </div>
+  <ul class="max-w-4xl mx-auto px-2 mb-8 space-y-4">
+    {
+      blogPosts.map((b, i) => (
+        <li
+          class:list={[
+            "px-4",
+            "py-4",
+            "outline-1",
+            "outline-slate-300",
+            "rounded-md",
+            "hover:bg-zinc-800",
+          ]}
+        >
+          <a
+            href={`/blog/${b.slug}`}
+            class:list={[
+              "flex",
+              "flex-col",
+              "sm:flex-row",
+              "items-center",
+              "sm:items-start",
+              "space-x-0",
+              "sm:space-x-6",
+              "space-y-6",
+              "sm:space-y-0",
+            ]}
+          >
+            <Image
+              src={b.data.image.src}
+              alt={b.data.image.alt}
+              decoding="async"
+              loading="lazy"
+              width="200"
+              height="200"
+              class="w-[200px] h-[200px] object-cover aspect-square rounded-md"
+            />
+            <div class="flex-grow text-center sm:text-left">
+              <h2 class="text-2xl font-semibold tracking-tight">
+                {b.data.title}
+              </h2>
+              <time
+                class="text-sm text-zinc-400"
+                datetime={b.data.publishDate.toISOString()}
+              >
+                {formatDate(b.data.publishDate)}
+              </time>
+              <p class="text-base line-clamp-4">{b.data.description}</p>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
 </Layout>
-

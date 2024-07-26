@@ -1,39 +1,38 @@
 ---
-import { getCollection, getEntryBySlug } from 'astro:content';
-import Layout from '@/layouts/BaseLayout.astro';
-import BlogMeta from '@/components/BlogMeta.astro';
-import '@/styles/blog.css';
+import { Image } from "astro:assets";
+import { getCollection, getEntryBySlug } from "astro:content";
+import Layout from "@/layouts/BaseLayout.astro";
+import BlogMeta from "@/components/BlogMeta.astro";
+import "@/styles/blog.css";
 
 export const prerender = true;
 
 // 1. Generate a new path for every collection entry
 export async function getStaticPaths() {
-  const blogEntries = await getCollection('blog');
-  return blogEntries
-    .map(entry => ({
-      params: { 
-        slug: entry.slug,
-      }, 
-      props: { 
-        entry,
-      },
-    }));
+  const blogEntries = await getCollection("blog");
+  return blogEntries.map((entry) => ({
+    params: {
+      slug: entry.slug,
+    },
+    props: {
+      entry,
+    },
+  }));
 }
 
 const { entry } = Astro.props;
 const { Content, headings } = await entry.render();
-const minHeadingDepth = Math.min(...headings.map(h => h.depth));
+const minHeadingDepth = Math.min(...headings.map((h) => h.depth));
 const headingOffset = minHeadingDepth - 1;
-
 
 function formatDate(d: Date): string {
   const year = d.getFullYear();
-  const month = String(d.getMonth()+1).padStart(2,'0');
-  const day = String(d.getDate()).padStart(2,'0');
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
   return `${year}-${month}-${day}`;
 }
 
-const pageTitle = `${ entry.data.pageTitle || entry.data.title } | Austin's Blog`;
+const pageTitle = `${entry.data.pageTitle || entry.data.title} | Austin's Blog`;
 const pageDescription = entry.data.description;
 
 // Format the recommended posts...
@@ -47,20 +46,26 @@ interface IRec {
   };
 }
 
-const recs = await Promise.all((entry.data.recommended || []).map(async (r: string) => {
-  const rec = await getEntryBySlug('blog', r);
-  return {
-    slug: rec?.slug,
-    title: rec?.data.title,
-    subtitle: rec?.data.subtitle,
-    image: rec?.data.image,
-  } as IRec;
-}));
-
+const recs = await Promise.all(
+  (entry.data.recommended || []).map(async (r: string) => {
+    const rec = await getEntryBySlug("blog", r);
+    return {
+      slug: rec?.slug,
+      title: rec?.data.title,
+      subtitle: rec?.data.subtitle,
+      image: rec?.data.image,
+    } as IRec;
+  })
+);
 ---
-<Layout activeTab="blog" pageTitle={pageTitle} pageDescription={pageDescription}>
+
+<Layout
+  activeTab="blog"
+  pageTitle={pageTitle}
+  pageDescription={pageDescription}
+>
   <!-- Page metadata -->
-  <BlogMeta 
+  <BlogMeta
     slot="head"
     title={pageTitle}
     pageUrl={`https://austinpoor.com/blog/${entry.slug}`}
@@ -70,48 +75,52 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
     modifiedDate={entry.data.updateDate}
     tags={entry.data.tags}
   />
-  <link slot="head" rel="canonical" href={`https://austinpoor.com/blog/${entry.slug}`}/>
-
-
+  <link
+    slot="head"
+    rel="canonical"
+    href={`https://austinpoor.com/blog/${entry.slug}`}
+  />
 
   <!-- Content -->
-  <div class:list={[
-    "grid",
-    "grid-cols-1",
-    "justify-center",
-    "max-w-7xl",
-    "mx-auto",
-    "px-4",
-    (headings.length > 0 
-      ? "lg:grid-cols-11 xl:grid-cols-12" 
-      : ""),
-    ]}>
-
-    <div class={"hidden" + (
-      headings.length > 0 ? " lg:block col-span-3 py-14" : ""
-    )}>
-      {headings.length > 0 && (
-        <aside class="sticky top-4 py-2 mx-auto">
-          <h3 class="text-md font-semibold text-slate-300 tracking-tight mb-2">
-            Table of Contents
-          </h3>
-          <ul class="list-none">
-            {headings.map(h => (
-              <li>
-                <a 
-                  href={`#${h.slug}`} 
-                  class="text-sm font-medium text-zinc-400 hover:text-zinc-300 line-clamp-1"
-                >
-                  <span>{ "#".repeat(h.depth-headingOffset) }</span>
-                  <span>{ h.text }</span>
-                </a>
-              </li>
-            ))}
-          </ul>
-        </aside>
-      )}
+  <div
+    class:list={[
+      "grid",
+      "grid-cols-1",
+      "justify-center",
+      "max-w-7xl",
+      "mx-auto",
+      "px-4",
+      headings.length > 0 ? "lg:grid-cols-11 xl:grid-cols-12" : "",
+    ]}
+  >
+    <div
+      class={"hidden" +
+        (headings.length > 0 ? " lg:block col-span-3 py-14" : "")}
+    >
+      {
+        headings.length > 0 && (
+          <aside class="sticky top-4 py-2 mx-auto">
+            <h3 class="text-md font-semibold text-slate-300 tracking-tight mb-2">
+              Table of Contents
+            </h3>
+            <ul class="list-none">
+              {headings.map((h) => (
+                <li>
+                  <a
+                    href={`#${h.slug}`}
+                    class="text-sm font-medium text-zinc-400 hover:text-zinc-300 line-clamp-1"
+                  >
+                    <span>{"#".repeat(h.depth - headingOffset)}</span>
+                    <span>{h.text}</span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )
+      }
     </div>
-    
+
     <div
       class:list={[
         "col-span-1",
@@ -125,99 +134,134 @@ const recs = await Promise.all((entry.data.recommended || []).map(async (r: stri
         "sm:px-6",
       ]}
     >
-      <a href="/blog" class="text-sm font-medium text-slate-400 flex items-center space-x-2 -ml-[1px] mb-4">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75" />
+      <a
+        href="/blog"
+        class="text-sm font-medium text-slate-400 flex items-center space-x-2 -ml-[1px] mb-4"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="w-6 h-6"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M19.5 12h-15m0 0l6.75 6.75M4.5 12l6.75-6.75"></path>
         </svg>
-        <span>
-          Back
-        </span>
+        <span> Back </span>
       </a>
-    
+
       <article>
         <div class="space-y-1">
           <h1 class="text-4xl font-medium">
-            { entry.data.title }
+            {entry.data.title}
           </h1>
-          { entry.data.subtitle && (
-            <h2 class="text-lg font-medium text-slate-300">
-              { entry.data.subtitle }
-            </h2>
-          )}
+          {
+            entry.data.subtitle && (
+              <h2 class="text-lg font-medium text-slate-300">
+                {entry.data.subtitle}
+              </h2>
+            )
+          }
           <p class="text-sm font-medium pt-2 text-slate-200">
             Written by Austin Poor
           </p>
           <p class="text-sm font-medium text-slate-200">
-            Published: { formatDate(entry.data.publishDate) }
-            { entry.data.updateDate && (
-              <>
-                { " | " } Updated { formatDate(entry.data.updateDate) }
-              </>
-            )}
+            Published: {formatDate(entry.data.publishDate)}
+            {
+              entry.data.updateDate && (
+                <>
+                  {" | "} Updated {formatDate(entry.data.updateDate)}
+                </>
+              )
+            }
           </p>
         </div>
 
         <div class="pt-0 pb-8">
           <figure class="text-sm tracking-tight">
-            <img 
+            <Image
               class="w-full mx-auto mb-2"
-              src={entry.data.image.src} 
-              alt={entry.data.image.alt} 
+              src={entry.data.image.src}
+              alt={entry.data.image.alt}
+              width={875}
+              height={500}
             />
-            {entry.data.image.caption && entry.data.image.captionLink && (
-              <figcaption class="text-center">
-                <a href={entry.data.image.captionLink}>
-                  { entry.data.image.caption }
-                </a>
-              </figcaption>
-            )}
-            {entry.data.image.caption && !entry.data.image.captionLink && (
-              <figcaption class="text-center">
-                { entry.data.image.caption }
-              </figcaption>
-            )}
+            {
+              entry.data.image.caption && entry.data.image.captionLink && (
+                <figcaption class="text-center">
+                  <a href={entry.data.image.captionLink}>
+                    {entry.data.image.caption}
+                  </a>
+                </figcaption>
+              )
+            }
+            {
+              entry.data.image.caption && !entry.data.image.captionLink && (
+                <figcaption class="text-center">
+                  {entry.data.image.caption}
+                </figcaption>
+              )
+            }
           </figure>
         </div>
 
         <Content />
-
       </article>
-    
+
       <div class="text-base">
-        <hr class="mb-4"/>
+        <hr class="mb-4" />
 
         <p class="mb-4">
-          Thank you so much for reading! If you have any thoughts, questions, or comments, I'd love to hear them.
-          You can find me on <a href="https://twitter.com/austin_poor" class="underline">Twitter</a>, <a href="https://mastodon.social/@austinpoor" class="underline">Mastodon</a>,
-          or <a href="https://www.linkedin.com/in/austinpoor" class="underline">LinkedIn</a>.
+          Thank you so much for reading! If you have any thoughts, questions, or
+          comments, I'd love to hear them. You can find me on <a
+            href="https://twitter.com/austin_poor"
+            class="underline">Twitter</a
+          >, <a href="https://mastodon.social/@austinpoor" class="underline"
+            >Mastodon</a
+          >, or <a
+            href="https://www.linkedin.com/in/austinpoor"
+            class="underline">LinkedIn</a
+          >.
         </p>
 
-        {recs.length > 0 && (
-          <p class="pb-4">
-            If you liked this post, you might also like:
-          </p>
-          <ul class="grid grid-cols-1 list-none divide-y divide-zinc-700/50">
-            {recs.map((r) => (
-              <li class="py-3">
-                <a href={`/blog/${r.slug}`} class="flex flex-row items-center">
-                  <img 
-                    src={r.image.src}
-                    alt={r.image.alt}
-                    class="h-14 w-14 mr-4 rounded-lg object-cover hidden sm:block"
-                  />
-                  <div>
-                    <h3 class="underline decoration-1 underline-offset-2 decoration-zinc-500">{ r.title }</h3>
-                    <h4 class="text-base sm:text-lg line-clamp-2">{ r.subtitle }</h4>
-                  </div>
-                </a>
-              </li>
-            ))}
-          </ul>
-        )}
+        {
+          recs.length > 0 && (
+            <>
+              <p class="pb-4">If you liked this post, you might also like:</p>
+              <ul class="grid grid-cols-1 list-none divide-y divide-zinc-700/50">
+                {recs.map((r) => (
+                  <li class="py-3">
+                    <a
+                      href={`/blog/${r.slug}`}
+                      class="flex flex-row items-center"
+                    >
+                      <img
+                        src={r.image.src}
+                        alt={r.image.alt}
+                        class="h-14 w-14 mr-4 rounded-lg object-cover hidden sm:block"
+                      />
+                      <div>
+                        <h3 class="underline decoration-1 underline-offset-2 decoration-zinc-500">
+                          {r.title}
+                        </h3>
+                        <h4 class="text-base sm:text-lg line-clamp-2">
+                          {r.subtitle}
+                        </h4>
+                      </div>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </>
+          )
+        }
       </div>
     </div>
 
     <!-- <div class="hidden lg:block"></div> -->
   </div>
-
 </Layout>
