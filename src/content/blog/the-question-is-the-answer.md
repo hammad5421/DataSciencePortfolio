@@ -4,7 +4,7 @@ title: The Question is the Answer
 subtitle: The Future of LLMs is Information Gathering
 description: ""
 image:
-    src: /src/assets/
+    src: /src/assets/color-palette-example.webp
     alt: ""
     caption: ""
     captionLink: ""
