@@ -133,7 +133,7 @@ Once I had the API up and running, my next step was to do some load testing.
 
 [k6](https://k6.io/) is a tool by Grafana Labs, written in Go, for load testing web applications. It allows you to define a set of rules, in JavaScript, for _virtual users_ to access your web service and reports statistics like latency, failure rates, etc.
 
-![A GIF showing the terminal output from running k6](/src/assets/apoor-dot-dev-load-test-demo.gif)
+![A GIF showing the terminal output from running k6](/images/apoor-dot-dev-load-test-demo.gif)
 _A GIF showing the terminal output running the k6 load-test of my URL shortener._
 
 I ran a basic test (see above) against a locally running version of the app, that would randomly request an endpoint from a set of both valid and invalid paths. The result was a median response time of about `25ms` and a P90 response time of about `50ms`. While I was hoping for single-digit response times, that's still plenty fast to get the job done.
