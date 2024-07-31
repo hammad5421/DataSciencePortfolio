@@ -4,7 +4,7 @@ title: Predicting Spotify Track Skips
 subtitle: Working on the Spotify Sequential Skip Prediction Challenge
 description: Metis Data Science Bootcamp project using machine learning to predict Spotify user track skips for the "Spotify Sequential Skip Prediction Challenge".
 image:
-    src: /images/spotify-skip-cover.webp
+    src: /src/assets/spotify-skip-cover.webp
     alt: Screenshots from the Spotify desktop app.
     caption: Screenshots from the Spotify desktop app
 publishDate: "2020-02-18"
@@ -66,12 +66,12 @@ The targets in the provided dataset — whether or not the track was skipped —
 
 There was a surplus of data so I worked with a subset of about 100k rows from the session table and the corresponding rows from the track table, which I loaded into a Postgres database hosted on an AWS EC2 instance. The database schema is shown below:
 
-![Schema for Spotify Skip Data](/images/spotify-skip-data-schema.webp)
+![Schema for Spotify Skip Data](/src/assets/spotify-skip-data-schema.webp)
 *Schema for Spotify Skip Data*
 
 To get a sense of what a single session might look like, the following image shows a plot of a single user session as it relates to one of the features — “track loudness”, a Spotify descriptor of the song's characteristics, not “volume” in the traditional sense — where the color indicates which tracks were skipped and not skipped.
 
-![Single Session's Track-Skips vs Track-Loudness](/images/spotify-single-session-skips-vs-loudness.webp)
+![Single Session's Track-Skips vs Track-Loudness](/src/assets/spotify-single-session-skips-vs-loudness.webp)
 *Single Session's Track-Skips vs Track-Loudness*
 
 While not meaningful by itself, this illustrates how each session an be plotted against the song attributes. In this example, the user only listened to two of the first 11 tracks, and then listened to all of the remaining 9 tracks, as the loudness value decreased.
@@ -84,7 +84,7 @@ Further, in order to get a better sense of the overall distribution track attrib
 
 Below are the attribute distribution plots for the attributes “energy”, “loudness”, “danceability”, and “acousticness”:
 
-![](/images/spotify-track-features-applied-to-example-songs.webp)
+![](/src/assets/spotify-track-features-applied-to-example-songs.webp)
 *Distribution of a Subset of Track Features with 3 Songs Plotted for Reference*
 
 ### Feature Engineering
@@ -101,7 +101,7 @@ I started by baselining with a Logistic Regression model but found that it had p
 
 ## Results
 
-![ROC Curve Comparing Model Performance for Logistic Regression and LightGBM Models](/images/spotify-roc-logistic-regression-vs-lightgbm.webp)
+![ROC Curve Comparing Model Performance for Logistic Regression and LightGBM Models](/src/assets/spotify-roc-logistic-regression-vs-lightgbm.webp)
 *ROC Curve Comparing Model Performance for Logistic Regression and LightGBM Models*
 
 My best model's final test accuracy was **0.73**, using LightGBM's `LGBMClassifier` model, which is fairly good given the problem but with room for improvement.
@@ -110,7 +110,7 @@ After training the model, I analyzed the errors, looking for areas to improve th
 
 ## Conclusions
 
-![Final LightGBM Model's Relative Feature Importance Ranking](/images/spotify-lightgbm-feature-importance-graph.webp)
+![Final LightGBM Model's Relative Feature Importance Ranking](/src/assets/spotify-lightgbm-feature-importance-graph.webp)
 *Final LightGBM Model's Relative Feature Importance Ranking*
 
 This figure shows the final model's ranking of the top 10 features by relative importance. The model ranked track popularity as the most important feature, followed by the track duration, and then the previous track's popularity. The ranking seems to generally make sense and isn't picking up on anything too surprising, other than possibly the fact that track popularity is ranked much higher than the next most important feature. Interestingly, though, this graph (as well as the graph of the full ranking which can be seen below, in the appendix) shows that, in a few cases, the model seems to be comparing features for the current track and the previous track. Some examples include popularity, duration, and loudness.
@@ -146,11 +146,11 @@ Thanks for reading and I'd love to hear your thoughts!
 
 ### Full Model Feature Importance Rank
 
-![Full Model Feature Importance Ranking](/images/spotify-full-model-feature-importance-graph.webp)
+![Full Model Feature Importance Ranking](/src/assets/spotify-full-model-feature-importance-graph.webp)
 
 ### Track “Acoustic Vector” Correlation Matrix
 
-![Track's “Acoustic Vector” Feature Correlation Matrix](/images/spotify-acoustic-vector-correlation-matrix.webp)
+![Track's “Acoustic Vector” Feature Correlation Matrix](/src/assets/spotify-acoustic-vector-correlation-matrix.webp)
 
 ### Citations
 

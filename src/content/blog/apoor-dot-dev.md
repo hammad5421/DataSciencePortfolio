@@ -4,7 +4,7 @@ title: Making apoor.dev
 subtitle: Building a URL Shortener with Rust, Tokio, and Axum.
 description: I recently built a URL shortener using Rust, Tokio, and Axum, and in this blog post, I'm sharing my experience. From selecting the right tech stack to load testing the application, I cover everything that went into building this service.
 image:
-    src: /images/dalle-crab-in-a-hot-baloon.webp
+    src: /src/assets/dalle-crab-in-a-hot-baloon.webp
     alt: DALL-E 2's take on Ferris the crab (Rust's mascot) in a hot air baloon (Fly.io's logo)
     caption: DALL-E 2's take on Ferris the crab (Rust's mascot) in a hot air baloon (Fly.io's logo)
 publishDate: "2023-04-18"
@@ -133,7 +133,7 @@ Once I had the API up and running, my next step was to do some load testing.
 
 [k6](https://k6.io/) is a tool by Grafana Labs, written in Go, for load testing web applications. It allows you to define a set of rules, in JavaScript, for _virtual users_ to access your web service and reports statistics like latency, failure rates, etc.
 
-![A GIF showing the terminal output from running k6](/images/apoor-dot-dev-load-test-demo.gif)
+![A GIF showing the terminal output from running k6](/src/assets/apoor-dot-dev-load-test-demo.gif)
 _A GIF showing the terminal output running the k6 load-test of my URL shortener._
 
 I ran a basic test (see above) against a locally running version of the app, that would randomly request an endpoint from a set of both valid and invalid paths. The result was a median response time of about `25ms` and a P90 response time of about `50ms`. While I was hoping for single-digit response times, that's still plenty fast to get the job done.

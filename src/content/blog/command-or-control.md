@@ -4,7 +4,7 @@ title: Command or Control
 subtitle: Knowing What Modifier Key to Put in Your Search Bar
 description: Should your hotkeys use "Cmd" or "Ctrl"? How can you tell if your user is on a Mac or not? This blog post walks through multiple approaches to OS detection in JavaScript.
 image:
-    src: /images/command-and-control-search-samples.png
+    src: /src/assets/command-and-control-search-samples.png
     alt: Screenshots from the TailwindCSS and TanStack Query doc sites showing the hotkey "Cmd + K" used for opening search.
     caption: Screenshots from the TailwindCSS and TanStack Query doc sites showing the hotkeys used for opening search.
 publishDate: "2023-09-10"
@@ -26,7 +26,7 @@ If your user is on a Mac, it should be `Cmd` (aka "command" aka `⌘` ). Otherwi
 
 One option is [`navigator.platform`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/platform), a string identifying the platform on which the browser is running (e.g. `"MacIntel"`, `"Win32"`, etc.). While it's been supported for quite a while, unfortunately it is now marked as deprecated.
 
-!["navigator.platform" MDN support grid](/images/navigator.platform-support-grid.png)
+!["navigator.platform" MDN support grid](/src/assets/navigator.platform-support-grid.png)
 _"navigator.platform" MDN support grid_
 
 Pre-deprecation, MDN recommended avoiding using this feature _except_ in this case, when identifying the platform's modifier key.
@@ -51,7 +51,7 @@ Well MDN points you to [`navigator.userAgentData.platform`](https://developer.mo
 
 As a brief aside, MDN notes that those properties are considered "low entropy". The `NavigatorUAData` object also contains a method for obtaining "high entropy" values from the user-agent – called `getHighEntropyValues` – where low entropy values are unlikely to be able to be used to identify the user and high entropy values are more likely to be usable in identifying the user.
 
-!["navigator.userAgentData.platform" MDN support grid](/images/navigator.userAgentData.platform-support.png)
+!["navigator.userAgentData.platform" MDN support grid](/src/assets/navigator.userAgentData.platform-support.png)
 _"navigator.userAgentData.platform" MDN support grid_
 
 Unfortunately, `navigator.userAgentData.platform` is considered experimental and currently is only supported by Chromium-based browsers (Chrome, Edge, Opera).
@@ -60,7 +60,7 @@ So now we have one deprecated API and one experimental API. Are there any other 
 
 The good news is that `User-Agent` data is available and well-supported in both the browser (via [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent); see below support table) and on the server side (again, as an HTTP request header). This means, unlike with `navigator.platform` and `navigator.userAgentData.platform`, the `User-Agent` data can be used with a SSR framework like NextJS, rather than needing to wait for the code to run on the client before determining the user's OS.
 
-!["navigator.userAgent" MDN support grid](/images/navigator.userAgent-support.png)
+!["navigator.userAgent" MDN support grid](/src/assets/navigator.userAgent-support.png)
 _"navigator.userAgent" MDN support grid_
 
 The bad news is `User-Agent` data can be messy and unreliable. According to MDN:
@@ -73,7 +73,7 @@ MDN has a great article with advice on gleaning information from `User-Agent`, w
 
 Currently there isn't one consistent way to detect the user's OS. Until `navigator.userAgentData` is fully supported, we may be stuck polyfilling it with the deprecated `navigator.platform` or the unreliable `User-Agent` string. Fortunately, between those three APIs you should be able to get a good enough answer. And worst case, if you guess wrong it isn't the end of the world this is just a progressive enhancement that shouldn't break your site.
 
-![Screenshot from the Astro docs showing the search hotkey is "/"](/images/astro-search.png)
+![Screenshot from the Astro docs showing the search hotkey is "/"](/src/assets/astro-search.png)
 _Screenshot from the [Astro docs](https://docs.astro.build/en/getting-started/)_
 
 If you _really_ care that much about making sure you don't show your user the wrong modifier key you can always skip `Ctrl+K`/`Cmd+K` and use `/` instead, like Astro does!
