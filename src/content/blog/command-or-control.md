@@ -26,7 +26,7 @@ If your user is on a Mac, it should be `Cmd` (aka "command" aka `⌘` ). Otherwi
 
 One option is [`navigator.platform`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/platform), a string identifying the platform on which the browser is running (e.g. `"MacIntel"`, `"Win32"`, etc.). While it's been supported for quite a while, unfortunately it is now marked as deprecated.
 
-!["navigator.platform" MDN support grid](/src/assets/navigator.platform-support-grid.png)
+!["navigator.platform" MDN support grid](/src/assets/navigator-platform-support-grid.png)
 _"navigator.platform" MDN support grid_
 
 Pre-deprecation, MDN recommended avoiding using this feature _except_ in this case, when identifying the platform's modifier key.
@@ -51,7 +51,7 @@ Well MDN points you to [`navigator.userAgentData.platform`](https://developer.mo
 
 As a brief aside, MDN notes that those properties are considered "low entropy". The `NavigatorUAData` object also contains a method for obtaining "high entropy" values from the user-agent – called `getHighEntropyValues` – where low entropy values are unlikely to be able to be used to identify the user and high entropy values are more likely to be usable in identifying the user.
 
-!["navigator.userAgentData.platform" MDN support grid](/src/assets/navigator.userAgentData.platform-support.png)
+!["navigator.userAgentData.platform" MDN support grid](/src/assets/navigator-userAgentData.platform-support.png)
 _"navigator.userAgentData.platform" MDN support grid_
 
 Unfortunately, `navigator.userAgentData.platform` is considered experimental and currently is only supported by Chromium-based browsers (Chrome, Edge, Opera).
@@ -60,7 +60,7 @@ So now we have one deprecated API and one experimental API. Are there any other 
 
 The good news is that `User-Agent` data is available and well-supported in both the browser (via [`navigator.userAgent`](https://developer.mozilla.org/en-US/docs/Web/API/Navigator/userAgent); see below support table) and on the server side (again, as an HTTP request header). This means, unlike with `navigator.platform` and `navigator.userAgentData.platform`, the `User-Agent` data can be used with a SSR framework like NextJS, rather than needing to wait for the code to run on the client before determining the user's OS.
 
-!["navigator.userAgent" MDN support grid](/src/assets/navigator.userAgent-support.png)
+!["navigator.userAgent" MDN support grid](/src/assets/navigator-userAgent-support.png)
 _"navigator.userAgent" MDN support grid_
 
 The bad news is `User-Agent` data can be messy and unreliable. According to MDN:
