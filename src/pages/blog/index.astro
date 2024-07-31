@@ -89,7 +89,7 @@ const pageDescription =
               width={200}
               class="w-[200px] h-[200px] object-cover aspect-square rounded-md"
               decoding="async"
-              loading="lazy"
+              loading={i < 3 ? "eager" : "lazy"}
             />
             <div class="flex-grow text-center sm:text-left">
               <h2 class="text-2xl font-semibold tracking-tight">
