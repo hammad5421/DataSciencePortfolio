@@ -4,7 +4,7 @@ title: Quickly Load CSVs into PostgreSQL Using Python and Pandas
 subtitle: Use Pandas to quickly create and populate a Postgres database
 description: Learn a fast way to use Python and Pandas to import CSV data into a Postgres database. Let Pandas infer data types and create the SQL schema for you.
 image:
-    src: /src/assets/csv-to-postgres.webp
+    src: /images/csv-to-postgres.webp
     alt: A flowchart from a CSV file icon to the Pandas library icon to a Postgres database icon.
     caption: Use Pandas to quickly load your CSV data into a Postgres database
 publishDate: "2020-02-13"

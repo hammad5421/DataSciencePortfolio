@@ -4,7 +4,7 @@ title: Making apoor.dev
 subtitle: Building a URL Shortener with Rust, Tokio, and Axum.
 description: I recently built a URL shortener using Rust, Tokio, and Axum, and in this blog post, I'm sharing my experience. From selecting the right tech stack to load testing the application, I cover everything that went into building this service.
 image:
-    src: /src/assets/dalle-crab-in-a-hot-baloon.webp
+    src: /images/dalle-crab-in-a-hot-baloon.webp
     alt: DALL-E 2's take on Ferris the crab (Rust's mascot) in a hot air baloon (Fly.io's logo)
     caption: DALL-E 2's take on Ferris the crab (Rust's mascot) in a hot air baloon (Fly.io's logo)
 publishDate: "2023-04-18"

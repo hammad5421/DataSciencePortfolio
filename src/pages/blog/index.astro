@@ -3,8 +3,6 @@ import { getCollection } from "astro:content";
 import Layout from "@/layouts/BaseLayout.astro";
 import SiteMeta from "@/components/SiteMeta.astro";
 import { Image } from "astro:assets";
-import type { ImageMetadata } from "astro";
-import CustomImage from "@/components/CustomImage.astro";
 
 const blogPosts = await getCollection("blog").then((ps) =>
   ps
@@ -29,7 +27,7 @@ const pageDescription =
   "Check out my recent blog posts and let me know what you think!";
 
 // const images = import.meta.glob<{ default: ImageMetadata }>(
-//   "/src/assets/*.{png,webp,jpg,jpeg,gif}"
+//   "/images/*.{png,webp,jpg,jpeg,gif}"
 // );
 ---
 
@@ -84,11 +82,14 @@ const pageDescription =
               "sm:space-y-0",
             ]}
           >
-            <CustomImage
+            <Image
               src={b.data.image.src}
               alt={b.data.image.alt}
               height={200}
-              className="w-[200px] h-[200px] object-cover aspect-square rounded-md"
+              width={200}
+              class="w-[200px] h-[200px] object-cover aspect-square rounded-md"
+              decoding="async"
+              loading="lazy"
             />
             <div class="flex-grow text-center sm:text-left">
               <h2 class="text-2xl font-semibold tracking-tight">

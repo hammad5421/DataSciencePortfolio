@@ -4,7 +4,7 @@ title: Can LLMs Play Connections?
 subtitle: ""
 description: ""
 image:
-    src: /src/assets/color-palette-example.webp
+    src: /images/color-palette-example.webp
     alt: ""
     caption: ""
     captionLink: ""

@@ -4,7 +4,6 @@ import { getCollection, getEntryBySlug } from "astro:content";
 import Layout from "@/layouts/BaseLayout.astro";
 import BlogMeta from "@/components/BlogMeta.astro";
 import "@/styles/blog.css";
-import CustomImage from "@/components/CustomImage.astro";
 
 export const prerender = true;
 
@@ -184,12 +183,14 @@ const recs = await Promise.all(
 
         <div class="pt-0 pb-8">
           <figure class="text-sm tracking-tight">
-            <CustomImage
+            <Image
               src={entry.data.image.src}
               alt={entry.data.image.alt}
               width={875}
               height={500}
-              className="w-full mx-auto mb-2"
+              class="w-full mx-auto mb-2"
+              decoding="async"
+              loading="lazy"
             />
             {
               entry.data.image.caption && entry.data.image.captionLink && (
@@ -240,12 +241,14 @@ const recs = await Promise.all(
                       href={`/blog/${r.slug}`}
                       class="flex flex-row items-center"
                     >
-                      <CustomImage
+                      <Image
                         src={r.image.src}
                         alt={r.image.alt}
                         width={56}
                         height={56}
-                        className="h-14 w-14 mr-4 rounded-lg object-cover hidden sm:block"
+                        decoding="async"
+                        loading="lazy"
+                        class="h-14 w-14 mr-4 rounded-lg object-cover hidden sm:block"
                       />
                       <div>
                         <h3 class="underline decoration-1 underline-offset-2 decoration-zinc-500">
