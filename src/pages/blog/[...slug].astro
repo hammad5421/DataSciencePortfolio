@@ -154,7 +154,7 @@ const recs = await Promise.all(
         <span> Back </span>
       </a>
 
-      <article>
+      <div>
         <div class="space-y-1">
           <h1 class="text-4xl font-medium">
             {entry.data.title}
@@ -211,8 +211,10 @@ const recs = await Promise.all(
           </figure>
         </div>
 
-        <Content />
-      </article>
+        <article>
+          <Content />
+        </article>
+      </div>
 
       <div class="text-base">
         <hr class="mb-4" />

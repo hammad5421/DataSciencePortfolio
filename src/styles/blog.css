@@ -3,39 +3,7 @@
 }
 
 article {
-  @apply container mx-auto;
-}
-
-article > * {
-  @apply mb-4;
-}
-
-article h1 {
-  @apply text-4xl;
-}
-
-article h2 {
-  @apply text-3xl mt-8;
-}
-
-article h3 {
-  @apply text-2xl mt-8;
-}
-
-article p {
-  @apply text-base;
-}
-
-article ul {
-  @apply list-disc list-inside;
-}
-
-article ol {
-  @apply list-decimal list-inside;
-}
-
-article a {
-  @apply underline decoration-dotted;
+  @apply prose prose-invert max-w-none;
 }
 
 article blockquote {
@@ -51,5 +19,5 @@ article p > img {
 }
 
 article p > img + em {
-  @apply block text-center text-sm italic mt-2 mx-auto;
+  @apply block text-center text-sm italic -mt-4 mb-2 mx-auto;
 }
