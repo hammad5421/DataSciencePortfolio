@@ -155,7 +155,7 @@ const recs = await Promise.all(
       </a>
 
       <div>
-        <div class="space-y-1">
+        <div class="space-y-1 mb-4">
           <h1 class="text-4xl font-medium">
             {entry.data.title}
           </h1>
@@ -181,7 +181,7 @@ const recs = await Promise.all(
           </p>
         </div>
 
-        <div class="pt-0 pb-8">
+        <div class="pb-2">
           <figure class="text-sm tracking-tight">
             <Image
               src={entry.data.image.src}
@@ -194,7 +194,7 @@ const recs = await Promise.all(
             />
             {
               entry.data.image.caption && entry.data.image.captionLink && (
-                <figcaption class="text-center">
+                <figcaption class="text-center text-gray-400 italic">
                   <a href={entry.data.image.captionLink}>
                     {entry.data.image.caption}
                   </a>
@@ -203,7 +203,7 @@ const recs = await Promise.all(
             }
             {
               entry.data.image.caption && !entry.data.image.captionLink && (
-                <figcaption class="text-center">
+                <figcaption class="text-center text-gray-400 italic">
                   {entry.data.image.caption}
                 </figcaption>
               )
@@ -269,7 +269,5 @@ const recs = await Promise.all(
         }
       </div>
     </div>
-
-    <!-- <div class="hidden lg:block"></div> -->
   </div>
 </Layout>

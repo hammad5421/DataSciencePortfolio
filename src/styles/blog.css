@@ -21,3 +21,7 @@ article p > img {
 article p > img + em {
   @apply block text-center text-sm italic -mt-4 mb-2 mx-auto;
 }
+
+article figure figcaption {
+  @apply block text-center text-sm italic mx-auto;
+}

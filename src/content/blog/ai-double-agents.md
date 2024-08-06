@@ -6,6 +6,7 @@ description: Ensure your AI agents are secure and reliable by implementing sensi
 image:
   src: /images/ai-double-agent-cover.webp
   alt: A robot spy, wearing a trench coat, looking at the camera, on a gray city street, surrounded by people.
+  caption: Generated with DALL-E
 publishDate: "2024-07-25"
 tags:
   - AI
@@ -35,7 +36,12 @@ Your API may be well secured, but if your LLM is gullible and has the right (or 
 
 And, while LLMs are _technically_ deterministic, it would be effectively impossible to test your LLM to an extent that you could be confident that it wouldn't buckle against the latest prompt injection attack.
 
-![A chat screenshot, showing that ChatGPT thinks there are two "R"s in "strawberry".](/images/ada-chatgpt-count-rs-in-strawberry.png)
+<figure>
+  <img src="/images/ada-chatgpt-count-rs-in-strawberry.png" alt='A chat screenshot, showing that ChatGPT thinks there are two "R"s in "strawberry".' />
+  <figcaption>
+    A chat screenshot, showing that ChatGPT thinks there are two "R"s in "strawberry".
+  </figcaption>
+</figure>
 
 Malicious users aside, LLMs are often just plain old wrong. And wrong about some very simple things. In the above screenshot, you can see that Open AI's most cutting-edge model (GPT 4o), doesn't know how many Rs are in the word "strawberry".
 
@@ -61,7 +67,12 @@ Consider adding UX elements that allow the user to approve, modify, or undo an a
 
 Take inspiration from Amazon's concept of one-way doors and two-way doors -- where actions that are easy to reverse are two-way doors and actions that are irreversible or hard to reverse are one-way doors -- and think about how that could apply to the UI/UX of your LLM agent interface.
 
-![A side-by-side of two UIs. One asking for the user's permission. One offering an "undo" button.](/images/ada-permission-vs-forgiveness.png)
+<figure>
+  <img src="/images/ada-permission-vs-forgiveness.png" alt="A side-by-side of two UIs. One asking for the user's permission. One offering an 'undo' button." />
+  <figcaption>
+    A side-by-side of two UIs. One asking for the user's permission. One offering an "undo" button.
+  </figcaption>
+</figure>
 
 Changing an application theme between light mode and dark mode might be considered more of a two-way door -- the LLM might get it wrong but that's probably okay. (And you can always add an undo button, just in case.) In other words, if you get it wrong you can always ask for "forgiveness."
 

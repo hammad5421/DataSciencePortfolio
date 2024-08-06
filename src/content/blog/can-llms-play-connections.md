@@ -12,3 +12,20 @@ publishDate: "2024-07-31"
 tags: []
 recommended: []
 ---
+
+## Notes
+
+- Zero-Shot Prompting
+- Few-Shot Prompting
+  - Test number of examples?
+  - Which examples to test?
+- Semantic search?
+- Something like Chain-of-Thought?
+
+## Outline
+
+TK
+
+## Draft
+
+TK

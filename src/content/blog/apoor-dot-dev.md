@@ -118,8 +118,8 @@ I used a multi-stage build to keep the final container size small. I originally 
 I _did_ run into one hiccup with the Rust/Alpine image. My build was failing with the following error:
 
 ```
- error: linking with `cc` failed: exit status: 1
- ```
+error: linking with `cc` failed: exit status: 1
+```
 
 After doing some digging and with the help of [this](https://github.com/rust-lang/rust/issues/25289) GH issue, I was able to get it running by adding the following line to my `Dockerfile`:
 

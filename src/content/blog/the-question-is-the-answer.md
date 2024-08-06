@@ -16,7 +16,29 @@ tags:
 recommended: []
 ---
 
-## Outline
+# Notes
+
+To expand on my idea a bit, currently I think most of the uses for LLMs are around answering questions (e.g. via RAG over a set of documents or a dataset). In this case, people have to curate documents that will make up the knowledge base for the LLMs. What if instead (or in addition), it was the job of an LLM to generate thoughtful questions that would help augment that knowledge base?
+
+We're also getting to a point where data is extremely valuable. People training LLMs are running low on good quality data on which to train.
+
+There are whole industries – e.g. consultancies like McKinsey – who spend significant time and resources on "information gathering." I think that's something an LLM could be doing instead.
+
+LLMs could A) perform information gathering by asking thoughtful questions and B) work to categorize and curate that dataset / knowledge base.
+
+I think most (if not all) companies have a good deal of valuable information that isn't codified anywhere – known as "tacit knowledge." That can lead to problems. Say for example Alice has to perform a business process like rotating credentials once a quarter but this is tacit knowledge and not written down anywhere. Let's think through some potential issues that could arise:
+- Alice could forget to do it one quarter
+- Alice could leave the company and no one knows to take over for him
+- Bob might be doing the same thing without realizing it, wasting time and effort
+- Bob might be doing something else that conflicts with Alice's work, without realizing it
+
+Currently, the solution to this is pushing people to document their work and to communicate. That is, of course, not a bad thing but it requires a balance. You don't want people over-communicating – at which point there's too much noise and Alice might not see an email from Bob saying he's also rotating credentials – and you also don't want people spending too much time documenting. Documentation needs to be good – which is a skill that isn't a given – and good documentation takes time.
+
+What if we could use an LLM to "interview" Alice (as well as Bob and everyone else), with the goal of discovering any tacit knowledge, curate the results, and flag any potential issues (e.g. "Alice quit and now no one is doing X" or "Alice and Bob appear to both be repeating the same effort").
+
+As for technology, I think that's more of an implementation detail, at least for now.
+
+# Outline
 
 - Intro
   - The main use for LLMs now is RAG
@@ -41,24 +63,56 @@ recommended: []
   - It could be too much of a half-measure ("in order for it to *really* work we'd need to do more than we want to")
 - Conclusion
 
-## Notes
+# Draft
 
-To expand on my idea a bit, currently I think most of the uses for LLMs are around answering questions (e.g. via RAG over a set of documents or a dataset). In this case, people have to curate documents that will make up the knowledge base for the LLMs. What if instead (or in addition), it was the job of an LLM to generate thoughtful questions that would help augment that knowledge base?
+It seems like most of the current use cases for LLMs have to do with summarization and RAG. Both involve an LLM answering questions, for a user, about a piece of text. Either "summarize the following..." or "anser question X based on Y documents."
 
-We're also getting to a point where data is extremely valuable. People training LLMs are running low on good quality data on which to train.
+I believe that by flipping that paradigm – using LLMs to generate questions for a user to answer – there would be a huge potential value unlock.
 
-There are whole industries – e.g. consultancies like McKinsey – who spend significant time and resources on "information gathering." I think that's something an LLM could be doing instead.
 
-LLMs could A) perform information gathering by asking thoughtful questions and B) work to categorize and curate that dataset / knowledge base.
+## Setting the Scene
 
-I think most (if not all) companies have a good deal of valuable information that isn't codified anywhere – known as "tacit knowledge." That can lead to problems. Say for example Alice has to perform a business process like rotating credentials once a quarter but this is tacit knowledge and not written down anywhere. Let's think through some potential issues that could arise:
-- Alice could forget to do it one quarter
-- Alice could leave the company and no one knows to take over for him
-- Bob might be doing the same thing without realizing it, wasting time and effort
-- Bob might be doing something else that conflicts with Alice's work, without realizing it
+I think we can all agree, good documentation is vital. Maybe you're documenting your code, maybe you're documenting a business process, or maybe you're taking scratch notes to remember what you just did. It's vital for other people on your team. It's vital when you leave your company, for the next person who replaces you. It's even just for you in 3 months, when you forget how something works.
 
-Currently, the solution to this is pushing people to document their work and to communicate. That is, of course, not a bad thing but it requires a balance. You don't want people over-communicating – at which point there's too much noise and Alice might not see an email from Bob saying he's also rotating credentials – and you also don't want people spending too much time documenting. Documentation needs to be good – which is a skill that isn't a given – and good documentation takes time.
+The act of documenting can be helpful, too. The writing process can help you solidify your thought process and can help commit things to memory.
 
-What if we could use an LLM to "interview" Alice (as well as Bob and everyone else), with the goal of discovering any tacit knowledge, curate the results, and flag any potential issues (e.g. "Alice quit and now no one is doing X" or "Alice and Bob appear to both be repeating the same effort").
+But, all that being said, good documentation takes time – time to make, time to organize, and time to maintain. Sometimes it's worth it and sometimes it may not be. And what if we could use LLMs to help bridge that gap.
 
-As for technology, I think that's more of an implementation detail, at least for now.
+
+## Why?...Why?...Why?
+
+<!-- <figure>
+  <img src="/images/kid-why.webp" alt="A digital illustration of a curious child, surrounded by swirling question marks." />
+  <figcaption>
+    Generated by DALL-E.
+  </figcaption>
+</figure> -->
+
+Up to this point we've been relying on LLMs to answer our questions, but what if they asked the questions and we answered them?
+
+One of their key flaws is 
+
+LLMs may not be perfect at conveying facts
+
+
+## Talk to Me Goose
+
+<figure>
+  <img src="/images/twin-peaks-recorder.webp" alt="Agent dale cooper is driving a car while recording a note on a hand-held recorder." />
+  <figcaption>
+    A still from <a href="https://en.wikipedia.org/wiki/Twin_Peaks">Twin Peaks</a> where Agent Dale Cooper is recording a note for his secretary, Diane.
+  </figcaption>
+</figure>
+
+What if we had a digital companion.
+
+
+## Does it Work?
+
+TK
+
+
+## If You Thought the Interns Were Bad...
+
+TK
+
