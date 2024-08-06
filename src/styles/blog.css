@@ -22,6 +22,10 @@ article p > img + em {
   @apply block text-center text-sm italic -mt-4 mb-2 mx-auto;
 }
 
+article figure img {
+  @apply mx-auto max-h-[500px];
+}
+
 article figure figcaption {
   @apply block text-center text-sm italic mx-auto;
 }
