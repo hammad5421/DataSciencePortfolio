@@ -16,55 +16,6 @@ tags:
 recommended: []
 ---
 
-# Notes
-
-To expand on my idea a bit, currently I think most of the uses for LLMs are around answering questions (e.g. via RAG over a set of documents or a dataset). In this case, people have to curate documents that will make up the knowledge base for the LLMs. What if instead (or in addition), it was the job of an LLM to generate thoughtful questions that would help augment that knowledge base?
-
-We're also getting to a point where data is extremely valuable. People training LLMs are running low on good quality data on which to train.
-
-There are whole industries – e.g. consultancies like McKinsey – who spend significant time and resources on "information gathering." I think that's something an LLM could be doing instead.
-
-LLMs could A) perform information gathering by asking thoughtful questions and B) work to categorize and curate that dataset / knowledge base.
-
-I think most (if not all) companies have a good deal of valuable information that isn't codified anywhere – known as "tacit knowledge." That can lead to problems. Say for example Alice has to perform a business process like rotating credentials once a quarter but this is tacit knowledge and not written down anywhere. Let's think through some potential issues that could arise:
-- Alice could forget to do it one quarter
-- Alice could leave the company and no one knows to take over for him
-- Bob might be doing the same thing without realizing it, wasting time and effort
-- Bob might be doing something else that conflicts with Alice's work, without realizing it
-
-Currently, the solution to this is pushing people to document their work and to communicate. That is, of course, not a bad thing but it requires a balance. You don't want people over-communicating – at which point there's too much noise and Alice might not see an email from Bob saying he's also rotating credentials – and you also don't want people spending too much time documenting. Documentation needs to be good – which is a skill that isn't a given – and good documentation takes time.
-
-What if we could use an LLM to "interview" Alice (as well as Bob and everyone else), with the goal of discovering any tacit knowledge, curate the results, and flag any potential issues (e.g. "Alice quit and now no one is doing X" or "Alice and Bob appear to both be repeating the same effort").
-
-As for technology, I think that's more of an implementation detail, at least for now.
-
-# Outline
-
-- Intro
-  - The main use for LLMs now is RAG
-  - We maintain knowledge bases which they reference to generate answers
-- Interview with an LLM
-  - We could use LLMs to *interview* people about what they're doing to document as they go
-  - Essentially you would just brain dump about what you're doing from time-to-time and an LLM would process the results
-  - People like to talk. Let them.
-- What could it do?
-  - It can help remind you what you're working on
-  - Auto-generate your stand-up notes
-  - Auto-generate your brag document
-  - (Alice + Bob examples)
-- Examples in the Wild
-  - Is this just Rewind / Microsoft Recall
-  - Perplexity
-- What could go wrong?
-  - It could get it wrong (bad summaries)
-  - People could not want to use it ("You're just going to try to automate me away")
-  - It could be too intrusive
-  - It could be a security hole ("cool now all our sensitive info is in one place!")
-  - It could be too much of a half-measure ("in order for it to *really* work we'd need to do more than we want to")
-- Conclusion
-
-# Draft
-
 It seems like most of the current use cases for LLMs have to do with summarization and RAG. Both involve an LLM answering questions, for a user, about a piece of text. Either "summarize the following..." or "anser question X based on Y documents."
 
 I believe that by flipping that paradigm – using LLMs to generate questions for a user to answer – there would be a huge potential value unlock.
@@ -150,9 +101,12 @@ LLM: Got it, thanks for sharing all that! If you need help with anything else or
 
 > What could go wrong?
 
-- Isn't that just [Recall](https://www.theverge.com/2024/6/20/24182350/microsoft-windows-recall-launch-on-arm)?
-- So you're just automating me away?
 - Am I just going to be subjected to a million bad questions?
+  - Maybe?
+- So you're just automating me away?
+  - That would be a bit of a stretch
+- Isn't that just [Recall](https://www.theverge.com/2024/6/20/24182350/microsoft-windows-recall-launch-on-arm)?
+  - Not really. Different goals. See above.
 
 
 ## Conclusion
