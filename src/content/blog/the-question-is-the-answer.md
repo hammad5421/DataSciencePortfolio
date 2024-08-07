@@ -70,34 +70,12 @@ What if, rather than a static note-taker, it could be an active participant? It 
 Alternatively, the process doesn't have to be triggered by your quick status update. Instead, you could go to the bot and let it ask you a bunch of questions. Imagine you want a more in-depth understanding of a process. You could be "interviewed" by a bot. The process might be similar but wheras in the previous example, you don't want to break your flow and the bot just wants to ask a couple of follow up questions for clarity, in this case it's goal is to build out a more comprehensive, structured piece of documentation.
 
 
-## Does it Work?
-
-> I don't know
-
-```
-LLM: Hi! I’m excited to learn more about what you’re working on. Could you give me a quick overview of your current project?
-
-User: Hey! I’m working on optimizing our client-side caching strategy to improve our web app’s performance and reduce server load. It’s something we’ve needed to tackle for a while.
-
-LLM: That sounds interesting! How are you planning to decide which parts of the data should be cached?
-
-User: We’re focusing on caching static data that doesn’t change often, like user profiles and product details. Dynamic data will still be fetched live from the server to ensure accuracy.
-
-LLM: Great approach! What tools or libraries are you using to implement this caching strategy?
-
-User: We’re using a combination of IndexedDB for storing larger data sets and the browser’s local storage for smaller, quick-access data. Both are pretty straightforward and integrate well with our existing setup.
-
-LLM: Nice! How do you plan to handle cache invalidation to keep everything up to date?
-
-User: We’re setting up a time-based expiration for most cached items. Additionally, we’ll have triggers to clear the cache when specific server-side events occur, like updates to user settings.
-
-User: /done
-
-LLM: Got it, thanks for sharing all that! If you need help with anything else or have more updates, feel free to let me know. Good luck with the project!
-```
-
-
 ## That's a Dumb Question
+
+<figure>
+  <img src="/images/are-we-there-yet.webp" alt='A screen-grab from the Simpsons, with the family in the car and bart asking "are we there yet?".' />
+  <figcaption></figcaption>
+</figure>
 
 > What could go wrong?
 
@@ -107,6 +85,20 @@ LLM: Got it, thanks for sharing all that! If you need help with anything else or
   - That would be a bit of a stretch
 - Isn't that just [Recall](https://www.theverge.com/2024/6/20/24182350/microsoft-windows-recall-launch-on-arm)?
   - Not really. Different goals. See above.
+
+At this point it may sound like I'm suggesting we turn loose a pestersome, AI-enhanced noodge. I'm aware that there's a lot about this that could go wrong.
+
+Let's go over just a couple possible issues.
+
+> Am I just going to be subjected to an infinite stream of bad questions?
+
+Honestly, maybe. But 
+
+> Is this just going to be used to automate away my job?
+
+
+
+> Isn't that just Recall?
 
 
 ## Conclusion
